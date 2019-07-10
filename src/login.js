@@ -38,12 +38,60 @@ function Login() {
 
   }
 
+  function userCreate(e) {
+    e.preventDefault();
+    console.log(username, password)
+    fetch('http://localhost:3000/api/v1/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password,
+          status: 'guide',
+		      location: 'place',
+		      avatar: 'pic'
+        }
+      })
+    })
+    .then(r=>r.json())
+    .then(p => {
+      console.log(p)
+      localStorage.setItem('token', `${p.jwt}`)
+    })
+    .then(u => {
+      fetch('http://localhost:3000/api/v1/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            username: username,
+            password: password
+          }
+        })
+      })
+      .then(r=>r.json())
+      .then(console.log)
+    })
+  }
+
+  function logOut() {
+    localStorage.clear()
+  }
+
+
     return (
       <form>
       <input
         value={username}
         onChange={e => setUsername(e.target.value)}
-        placeholder="First name"
+        placeholder="username"
         type="text"
         name="username"
          />
@@ -54,7 +102,10 @@ function Login() {
         type="password"
         name="password"
         />
-      <button onClick={e => userLogin(e)}>Press Me </button>
+      <button onClick={e => userLogin(e)}> Login </button>
+      <button onClick={e=> userCreate(e)}> New User </button>
+      <button onClick={e=>logOut(e)}>LogOut</button>
+
       </form>
 
   )

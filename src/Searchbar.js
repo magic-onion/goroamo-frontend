@@ -1,1 +1,152 @@
-import PlacesAutoComplete from 'react-places-autocomplete';
+import React, { Component } from 'react'
+import Script from 'react-load-script';
+import LocationDetail from './components/LocationDetail'
+import API_KEY from './environment'
+const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
+
+
+// Import React Scrit Libraray to load Google object
+
+class Search extends Component {
+  // Define Constructor
+  constructor(props) {
+    super(props);
+
+    // Declare State
+    this.state = {
+      city: '',
+      query: ''
+    };
+
+    // Bind Functions
+    this.handleScriptLoad = this.handleScriptLoad.bind(this);
+    this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+    this.handleAddLocation = this.handleAddLocation.bind(this);
+
+  }
+
+  handleScriptLoad() {
+    // Declare Options For Autocomplete
+    var options = {
+      // types: ['(cities)', 'address', 'geocode'],
+    };
+
+    // Initialize Google Autocomplete
+    /*global google*/ // To disable any eslint 'google not defined' errors
+    this.autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'),
+      options,
+    );
+
+    // Fire Event when a suggested name is selected
+    this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+  }
+
+
+
+  handleChange(e) {
+    this.setState({
+      query: e.target.value
+    })
+  }
+
+  handlePlaceSelect() {
+    // Extract City From Address Object
+    let addressObject = this.autocomplete.getPlace();
+    let address = addressObject.address_components;
+    console.log(addressObject)
+    console.log(this.props.addresses)
+    // Check if address is valid
+    if (address) {
+      // Set State
+      this.setState(
+        {
+          city: address[0],
+          query: addressObject.formatted_address,
+        }
+      );
+    }
+    console.log(this.state.query)
+  }
+
+  handleAddLocation() {
+  if (this.state.query.length) {
+    let addressObject = this.autocomplete.getPlace();
+    console.log(addressObject)
+    this.props.addresses.push(addressObject)
+
+
+    fetch('http://localhost:3000/api/v1/locations', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        location: {
+          name: addressObject.name,
+          description: addressObject.website,
+          longitude: '',
+          latitude: '',
+          address1: addressObject.formatted_address,
+          address2: addressObject.formatted_address,
+          city: "",
+          region: '',
+          country: 'Canada',
+          placeid: addressObject.place_id,
+          postcode: '',
+          user_id: 1,
+
+        },
+        tour_id: 1
+      })
+
+    })
+    .then(r=>r.json())
+    .then(console.log)
+    this.setState({
+      city: '',
+      query: ''
+    })
+  }
+  }
+
+  get locations() {
+  console.log('getter')
+    if (this.props.addresses.length) {
+      return this.props.addresses.map((obj, i) =>  <LocationDetail key={i} address={obj.formatted_address}/>)
+    }
+    return <p>no locations yet</p>
+  }
+
+  render() {
+    return (
+      <div>
+        <Script
+          url= { url }
+          onLoad={this.handleScriptLoad}
+        />
+        <input className="search-bar" id="autocomplete" placeholder="" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}
+        ></input>
+        {this.locations}
+        <button onClick={e=> this.handleAddLocation(e)}>Add Location</button>
+        <button>Save Tour</button>
+      </div>
+    );
+  }
+}
+
+export default Search;
+
+// t.string :name
+//     t.string :description
+//     t.string :longitude
+//     t.string :latitude
+//     t.string :address1
+//     t.string :address2
+//     t.string :city
+//     t.string :region
+//     t.string :country
+//     t.string :placeid
+//     t.integer :postcode
+//     t.belongs_to :user

@@ -3,12 +3,20 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './login'
 import AddLocation from './addLocation'
+import SearchBar from './SearchBar'
+import CreateTour from './containers/CreateTour'
 
 function App() {
+  const addresses = []
+
+
+
   return (
     <div className="App">
       <Login/>
-      <AddLocation/>
+      <CreateTour/>
+      <SearchBar addresses={addresses}/>
+
     </div>
   );
 }
