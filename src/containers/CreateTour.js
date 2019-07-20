@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchBar from '../SearchBar'
+import LocationAdder from '../components/LocationAdder'
 //this component will
 //contain a search bar with autocomplete
 //when an address is added, it displays a marker on map, and info about the place
@@ -16,7 +17,8 @@ class CreateTour extends React.Component {
 
     this.state = {
       name: '',
-      description: ''
+      description: '',
+      counter: 0
     }
 
     this.handleAdd = this.handleAdd.bind(this)
@@ -47,6 +49,20 @@ class CreateTour extends React.Component {
 
   }
 
+  increment(e) {
+    let newCounter = this.state.counter + 1
+    this.setState({counter: newCounter}, () => console.log(this.state.counter))
+  }
+
+
+  get numberOfLocations() {
+    let mapper = []
+    for (let i = 1; i <= this.state.counter; i++) {
+      mapper.push(i)
+    }
+    return mapper
+  }
+
 
   render() {
     return(
@@ -54,7 +70,9 @@ class CreateTour extends React.Component {
         <h1>Create a Tour</h1>
         <input onChange={e=>this.handleChange(e)} id="name" type="text" placeholder="Tour Name"></input>
         <input onChange={e=>this.handleChange(e)} id="description" type="content" placeholder="Description"></input>
-        <button onClick={this.handleAdd}>add tour</button>
+        {this.numberOfLocations.map((i) => <LocationAdder key={i} addresses={this.props.addresses}/> )}
+        <button onClick={e=>this.increment(e)}>+</button>
+        <button>Save Tour</button>
       </div>
     )
   }

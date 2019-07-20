@@ -104,7 +104,7 @@ function Login() {
         />
       <button onClick={e => userLogin(e)}> Login </button>
       <button onClick={e=> userCreate(e)}> New User </button>
-      <button onClick={e=>logOut(e)}>LogOut</button>
+      <button onClick={e=>logOut(e)}>Log Out</button>
 
       </form>
 

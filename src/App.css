@@ -31,3 +31,18 @@
     transform: rotate(360deg);
   }
 }
+
+.drag-drop {
+  height: 80px;
+  width: 80px;
+}
+
+.location-adder {
+  display: flex;
+  margin: 15px;
+}
+
+.sidebar {
+  display: inline-grid;
+  float: left;
+}
