@@ -18,19 +18,50 @@ class LocationAdder extends React.Component {
   }
 
   handleChange(e) {
-    this.setstate({[e.target.id]: e.target.value})
+    this.setState({[e.target.id]: e.target.value})
   }
 
   handleSaveLocation(e) {
-    //request goes here
+    fetch('http://localhost:3000/api/v1/locations', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        tour_id: this.props.tourId,
+        location: {
+          name: this.props.addresses.formatted_address,
+          latitude: this.props.addresses.geometry.location.lat(),
+          longitude: this.props.addresses.geometry.location.lng(),
+          funfact1: this.state.funFact1,
+          funfact2: this.state.funFact2,
+          funfact3: this.state.funFact3,
+          image: this.state.image,
+          user_id: 1,
+        }
+      })
+    })
+    .then(r=>r.json())
+    .then(console.log)
   }
 
+  // t.string :name
+  //     t.string :description
+  //     t.string :longitude
+  //     t.string :latitude
+  //     t.string :funfact1
+  //     t.string :funfact2
+  //     t.string :funfact3
+  //     t.string :image
+  //     t.belongs_to :user
+
   render() {
+    console.log(this.props.addresses)
     return (
       <div className="location-adder">
-        <span>{this.props.addresses.formatted_address}</span>
         <input onChange={e=>this.handleChange(e)} className="drag-drop" type="file" placeholder="upload file"></input>
-        <span>MAP PLACEHOLDER</span>
+        <p>{this.props.addresses.formatted_address} (map placeholder)</p>
         <div>
           <p>fun facts</p>
           <input onChange={e=>this.handleChange(e)} id="funFact1"></input>
@@ -38,7 +69,7 @@ class LocationAdder extends React.Component {
           <input onChange={e=>this.handleChange(e)} id="funFact3"></input>
           </div>
         <textarea rows="10" cols="30" defaultValue="description" id="description"></textarea>
-        <button>save</button>
+        <button onClick={e=>this.handleSaveLocation(e)}>save</button>
       </div>
     )
   }

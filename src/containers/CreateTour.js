@@ -29,7 +29,8 @@ class CreateTour extends React.Component {
       counter: 0,
       tourSelected: false,
       query: '',
-      locations: []
+      locations: [],
+      tourId: 0
     }
 
     this.handleAdd = this.handleAdd.bind(this)
@@ -104,9 +105,45 @@ class CreateTour extends React.Component {
       <input onChange={e=>this.handleTourChange(e)} id="location" placeholder="Location of the Tour"value={this.state.location}></input>
       <input onChange={e=>this.handleTourChange(e)} id="distance" placeholder="Total Distance"value={this.state.distance}></input>
       <input onChange={e=>this.handleTourChange(e)} id="duration" type="number" placeholder="Aprroximate Duration of Tour" value={this.state.duration}></input>
-      <button>postrequesttotours</button>
+      <button onClick={e=>this.handleSaveTour(e)}>postrequesttotours</button>
       </div>
     )
+  }
+
+  get tourInfo() {
+    return(
+      <div>
+        <span>{this.state.name}</span>
+        <span>{this.state.location}</span>
+        <span>distance: {this.state.distance}</span>
+        <span>duration: {this.state.duration}</span>
+      </div>
+    )
+  }
+
+  handleSaveTour(e) {
+    this.setState({tourSelected: true})
+    fetch('http://localhost:3000/api/v1/tours', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({
+        tour: {
+          name: this.state.name,
+          location: this.state.location,
+          distance: this.state.distance,
+          duration: this.state.duration,
+          user_id: 1
+        }
+      })
+    })
+    .then(r=>r.json())
+    .then(p => (
+      this.setState({tourId: p.id})
+    ))
+
   }
 
   handleTourChange(e) {
@@ -122,11 +159,11 @@ class CreateTour extends React.Component {
           url= { url }
           onLoad={this.handleScriptLoad}
         />
-        {this.tourWidget}
+        {!this.state.tourSelected ? this.tourWidget : null}
         <input className="search-bar" id="autocomplete" placeholder="" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}
         ></input>
         <button onClick={e=> this.increment(e)}>add location</button>
-        {this.state.locations.length ? this.state.locations.map((addressObj, i) => <LocationAdder key={i} addresses={addressObj}/> ) : null }
+        {this.state.locations.length ? this.state.locations.map((addressObj, i) => <LocationAdder key={i} addresses={addressObj} tourId={this.state.tourId}/> ) : null }
         <button>Save Tour</button>
       </div>
     )
