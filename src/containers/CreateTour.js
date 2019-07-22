@@ -1,8 +1,14 @@
 import React from 'react'
+import Script from 'react-load-script'
 import SearchBar from '../SearchBar'
 import LocationAdder from '../components/LocationAdder'
+import TourWidget from '../components/TourWidget'
+import API_KEY from '../environment'
+const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 //this component will
 //contain a search bar with autocomplete
+
+  //write the seaarch bar into the t
 //when an address is added, it displays a marker on map, and info about the place
 //the marker should be numbered according to which location is set
 //should prompt for a tour name and description
@@ -17,11 +23,18 @@ class CreateTour extends React.Component {
 
     this.state = {
       name: '',
-      description: '',
-      counter: 0
+      location: '',
+      distance: '',
+      duration: '',
+      counter: 0,
+      tourSelected: false,
+      query: '',
+      locations: []
     }
 
     this.handleAdd = this.handleAdd.bind(this)
+    this.handleScriptLoad = this.handleScriptLoad.bind(this)
+    this.handlePlaceSelect = this.handlePlaceSelect.bind(this)
   }
   handleAdd() {
     console.log(this.state)
@@ -45,11 +58,17 @@ class CreateTour extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({[e.target.id]: e.target.value})
+    this.setState({query: e.target.value})
 
   }
 
   increment(e) {
+    let addressObject = this.autocomplete.getPlace()
+    addressObject.lat = addressObject.geometry.location.lat()
+    addressObject.lng = addressObject.geometry.location.lng()
+    this.setState({
+      locations: [...this.state.locations, addressObject]
+    })
     let newCounter = this.state.counter + 1
     this.setState({counter: newCounter}, () => console.log(this.state.counter))
   }
@@ -63,15 +82,51 @@ class CreateTour extends React.Component {
     return mapper
   }
 
+  handleScriptLoad() {
+    let options = []
+    this.autocomplete = new window.google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'),
+      options,
+    );
+
+    // Fire Event when a suggested name is selected
+    this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+  }
+
+  handlePlaceSelect() {
+    let addressObject = this.autocomplete.getPlace()
+  }
+
+  get tourWidget() {
+    return(
+      <div>
+      <input onChange={e=>this.handleTourChange(e)} id="name" placeholder="Name of the Tour" value={this.state.name}></input>
+      <input onChange={e=>this.handleTourChange(e)} id="location" placeholder="Location of the Tour"value={this.state.location}></input>
+      <input onChange={e=>this.handleTourChange(e)} id="distance" placeholder="Total Distance"value={this.state.distance}></input>
+      <input onChange={e=>this.handleTourChange(e)} id="duration" type="number" placeholder="Aprroximate Duration of Tour" value={this.state.duration}></input>
+      <button>postrequesttotours</button>
+      </div>
+    )
+  }
+
+  handleTourChange(e) {
+    this.setState({[e.target.id]: e.target.value})
+  }
+
 
   render() {
     return(
       <div>
         <h1>Create a Tour</h1>
-        <input onChange={e=>this.handleChange(e)} id="name" type="text" placeholder="Tour Name"></input>
-        <input onChange={e=>this.handleChange(e)} id="description" type="content" placeholder="Description"></input>
-        {this.numberOfLocations.map((i) => <LocationAdder key={i} addresses={this.props.addresses}/> )}
-        <button onClick={e=>this.increment(e)}>+</button>
+        <Script
+          url= { url }
+          onLoad={this.handleScriptLoad}
+        />
+        {this.tourWidget}
+        <input className="search-bar" id="autocomplete" placeholder="" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}
+        ></input>
+        <button onClick={e=> this.increment(e)}>add location</button>
+        {this.state.locations.length ? this.state.locations.map((addressObj, i) => <LocationAdder key={i} addresses={addressObj}/> ) : null }
         <button>Save Tour</button>
       </div>
     )
@@ -79,3 +134,7 @@ class CreateTour extends React.Component {
 }
 
 export default CreateTour
+
+//post request to save Locations
+//post request to save Tours
+//spacing styling?

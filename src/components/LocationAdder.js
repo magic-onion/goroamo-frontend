@@ -1,30 +1,47 @@
 import React, {useState} from 'react'
+import Script from 'react-load-script';
 import SearchBar from '../SearchBar'
+import API_KEY from '../environment'
+const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
-function LocationAdder(props) {
+class LocationAdder extends React.Component {
 
-  const [locationCount, setLocations] = useState(0)
+  constructor(props) {
+    super(props)
 
-  function incrementLocations(e) {
-    setLocations(locationCount => locationCount +1)
+    this.state = {
+      funFact1: '',
+      funFact2: '',
+      funFact3: '',
+      description: ''
+    }
   }
 
+  handleChange(e) {
+    this.setstate({[e.target.id]: e.target.value})
+  }
 
-  return (
-    <div className="location-adder">
+  handleSaveLocation(e) {
+    //request goes here
+  }
 
-      <div>
-      <span>fun facts</span>
-        <input className="drag-drop" type="file" placeholder="upload file"/>
-        <SearchBar addresses={props.addresses}/>
-        <input type="text"/>
-        <input type="text"/>
-        <input type="text"/>
+  render() {
+    return (
+      <div className="location-adder">
+        <span>{this.props.addresses.formatted_address}</span>
+        <input onChange={e=>this.handleChange(e)} className="drag-drop" type="file" placeholder="upload file"></input>
+        <span>MAP PLACEHOLDER</span>
+        <div>
+          <p>fun facts</p>
+          <input onChange={e=>this.handleChange(e)} id="funFact1"></input>
+          <input onChange={e=>this.handleChange(e)} id="funFact2"></input>
+          <input onChange={e=>this.handleChange(e)} id="funFact3"></input>
+          </div>
+        <textarea rows="10" cols="30" defaultValue="description" id="description"></textarea>
+        <button>save</button>
       </div>
-      <textarea rows="10" cols="30" defaultValue="description"></textarea>
-
-    </div>
-  )
+    )
+  }
 
 }
 

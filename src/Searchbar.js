@@ -130,23 +130,10 @@ class Search extends Component {
         ></input>
         {this.locations}
         <button onClick={e=> this.handleAddLocation(e)}>Add Location</button>
-        <button>Save Tour</button>
+        <button>Add Location</button>
       </div>
     );
   }
 }
 
 export default Search;
-
-// t.string :name
-//     t.string :description
-//     t.string :longitude
-//     t.string :latitude
-//     t.string :address1
-//     t.string :address2
-//     t.string :city
-//     t.string :region
-//     t.string :country
-//     t.string :placeid
-//     t.integer :postcode
-//     t.belongs_to :user

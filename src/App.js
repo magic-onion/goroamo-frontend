@@ -17,11 +17,16 @@ function App() {
 
   return (
     <Router>
-    <div className="App">
-      <Login/>
-      <Sidebar/>
+    <Sidebar/>
+      <div className="container">
+        <Login/>
 
-    </div>
+        <Route path="/" exact component={Home} />
+        <Route path="/create-tour/" component={CreateTour} />
+        <Route path="/profile/" component={Dashboard} />
+        <Route path="/analytics/" component={Home} />
+
+      </div>
     </Router>
   );
 }

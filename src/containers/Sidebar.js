@@ -7,14 +7,13 @@ import Dashboard from './Dashboard'
 function Sidebar() {
   return(
     <div className="sidebar">
-      <Link to="/">Current Tours</Link>
-      <Link to="/create-tour/">Create New Tour</Link>
-      <Link to="/profile/">Profile</Link>
-      <Link to="/analytics/">Analytics</Link>
-      <Route path="/" exact component={Home} />
-        <Route path="/create-tour/" component={CreateTour} />
-        <Route path="/profile/" component={Dashboard} />
-        <Route path="/analytics/" component={Home} />
+    <ul>
+      <li><Link to="/" className="nav">Current Tours</Link></li>
+
+      <li><Link to="/create-tour/" className="nav">Create New Tour</Link></li>
+      <li><Link to="/profile/" className="nav">Profile</Link></li>
+      <li><Link to="/analytics/" className="nav">Analytics</Link></li>
+    </ul>
     </div>
   )
 }
