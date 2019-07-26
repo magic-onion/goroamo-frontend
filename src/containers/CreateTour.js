@@ -150,6 +150,18 @@ class CreateTour extends React.Component {
     this.setState({[e.target.id]: e.target.value})
   }
 
+  get currentTour() {
+    if (this.state.tourId) {
+      return (
+        <div>
+          <span>{this.state.name}</span>
+          <p>{this.state.location}</p>
+        </div>
+      )
+    }
+    return null
+  }
+
 
   render() {
     return(
@@ -159,8 +171,8 @@ class CreateTour extends React.Component {
           url= { url }
           onLoad={this.handleScriptLoad}
         />
-        {!this.state.tourSelected ? this.tourWidget : null}
-        <input className="search-bar" id="autocomplete" placeholder="" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}
+        {!this.state.tourSelected ? this.tourWidget : this.currentTour}
+        <input className="search-bar" id="autocomplete" placeholder="search for a location to add" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}
         ></input>
         <button onClick={e=> this.increment(e)}>add location</button>
         {this.state.locations.length ? this.state.locations.map((addressObj, i) => <LocationAdder key={i} addresses={addressObj} tourId={this.state.tourId}/> ) : null }
