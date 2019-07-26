@@ -1,6 +1,7 @@
 import React from 'react'
 import Script from 'react-load-script'
 import SearchBar from '../SearchBar'
+import Marker from '../components/Marker'
 import LocationAdder from '../components/LocationAdder'
 import TourWidget from '../components/TourWidget'
 import API_KEY from '../environment'
@@ -85,6 +86,10 @@ class CreateTour extends React.Component {
 
   handleScriptLoad() {
     let options = []
+    this.map = new window.google.maps.Map(document.getElementById('map'), {
+      center: {lat: 43.650, lng: -79.384},
+      zoom: 14
+    })
     this.autocomplete = new window.google.maps.places.Autocomplete(
       document.getElementById('autocomplete'),
       options,
@@ -136,6 +141,7 @@ class CreateTour extends React.Component {
           distance: this.state.distance,
           duration: this.state.duration,
           user_id: 1
+
         }
       })
     })
@@ -162,6 +168,15 @@ class CreateTour extends React.Component {
     return null
   }
 
+  get marker() {
+    let markers
+    console.log('firing')
+    if (this.state.locations.length) {
+      return this.state.locations.map((obj, i) => <Marker lat={obj.lat} lng={obj.lng} key={i} map={this.map}/>)
+    }
+    return null
+  }
+
 
   render() {
     return(
@@ -177,6 +192,9 @@ class CreateTour extends React.Component {
         <button onClick={e=> this.increment(e)}>add location</button>
         {this.state.locations.length ? this.state.locations.map((addressObj, i) => <LocationAdder key={i} addresses={addressObj} tourId={this.state.tourId}/> ) : null }
         <button>Save Tour</button>
+        <div id="map">
+          {this.marker}
+        </div>
       </div>
     )
   }

@@ -1,17 +1,11 @@
 import React from 'react'
 
-const Marker = ({ text }) =>  <div style={{
-    color: 'white',
-    background: 'grey',
-    padding: '15px 10px',
-    display: 'inline-flex',
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '100%',
-    transform: 'translate(-50%, -50%)'
-  }}>
-    <span>{text}</span>
-  </div>;
+function Marker(props) {
+  let marker = new window.google.maps.Marker({
+    position: {lat: props.lat, lng: props.lng},
+    map: props.map
+  })
+  return null
+}
 
-  export default Marker
+export default Marker
