@@ -118,5 +118,6 @@
 }
 
 #map {
-  height: 200%
+  height: 150%;
+  position: unset !important;
 }

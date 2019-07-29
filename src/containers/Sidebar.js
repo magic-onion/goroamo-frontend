@@ -13,6 +13,7 @@ function Sidebar() {
       <li><Link to="/create-tour/" className="nav">Create New Tour</Link></li>
       <li><Link to="/profile/" className="nav">Profile</Link></li>
       <li><Link to="/analytics/" className="nav">Analytics</Link></li>
+      <li><Link to="/view-tours/" className="nav">View Tours</Link></li>
     </ul>
     </div>
   )

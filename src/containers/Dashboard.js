@@ -11,11 +11,12 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <CurrentTours/>
-        <ProfileWidget/>
+      <CurrentTours/>
+      <ProfileWidget/>
       </div>
     )
   }
 }
+
 
 export default Dashboard

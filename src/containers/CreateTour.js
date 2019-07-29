@@ -86,10 +86,10 @@ class CreateTour extends React.Component {
 
   handleScriptLoad() {
     let options = []
-    this.map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: 43.650, lng: -79.384},
-      zoom: 14
-    })
+    // this.map = new window.google.maps.Map(document.getElementById('map'), {
+    //   center: {lat: 43.650, lng: -79.384},
+    //   zoom: 14
+    // })
     this.autocomplete = new window.google.maps.places.Autocomplete(
       document.getElementById('autocomplete'),
       options,
