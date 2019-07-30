@@ -85,11 +85,12 @@ class CreateTour extends React.Component {
   }
 
   handleScriptLoad() {
+    console.log("create tours script")
     let options = []
-    // this.map = new window.google.maps.Map(document.getElementById('map'), {
-    //   center: {lat: 43.650, lng: -79.384},
-    //   zoom: 14
-    // })
+    this.map = new window.google.maps.Map(document.getElementById('map'), {
+      center: {lat: 43.650, lng: -79.384},
+      zoom: 14
+    })
     this.autocomplete = new window.google.maps.places.Autocomplete(
       document.getElementById('autocomplete'),
       options,
@@ -170,11 +171,15 @@ class CreateTour extends React.Component {
 
   get marker() {
     let markers
-    console.log('firing')
+    console.log('firing markers getter')
     if (this.state.locations.length) {
       return this.state.locations.map((obj, i) => <Marker lat={obj.lat} lng={obj.lng} key={i} map={this.map}/>)
     }
     return null
+  }
+
+  componentDidMount() {
+    this.handleScriptLoad()
   }
 
 
@@ -182,10 +187,6 @@ class CreateTour extends React.Component {
     return(
       <div>
         <h1>Create a Tour</h1>
-        <Script
-          url= { url }
-          onLoad={this.handleScriptLoad}
-        />
         {!this.state.tourSelected ? this.tourWidget : this.currentTour}
         <input className="search-bar" id="autocomplete" placeholder="search for a location to add" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}
         ></input>

@@ -11,28 +11,36 @@ class ToursContainer extends React.Component {
   }
 
   handleScriptLoad() {
+    console.log("tourscontainer script")
     if (this.props.coords.length) {
       console.log(this.props.coords)
-      this.map = new window.google.maps.Map(document.getElementById('map'), {
+      this.map = new window.google.maps.Map(document.getElementById("map-container"), {
         center: {lat: this.props.coords[0], lng: this.props.coords[1]},
-        zoom: 14
+        zoom: 14,
+
       })
     }
   }
 
+  componentDidMount() {
+    this.handleScriptLoad()
+  }
 
   render() {
+    console.log(this.props.coords)
     return (
-      <div>
-      <Script
-        url= { url }
-        onLoad={this.handleScriptLoad}
-      />
-      <div id="map">
-      </div>
-      </div>
+        <div style={{width: 400, height: 400, margin: 50}} id="map-container">
+        </div>
     )
   }
+
 }
 
 export default ToursContainer
+
+
+// <Script
+// url= { url }
+// onLoad={this.handleScriptLoad}
+// />
+// <div id="map">
