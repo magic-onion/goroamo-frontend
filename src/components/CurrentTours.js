@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import TourInfo from './TourInfo'
 
 class CurrentTours extends React.Component {
@@ -21,13 +22,11 @@ class CurrentTours extends React.Component {
     })
     .then(r=>r.json())
     .then(p => {
-      console.log(p)
       this.setState({tours: p, toursLoaded: true})
     })
   }
 
   get tourInfo() {
-    console.log(this.state.tours)
     if (this.state.toursLoaded) {
       return this.state.tours.map( (el,i) => <TourInfo key={i} tour={el.tour} locations={el.locations}/>)
     }
@@ -35,24 +34,25 @@ class CurrentTours extends React.Component {
   }
   render() {
     return (
-      <div>
-      <table>
-      <thead>
-      <tr>
-      <th>Tour</th>
-      <th>Date Created</th>
-      <th>Locations</th>
-      <th>Duration</th>
-      <th>distance</th>
-      <th>User Completions</th>
-      <th>Edit Tour</th>
-      </tr>
-      </thead>
-      <tbody>
-        {this.tourInfo}
-      </tbody>
-
-      </table>
+      <div className="dashboard-table">
+        <span>Current Tours</span>
+        <Link to="/create-tour/" className="dashboard-create-link">Create New Tour</Link>
+        <table>
+          <thead>
+            <tr>
+              <th className="dashboard-table-headers">Tour</th>
+              <th className="dashboard-table-headers">Date Created</th>
+              <th className="dashboard-table-headers">Locations</th>
+              <th className="dashboard-table-headers">Duration</th>
+              <th className="dashboard-table-headers">distance</th>
+              <th className="dashboard-table-headers">User Completions</th>
+              <th className="dashboard-table-headers">Edit Tour</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.tourInfo}
+          </tbody>
+        </table>
       </div>
 
     )

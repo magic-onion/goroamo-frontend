@@ -1,18 +1,20 @@
 import React from 'react'
 
 function TourInfo(props) {
-  console.log(props)
+
+  let date = new Date(props.tour.created_at)
+  console.log(date.day)
   return (
     <tr>
-    <td>{props.tour ? props.tour.name : null}</td>
-    <td>DATE</td>
-    <td>{props.locations !== undefined ? props.locations.length : 0}</td>
-    <td>{props.tour.duration}</td>
-    <td>{props.tour.distance}</td>
-    
-    <td>{props.tour.distance}</td>
+      <td className="dashboard-table-data">{props.tour ? props.tour.name : null}</td>
+      <td className="dashboard-table-data">{date.getUTCDate()}/{date.getMonth()}/{date.getFullYear()}</td>
+      <td className="dashboard-table-data">{props.locations !== undefined ? props.locations.length : 0}</td>
+      <td className="dashboard-table-data">{props.tour.duration}</td>
+      <td className="dashboard-table-data">{props.tour.distance}</td>
 
-    <td><button>edit</button></td>
+      <td className="dashboard-table-data">{props.tour.distance}</td>
+
+      <td className="dashboard-table-data"><button>edit</button></td>
     </tr>
   )
 }
