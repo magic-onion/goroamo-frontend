@@ -9,6 +9,10 @@ function TourInfo(props) {
     <td>{props.locations !== undefined ? props.locations.length : 0}</td>
     <td>{props.tour.duration}</td>
     <td>{props.tour.distance}</td>
+    
+    <td>{props.tour.distance}</td>
+
+    <td><button>edit</button></td>
     </tr>
   )
 }

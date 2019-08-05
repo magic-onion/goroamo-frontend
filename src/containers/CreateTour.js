@@ -1,21 +1,8 @@
 import React from 'react'
-import Script from 'react-load-script'
-import SearchBar from '../SearchBar'
 import Marker from '../components/Marker'
 import LocationAdder from '../components/LocationAdder'
-import TourWidget from '../components/TourWidget'
 import API_KEY from '../environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
-//this component will
-//contain a search bar with autocomplete
-
-  //write the seaarch bar into the t
-//when an address is added, it displays a marker on map, and info about the place
-//the marker should be numbered according to which location is set
-//should prompt for a tour name and description
-//component to make a post request to new Tour
-//route to match
-//route to create new location
 
 class CreateTour extends React.Component {
 
@@ -170,7 +157,6 @@ class CreateTour extends React.Component {
   }
 
   get marker() {
-    let markers
     console.log('firing markers getter')
     if (this.state.locations.length) {
       return this.state.locations.map((obj, i) => <Marker lat={obj.lat} lng={obj.lng} key={i} map={this.map}/>)

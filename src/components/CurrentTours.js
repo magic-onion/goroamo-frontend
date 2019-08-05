@@ -20,10 +20,10 @@ class CurrentTours extends React.Component {
       }
     })
     .then(r=>r.json())
-    .then(p => (
-      console.log(p),
+    .then(p => {
+      console.log(p)
       this.setState({tours: p, toursLoaded: true})
-    ))
+    })
   }
 
   get tourInfo() {

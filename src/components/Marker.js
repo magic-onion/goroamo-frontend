@@ -1,4 +1,3 @@
-import React from 'react'
 
 function Marker(props) {
   let marker = new window.google.maps.Marker({

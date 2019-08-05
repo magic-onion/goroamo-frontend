@@ -1,8 +1,5 @@
-import React, {useState} from 'react'
-import Script from 'react-load-script';
-import SearchBar from '../SearchBar'
-import API_KEY from '../environment'
-const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
+import React from 'react'
+
 
 class LocationAdder extends React.Component {
 

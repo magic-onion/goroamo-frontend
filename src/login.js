@@ -23,7 +23,7 @@ function Login() {
     .then(r=>r.json())
     .then(p => {
       localStorage.setItem('token', `${p.jwt}`)
-      console.log(localStorage.token)
+      console.log(p)
     })
 
     // Generic users index request

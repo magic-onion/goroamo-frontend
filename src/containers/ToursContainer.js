@@ -1,7 +1,4 @@
 import React from 'react'
-import Script from 'react-load-script'
-import API_KEY from '../environment'
-const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
 class ToursContainer extends React.Component {
   constructor(props) {
@@ -16,7 +13,7 @@ class ToursContainer extends React.Component {
       console.log(this.props.coords)
       this.map = new window.google.maps.Map(document.getElementById("map-container"), {
         center: {lat: this.props.coords[0], lng: this.props.coords[1]},
-        zoom: 14,
+        zoom: 13,
 
       })
     }
@@ -37,10 +34,3 @@ class ToursContainer extends React.Component {
 }
 
 export default ToursContainer
-
-
-// <Script
-// url= { url }
-// onLoad={this.handleScriptLoad}
-// />
-// <div id="map">

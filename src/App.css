@@ -133,12 +133,12 @@
   position: unset !important;
 }
 
-.active {
+.active-1 {
   color: red;
   border: solid red 1px;
 }
 
-.inactive {
+.inactive-1 {
   color: blue;
   border: solid red 1px;
 }
