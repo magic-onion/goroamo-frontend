@@ -130,3 +130,7 @@
   height: 80px;
   width: 80px;
 }
+
+.tour-location-detail {
+  border: solid red 1px;
+}

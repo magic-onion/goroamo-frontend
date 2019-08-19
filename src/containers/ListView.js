@@ -26,8 +26,8 @@ class ListView extends React.Component {
       return this.props.tours.map((el, i) => {
         let linkString = `/tours/${el.tour.id}`
       return(
-        <div>
-            <SelectedTour key={i} tour={el.tour} locations={el.locations}/>
+        <div key={i}>
+            <SelectedTour tour={el.tour} locations={el.locations}/>
             <Link to={{
               pathname: linkString,
               state: {
