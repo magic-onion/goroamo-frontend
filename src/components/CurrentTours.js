@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getAllTours } from '../actions/tours'
 import TourInfo from './TourInfo'
 
 class CurrentTours extends React.Component {
@@ -12,27 +14,16 @@ class CurrentTours extends React.Component {
   }
 
   componentDidMount() {
-    console.log('firing')
-    fetch('http://localhost:3000/api/v1/users/1/my-tours', {
-      method: 'get',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      }
-    })
-    .then(r=>r.json())
-    .then(p => {
-      this.setState({tours: p, toursLoaded: true})
-    })
+    this.props.getAllTours()
+    this.setState({toursLoaded: true})
   }
 
   get tourInfo() {
-    if (this.state.toursLoaded) {
-      return this.state.tours.map( (el,i) => <TourInfo key={i} tour={el.tour} locations={el.locations}/>)
-    }
-    return
+        console.log(this.props.tours.tours)
+      return this.props.tours.tours.map( (el,i) => <TourInfo key={i} tour={el.tour} locations={el.locations}/>)
   }
   render() {
+    console.log(this.state.toursLoaded)
     return (
       <div className="dashboard-table">
         <span>Current Tours</span>
@@ -50,7 +41,7 @@ class CurrentTours extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.tourInfo}
+            {this.state.toursLoaded ? this.tourInfo : <div>"loading"</div>}
           </tbody>
         </table>
       </div>
@@ -59,8 +50,19 @@ class CurrentTours extends React.Component {
   }
 }
 
-export default CurrentTours
+const mapStateToProps = state => {
+  return {
+    tours: state.tours
+  }
+}
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllTours: () => dispatch(getAllTours())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentTours)
 
 
 
