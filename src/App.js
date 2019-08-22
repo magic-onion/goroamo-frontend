@@ -1,6 +1,8 @@
 import React from 'react';
 import Script from 'react-load-script'
 import './App.css';
+import { connect } from 'react-redux'
+import { makeMap } from './actions/tours'
 import { Route } from "react-router-dom";
 import Login from './login'
 import CreateTour from './containers/CreateTour'
@@ -28,8 +30,8 @@ class App extends React.Component {
   }
 
   handleScriptLoad() {
-    console.log('scriptloaded');
     this.getCoords()
+    this.props.makeMap()
   }
 
   getCoords() {
@@ -67,7 +69,6 @@ class App extends React.Component {
 
   }
   render() {
-    console.log(this.props)
     return (
       <div>
       <Script
@@ -92,7 +93,19 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    tours: state.tours
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    makeMap: () => dispatch(makeMap())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 //how to find tours in your area?
 

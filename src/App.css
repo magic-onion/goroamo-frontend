@@ -134,3 +134,11 @@
 .tour-location-detail {
   border: solid red 1px;
 }
+
+
+
+#testMap {
+  padding-top: 200px;
+  height: 400;
+  width: 400;
+}

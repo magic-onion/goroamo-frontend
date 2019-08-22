@@ -1,14 +1,17 @@
+
+
 const init = {
-  tours: []
+  tours: [],
+  testMap: {}
 }
 
 
 function toursReducer(state = init, action) {
   switch (action.type) {
 
-    case "TEST_REDUCER":
-    let newState = {thing: true}
-    console.log(state.thing)
+    case "SAVE_MAP":
+    let newState = {...state, testMap: action.payload}
+    console.log(newState)
     return newState
 
     case "GET_TOURS":
