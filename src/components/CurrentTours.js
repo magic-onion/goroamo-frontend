@@ -19,9 +19,9 @@ class CurrentTours extends React.Component {
   }
 
   get tourInfo() {
-        console.log(this.props.tours.tours)
       return this.props.tours.tours.map( (el,i) => <TourInfo key={i} tour={el.tour} locations={el.locations}/>)
   }
+  
   render() {
     console.log(this.state.toursLoaded)
     return (
@@ -41,7 +41,7 @@ class CurrentTours extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.toursLoaded ? this.tourInfo : <div>"loading"</div>}
+            {this.state.toursLoaded ? this.tourInfo : null}
           </tbody>
         </table>
       </div>
