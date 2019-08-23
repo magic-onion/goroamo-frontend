@@ -2,15 +2,16 @@
 
 const init = {
   tours: [],
-  testMap: {}
+  testMap: {},
+  mode: ""
 }
 
 
 function toursReducer(state = init, action) {
   switch (action.type) {
 
-    case "SAVE_MAP":
-    let newState = {...state, testMap: action.payload}
+    case "MAKE_CREATE_TOUR_MAP":
+    let newState = {...state, testMap: action.payload, mode: "create-tour"}
     console.log(newState)
     return newState
 

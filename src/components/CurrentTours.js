@@ -28,26 +28,25 @@ class CurrentTours extends React.Component {
     console.log(this.state.toursLoaded)
     return (
       <div className="dashboard-table">
-      <span>Current Tours</span>
-      <Link to="/create-tour/" className="dashboard-create-link">Create New Tour</Link>
-      <table>
-      <thead>
-      <tr>
-      <th className="dashboard-table-headers">Tour</th>
-      <th className="dashboard-table-headers">Date Created</th>
-      <th className="dashboard-table-headers">Locations</th>
-      <th className="dashboard-table-headers">Duration</th>
-      <th className="dashboard-table-headers">distance</th>
-      <th className="dashboard-table-headers">User Completions</th>
-      <th className="dashboard-table-headers">Edit Tour</th>
-      </tr>
-      </thead>
-      <tbody>
-      {this.state.toursLoaded ? this.tourInfo : null}
-      </tbody>
-      </table>
-
-      </div>      
+        <span>Current Tours</span>
+        <Link to="/create-tour/" className="dashboard-create-link">Create New Tour</Link>
+        <table>
+          <thead>
+            <tr>
+              <th className="dashboard-table-headers">Tour</th>
+              <th className="dashboard-table-headers">Date Created</th>
+              <th className="dashboard-table-headers">Locations</th>
+              <th className="dashboard-table-headers">Duration</th>
+              <th className="dashboard-table-headers">distance</th>
+              <th className="dashboard-table-headers">User Completions</th>
+              <th className="dashboard-table-headers">Edit Tour</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.toursLoaded ? this.tourInfo : null}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }

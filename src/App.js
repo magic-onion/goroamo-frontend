@@ -2,7 +2,7 @@ import React from 'react';
 import Script from 'react-load-script'
 import './App.css';
 import { connect } from 'react-redux'
-import { makeMap } from './actions/tours'
+// import { makeMap } from './actions/tours'
 import { Route } from "react-router-dom";
 import Login from './login'
 import CreateTour from './containers/CreateTour'
@@ -31,7 +31,7 @@ class App extends React.Component {
 
   handleScriptLoad() {
     this.getCoords()
-    this.props.makeMap()
+    // this.props.makeMap()
   }
 
   getCoords() {
@@ -64,6 +64,7 @@ class App extends React.Component {
     fetch('http://localhost:3000/api/v1/profile', config)
     .then(r=>r.json())
     .then(p => {
+      console.log(p)
       this.setState({userId: p.user.id})
     })
 
@@ -99,13 +100,13 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    makeMap: () => dispatch(makeMap())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     makeMap: () => dispatch(makeMap())
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);
 
 //how to find tours in your area?
 

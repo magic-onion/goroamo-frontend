@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import ToursContainer from './ToursContainer'
 import ListView from './ListView'
 
@@ -7,24 +8,8 @@ class ViewTour extends React.Component {
     super(props)
 
     this.state = {
-      mapViewSelected: true,
-      tours: {}
+      mapViewSelected: false
     }
- }
-
- componentDidMount() {
-   let config = {
-     headers: {
-       'content-type': 'application/json',
-       'Authorization': `Bearer ${localStorage.getItem('token')}`
-     }
-   }
-   fetch('http://localhost:3000/api/v1/tours', config)
-   .then(r=>r.json())
-   .then(p => {
-     this.setState({tours: p})
-     console.log(p)
-   })
  }
 
  handleSelect(e) {
@@ -39,17 +24,23 @@ class ViewTour extends React.Component {
 
 
  render() {
-   console.log(this.props)
+   console.log(this.props.tours.tours)
    return (
      <div>
       <div className="list-and-map-view-selector">
         <span onClick={e=>this.handleSelect(e)} className={this.state.mapViewSelected ? "active-1" : "inactive-1"} id="map-view" >Map View</span>
         <span onClick={e=>this.handleSelect(e)} className={this.state.mapViewSelected ? "inactive-1" : "active-1"} id="list-view">List View</span>
       </div>
-      {this.state.mapViewSelected ? <ToursContainer {...this.props} coords={this.props.coords} tours={this.state.tours} /> : <ListView tours={this.state.tours}/> }
+      {this.state.mapViewSelected ? <ToursContainer {...this.props} coords={this.props.coords} tours={this.props.tours.tours} /> : <ListView tours={this.props.tours.tours}/> }
      </div>
    )
  }
 }
 
-export default ViewTour
+const mapStateToProps = state => {
+  return {
+    tours: state.tours
+  }
+}
+
+export default connect(mapStateToProps, null)(ViewTour)
