@@ -21,8 +21,70 @@ class ViewSelectedTour extends React.Component {
   }
 
 
+  // function initMap() {
+  //   var directionsService = new google.maps.DirectionsService();
+  //   var directionsDisplay = new google.maps.DirectionsRenderer();
+  //   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+  //   var mapOptions = {
+  //     zoom:7,
+  //     center: chicago
+  //   }
+  //   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  //   directionsDisplay.setMap(map);
+  //   directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+  // }
+  //
+  // function calcRoute() {
+  //   var start = document.getElementById('start').value;
+  //   var end = document.getElementById('end').value;
+  //   var request = {
+  //     origin:start,
+  //     destination:end,
+  //     travelMode: 'DRIVING'
+  //   };
+  //   directionsService.route(request, function(response, status) {
+  //     if (status == 'OK') {
+  //       directionsDisplay.setDirections(response);
+  //     }
+  //   });
+  // }
   get locations() {
     if (this.props.location.state.locations.length) {
+      let locationsArray = this.props.location.state.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
+      let waypoints = []
+      console.log(locationsArray)
+      let directionService = new window.google.maps.DirectionsService();
+      let directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
+      directionsDisplay.setMap(this.tourMap)
+      if (locationsArray.length > 2) {
+        waypoints = locationsArray.slice(1,-1).map( (el) => {
+          return {location: new window.google.maps.LatLng(el.latitude, el.longitude), stopover: true}
+        })
+      }
+      console.log(waypoints)
+
+      let startLat = parseFloat(this.props.location.state.locations[0].latitude)
+      let startLng = parseFloat(this.props.location.state.locations[0].longitude)
+      let endLat = parseFloat(this.props.location.state.locations[this.props.location.state.locations.length-1].latitude)
+      let endLng = parseFloat(this.props.location.state.locations[this.props.location.state.locations.length-1].longitude)
+      let start = new window.google.maps.LatLng(startLat, startLng)
+      let end = new window.google.maps.LatLng(endLat, endLng)
+      let request = {
+        origin: start,
+        destination: end,
+        waypoints: waypoints,
+        travelMode: 'WALKING'
+      }
+      directionService.route(request, function(response, status) {
+        if (status === 'OK') {
+          console.log(response)
+          directionsDisplay.setDirections(response)
+        }
+      })
+
+
+
+
       return this.props.location.state.locations.map( (loc, i) => {
 
         let marker = new window.google.maps.Marker({

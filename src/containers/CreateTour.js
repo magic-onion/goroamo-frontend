@@ -20,7 +20,7 @@ class CreateTour extends React.Component {
       tourSelected: false,
       query: '',
       locations: [],
-      tourId: 0
+      tourId: 0,
     }
 
     this.handleAdd = this.handleAdd.bind(this)
@@ -176,7 +176,6 @@ class CreateTour extends React.Component {
     return null
   }
 
-
   render() {
     return(
       <div>
@@ -187,7 +186,7 @@ class CreateTour extends React.Component {
           {this.state.locations.length ? this.state.locations.map((addressObj, i) => <LocationAdder key={i} addresses={addressObj} tourId={this.state.tourId}/> ) : null }
           <button>Save Tour</button>
 
-          <div id="map">
+          <div id="map" className={this.state.mode === "off" ? "no-display" : null}>
           </div>
           {this.marker}
       </div>
