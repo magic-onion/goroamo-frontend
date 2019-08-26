@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import CurrentTours from '../components/CurrentTours'
 import ProfileWidget from '../components/ProfileWidget'
+
 import { connect } from 'react-redux'
 
 class Dashboard extends React.Component {
@@ -10,8 +12,8 @@ class Dashboard extends React.Component {
     console.log(this.props.thing.thing)
     return (
       <div>
-      <CurrentTours/>
-      <ProfileWidget/>
+        <CurrentTours/>
+        <ProfileWidget/>
       </div>
     )
   }

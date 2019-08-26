@@ -178,7 +178,7 @@ class CreateTour extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="create-tour-container">
         <h1>Create a Tour</h1>
           {!this.state.tourSelected ? this.tourWidget : this.currentTour}
           <input className="search-bar" id="autocomplete" placeholder="search for a location to add" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}></input>

@@ -53,7 +53,6 @@ class App extends React.Component {
 }
 
   componentDidMount() {
-    console.log('hi')
     let config = {
       method: 'get',
       headers: {
@@ -71,7 +70,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <>
       <Script
         url= { url }
         onLoad={this.handleScriptLoad}
@@ -89,7 +88,7 @@ class App extends React.Component {
             />
 
         </div>
-      </div>
+      </>
     );
   }
 }
@@ -100,17 +99,4 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     makeMap: () => dispatch(makeMap())
-//   }
-// }
-
 export default connect(mapStateToProps, null)(App);
-
-//how to find tours in your area?
-
-//shows a map with current location marked
-//shows nearby tours
-//get current location
-//

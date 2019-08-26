@@ -21,14 +21,14 @@ class SelectedTour extends React.Component {
 
   get listItem() {
     return (
-      <li onClick={this.handleClick}>{this.props.tour.name}</li>
+      <p onClick={this.handleClick}>{this.props.tour.name}</p>
     )
   }
 
   get details() {
     return (
-      <div>
-        <li onClick={this.handleClick}>{this.props.tour.name}</li>
+      <div className="list-view-tour">
+        <p onClick={this.handleClick}>{this.props.tour.name}</p>
         <p>{this.props.tour.distance}</p>
         <p>locations: {this.props.locations.length}</p>
 
@@ -49,6 +49,7 @@ class SelectedTour extends React.Component {
   }
 
   render() {
+    console.log(this.props.tour)
     return (
       <div>
       {this.condition}

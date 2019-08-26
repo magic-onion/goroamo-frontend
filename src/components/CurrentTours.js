@@ -28,7 +28,7 @@ class CurrentTours extends React.Component {
     console.log(this.state.toursLoaded)
     return (
       <div className="dashboard-table">
-        <span>Current Tours</span>
+        <span className="dashboard-headline">Current Tours</span>
         <Link to="/create-tour/" className="dashboard-create-link">Create New Tour</Link>
         <table>
           <thead>

@@ -87,27 +87,28 @@ function Login() {
 
 
     return (
-      <form>
-      <input
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-        placeholder="username"
-        type="text"
-        name="username"
-         />
-      <input
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        placeholder="Password"
-        type="password"
-        name="password"
-        />
-      <button onClick={e => userLogin(e)}> Login </button>
-      <button onClick={e=> userCreate(e)}> New User </button>
-      <button onClick={e=>logOut(e)}>Log Out</button>
+      <div className="top-bar">
+        <form>
+          <input
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            placeholder="username"
+            type="text"
+            name="username"
+             />
+          <input
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="Password"
+            type="password"
+            name="password"
+            />
+          <button onClick={e => userLogin(e)}> Login </button>
+          <button onClick={e=> userCreate(e)}> New User </button>
+          <button onClick={e=>logOut(e)}>Log Out</button>
 
-      </form>
-
+        </form>
+      </div>
   )
 }
 export default Login;
