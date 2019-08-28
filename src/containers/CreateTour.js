@@ -133,22 +133,21 @@ class CreateTour extends React.Component {
 
   //Adding markers for locationAdder
   get marker() {
-    console.log('firing markers getter')
     if (this.state.locations.length) {
       return this.state.locations.map((obj, i) => <Marker lat={obj.lat} lng={obj.lng} key={i} map={this.props.tours.testMap}/>)
     }
     return null
   }
 
-  //quick form for adding info
+  //form for adding info
   get tourWidget() {
     return(
-      <div>
-      <input onChange={e=>this.handleTourChange(e)} id="name" placeholder="Name of the Tour" value={this.state.name}></input>
-      <input onChange={e=>this.handleTourChange(e)} id="location" placeholder="Location of the Tour"value={this.state.location}></input>
-      <input onChange={e=>this.handleTourChange(e)} id="distance" placeholder="Total Distance"value={this.state.distance}></input>
-      <input onChange={e=>this.handleTourChange(e)} id="duration" type="number" placeholder="Aprroximate Duration of Tour" value={this.state.duration}></input>
-      <button onClick={e=>this.handleSaveTour(e)}>postrequesttotours</button>
+      <div className="create-tour-form">
+        <input className="create-tour-input" onChange={e=>this.handleTourChange(e)} id="name" placeholder="Name of the Tour" value={this.state.name}></input>
+        <input className="create-tour-input" onChange={e=>this.handleTourChange(e)} id="location" placeholder="Location of the Tour"value={this.state.location}></input>
+        <input className="create-tour-input" onChange={e=>this.handleTourChange(e)} id="distance" placeholder="Total Distance"value={this.state.distance}></input>
+        <input className="create-tour-input" onChange={e=>this.handleTourChange(e)} id="duration" type="number" placeholder="Aprroximate Duration of Tour" value={this.state.duration}></input>
+        <button onClick={e=>this.handleSaveTour(e)}>Submit</button>
       </div>
     )
   }

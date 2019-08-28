@@ -11,10 +11,9 @@ class Dashboard extends React.Component {
   render() {
     console.log(this.props.thing.thing)
     return (
-      <div>
+      <>
         <CurrentTours/>
-        <ProfileWidget/>
-      </div>
+      </>
     )
   }
 }

@@ -28,9 +28,9 @@ class SelectedTour extends React.Component {
   get details() {
     return (
       <div className="list-view-tour">
-        <p onClick={this.handleClick}>{this.props.tour.name}</p>
-        <p>{this.props.tour.distance}</p>
-        <p>locations: {this.props.locations.length}</p>
+        <p className="list-view-item" onClick={this.handleClick}>{this.props.tour.name}</p>
+        <p className="list-view-item">{this.props.tour.distance}</p>
+        <p className="list-view-item">locations: {this.props.locations.length}</p>
 
       </div>
     )

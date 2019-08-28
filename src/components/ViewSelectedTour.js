@@ -21,33 +21,7 @@ class ViewSelectedTour extends React.Component {
   }
 
 
-  // function initMap() {
-  //   var directionsService = new google.maps.DirectionsService();
-  //   var directionsDisplay = new google.maps.DirectionsRenderer();
-  //   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-  //   var mapOptions = {
-  //     zoom:7,
-  //     center: chicago
-  //   }
-  //   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  //   directionsDisplay.setMap(map);
-  //   directionsDisplay.setPanel(document.getElementById('directionsPanel'));
-  // }
-  //
-  // function calcRoute() {
-  //   var start = document.getElementById('start').value;
-  //   var end = document.getElementById('end').value;
-  //   var request = {
-  //     origin:start,
-  //     destination:end,
-  //     travelMode: 'DRIVING'
-  //   };
-  //   directionsService.route(request, function(response, status) {
-  //     if (status == 'OK') {
-  //       directionsDisplay.setDirections(response);
-  //     }
-  //   });
-  // }
+
   get locations() {
     if (this.props.location.state.locations.length) {
       let locationsArray = this.props.location.state.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
@@ -131,3 +105,33 @@ class ViewSelectedTour extends React.Component {
 }
 
 export default ViewSelectedTour
+
+
+
+// function initMap() {
+//   var directionsService = new google.maps.DirectionsService();
+//   var directionsDisplay = new google.maps.DirectionsRenderer();
+//   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+//   var mapOptions = {
+//     zoom:7,
+//     center: chicago
+//   }
+//   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+//   directionsDisplay.setMap(map);
+//   directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+// }
+//
+// function calcRoute() {
+//   var start = document.getElementById('start').value;
+//   var end = document.getElementById('end').value;
+//   var request = {
+//     origin:start,
+//     destination:end,
+//     travelMode: 'DRIVING'
+//   };
+//   directionsService.route(request, function(response, status) {
+//     if (status == 'OK') {
+//       directionsDisplay.setDirections(response);
+//     }
+//   });
+// }

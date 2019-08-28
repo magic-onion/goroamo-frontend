@@ -26,6 +26,7 @@ function Sidebar() {
       </div>
 
       <div className="nav-item">
+        <img className="nav-img" src={require(`../assets/walking-icon.png`)} alt="hi"></img>
         <NavLink exact to="/view-tours/" className="nav">View Tours</NavLink>
       </div>
     </div>
