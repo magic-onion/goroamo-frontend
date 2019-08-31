@@ -65,7 +65,14 @@ export const userLogin = (username, password) => {
   }
 }
 
+export const logOutUser = () => {
+  return (dispatch) => {
+    localStorage.clear()
+    dispatch(clearUserData())
+  }
+}
 
+export const clearUserData = () => ({type: "LOG_OUT", payload: {}})
 
 
 export const getProfile = () => {

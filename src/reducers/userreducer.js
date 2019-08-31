@@ -11,6 +11,9 @@ function userReducer(state = init, action) {
     let currentUserState = {user: action.payload, loggedIn: true}
     return currentUserState
 
+    case "LOG_OUT":
+    return init
+
     default:
     return state
   }

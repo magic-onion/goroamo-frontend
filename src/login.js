@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { createNewUser, userLogin } from './actions/user'
+import { createNewUser, userLogin, logOutUser } from './actions/user'
 
 function Login(props) {
   const [username, setUsername] = useState("");
@@ -17,7 +17,7 @@ function Login(props) {
   }
 
   function logOut() {
-    localStorage.clear()
+    props.logOut()
   }
 
 
@@ -55,7 +55,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createNewUser: () => dispatch(createNewUser()),
-    userLogin: (username, password) => dispatch(userLogin(username, password))
+    userLogin: (username, password) => dispatch(userLogin(username, password)),
+    logOutUser: () => dispatch(logOutUser())
   }
 }
 
