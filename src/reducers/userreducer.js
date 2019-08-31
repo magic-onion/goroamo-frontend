@@ -1,13 +1,14 @@
 const init = {
-  user: {}
+  user: {},
+  loggedIn: false
 }
 
 
 function userReducer(state = init, action) {
   switch (action.type) {
 
-    case "FETCH_USER":
-    let currentUserState = {user: action.payload}
+    case "STORE_USER":
+    let currentUserState = {user: action.payload, loggedIn: true}
     return currentUserState
 
     default:

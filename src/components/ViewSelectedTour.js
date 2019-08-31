@@ -93,7 +93,7 @@ class ViewSelectedTour extends React.Component {
   render() {
     console.log(this.state.focusedLocation)
     return (
-      <div>
+      <div className="viewing-tour-container">
 
         <div style={{width: 400, height: 400, margin: 50}} id="map-3">
           {this.state.mount ? this.locations : null}

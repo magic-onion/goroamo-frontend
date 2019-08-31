@@ -29,7 +29,10 @@ class CurrentTours extends React.Component {
     return (
       <div className="dashboard-table">
         <span className="dashboard-headline">Current Tours</span>
-        <Link to="/create-tour/" className="dashboard-create-link">Create New Tour</Link>
+        <div  className="dashboard-create-link-div">
+          <img className="nav-img" src={require(`../assets/plus-icon.png`)} alt="hi"></img>
+          <Link className="dashboard-create-link" to="/create-tour/">Create New Tour</Link>
+        </div>
         <table>
           <thead>
             <tr>

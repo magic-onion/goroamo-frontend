@@ -132,18 +132,26 @@ table {
 }
 
 .dashboard-create-link {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+.dashboard-create-link-div {
   float: right;
   background-color: #007BCB;
   border: none;
   color: white;
-  padding: 20px;
+  max-width: 20%;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   border-radius: 40px;
 }
+
 
 .dashboard-headline {
 
@@ -178,10 +186,32 @@ table {
   flex-direction: row;
   margin-left: 20px;
 }
+
+.list-container {
+  overflow: auto;
+  border: solid black 1px;
+  width: 80%;
+}
+
+
 .list-view-tour-container {
   display: flex;
-  flex-direction: row;
-  border: solid red 1px;
+  flex-direction: column;
+  border: solid grey 1px;
+  padding: 5px;
+  margin: 1% 0 0 1%;
+}
+
+.viewing-tour-container {
+  border: solid grey 1px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-location-detail {
+  font-family: 'Roboto', sans-serif;
+  margin: auto;
+
 }
 
 
@@ -218,10 +248,4 @@ table {
 .create-tour-input {
   margin: 5px;
   width: 180px;
-}
-
-.list-container {
-  overflow: auto;
-  border: solid red 1px;
-  width: 80%;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Script from 'react-load-script'
 import './App.css';
 import { connect } from 'react-redux'
+import { getProfile } from './actions/user'
 // import { makeMap } from './actions/tours'
 import { Route } from "react-router-dom";
 import Login from './login'
@@ -52,32 +53,19 @@ class App extends React.Component {
     })
 }
 
-  componentDidMount() {
-    let config = {
-      method: 'get',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    }
-    fetch('http://localhost:3000/api/v1/profile', config)
-    .then(r=>r.json())
-    .then(p => {
-      console.log(p)
-      this.setState({userId: p.user.id})
-    })
 
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      getProfile()
+    }
   }
-  render() {
-    return (
-      <>
-      <Script
-        url= { url }
-        onLoad={this.handleScriptLoad}
-      />
+
+  get loggedIn() {
+    if (localStorage.getItem('token')) {
+      return (
+        <>
         <Sidebar/>
         <div className="container">
-          <Login/>
           < Route path="/" exact component={Home} />
           < Route path="/create-tour/" component={CreateTour} />
           < Route path="/profile/" component={Dashboard} />
@@ -88,6 +76,25 @@ class App extends React.Component {
             />
 
         </div>
+        </>
+      )
+    }
+    else {
+      return (
+        <div className="login-container">
+          <Login/>
+        </div>
+      )
+    }
+  }
+  render() {
+    return (
+      <>
+      <Script
+        url= { url }
+        onLoad={this.handleScriptLoad}
+      />
+      {this.loggedIn}
       </>
     );
   }
@@ -95,8 +102,16 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tours: state.tours
+    tours: state.tours,
+    user: state.user
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getProfile: () => dispatch(getProfile())
+  }
+}
+
 
 export default connect(mapStateToProps, null)(App);
