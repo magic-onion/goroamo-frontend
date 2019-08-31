@@ -25,7 +25,7 @@ class CurrentTours extends React.Component {
 
 
   render() {
-    console.log(this.state.toursLoaded)
+    console.log(this.props)
     return (
       <div className="dashboard-table">
         <span className="dashboard-headline">Current Tours</span>
@@ -56,7 +56,8 @@ class CurrentTours extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tours: state.tours
+    tours: state.tours,
+    user: state.user
   }
 }
 

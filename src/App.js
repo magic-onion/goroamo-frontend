@@ -56,7 +56,7 @@ class App extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
-      getProfile()
+      this.props.getProfile()
     }
   }
 
@@ -114,4 +114,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

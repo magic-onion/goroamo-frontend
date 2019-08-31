@@ -37,7 +37,7 @@ export const createNewUser = (username, password) => {
         })
       })
       .then(r=>r.json())
-      .then(console.log)
+      .then(p => dispatch(storeUser(p)))
     })
   }
 }
@@ -88,6 +88,7 @@ export const getProfile = () => {
     .then(r=>r.json())
     .then(p => {
       dispatch(storeUser(p))
+      console.log(p)
     })
   }
 }

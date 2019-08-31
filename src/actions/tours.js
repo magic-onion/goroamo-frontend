@@ -31,3 +31,20 @@ export const makeMap = () => {
 }
 
 export const saveMap = (testMap) => ({type: "SAVE_MAP", payload: testMap})
+
+export const createNewTour = (tourObj) => {
+  return (dispatch) => {
+    fetch('http://localhost:3000/api/v1/tours', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify(tourObj)
+    })
+    .then(r=>r.json())
+    .then(p => (
+      this.setState({tourId: p.id})
+    ))
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { makeMap } from '../actions/tours'
+import { makeMap, createNewTour } from '../actions/tours'
 import Marker from '../components/Marker'
 import LocationAdder from '../components/LocationAdder'
 import API_KEY from '../environment'
@@ -102,27 +102,16 @@ class CreateTour extends React.Component {
 
   handleSaveTour(e) {
     this.setState({tourSelected: true})
-    fetch('http://localhost:3000/api/v1/tours', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      },
-      body: JSON.stringify({
-        tour: {
-          name: this.state.name,
-          location: this.state.location,
-          distance: this.state.distance,
-          duration: this.state.duration,
-          user_id: 1
-
-        }
-      })
-    })
-    .then(r=>r.json())
-    .then(p => (
-      this.setState({tourId: p.id})
-    ))
+    let tourObj = {
+      tour: {
+        name: this.state.name,
+        location: this.state.location,
+        distance: this.state.distance,
+        duration: this.state.duration,
+        user_id: this.props.user.user.id
+      }
+    }
+    this.props.createNewTour(tourObj)
 
   }
 
@@ -201,7 +190,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    makeMap: () => dispatch(makeMap())
+    makeMap: () => dispatch(makeMap()),
+    createNewTour: (obj) => dispatch(createNewTour(obj))
   }
 }
 
