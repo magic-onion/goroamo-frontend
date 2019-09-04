@@ -3,6 +3,7 @@
 const init = {
   tours: [],
   testMap: {},
+  createdTour: {},
   mode: ""
 }
 
@@ -20,6 +21,10 @@ function toursReducer(state = init, action) {
     let toursFetched = {...state, tours: action.payload}
     console.log(toursFetched)
     return toursFetched
+
+    case "STORE_CREATED_TOUR":
+    let newCurrentTour = {...state, createdTour: action.payload}
+    return newCurrentTour
 
     default:
     return state

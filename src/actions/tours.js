@@ -32,6 +32,21 @@ export const makeMap = () => {
 
 export const saveMap = (testMap) => ({type: "SAVE_MAP", payload: testMap})
 
+export const addSingleLocation = (obj) => {
+  return (dispatch) => {
+    fetch('http://localhost:3000/api/v1/tours', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(obj)
+    })
+    .then(r=>r.json())
+    .then(console.log)
+  }
+}
+
 export const createNewTour = (tourObj) => {
   return (dispatch) => {
     fetch('http://localhost:3000/api/v1/tours', {
@@ -44,7 +59,9 @@ export const createNewTour = (tourObj) => {
     })
     .then(r=>r.json())
     .then(p => (
-      this.setState({tourId: p.id})
+      dispatch(storeCreatedTour(p))
     ))
   }
 }
+
+export const storeCreatedTour = (tourObj) => ({type: "STORE_CREATED_TOUR", payload: tourObj})

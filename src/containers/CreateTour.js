@@ -23,7 +23,7 @@ class CreateTour extends React.Component {
       tourId: 0,
     }
 
-    this.handleAdd = this.handleAdd.bind(this)
+    // this.handleAdd = this.handleAdd.bind(this)
     this.handleScriptLoad = this.handleScriptLoad.bind(this)
     this.handlePlaceSelect = this.handlePlaceSelect.bind(this)
   }
@@ -65,11 +65,6 @@ class CreateTour extends React.Component {
   }
 
   handleScriptLoad() {
-    // this.map = new window.google.maps.Map(document.getElementById('map'), {
-    //   center: {lat: 43.650, lng: -79.384},
-    //   zoom: 14
-    // })
-
     this.props.makeMap()
     let options = []
     this.autocomplete = new window.google.maps.places.Autocomplete(
@@ -81,24 +76,7 @@ class CreateTour extends React.Component {
     this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
   }
 
-  handleAdd() {
-    fetch('http://localhost:3000/api/v1/tours', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-      body: JSON.stringify({
-        tour: {
-          name: this.state.name,
-          address: this.state.address,
-          user_id: 1
-        }
-      })
-    })
-    .then(r=>r.json())
-    .then(console.log)
-  }
+
 
   handleSaveTour(e) {
     this.setState({tourSelected: true})
@@ -112,6 +90,8 @@ class CreateTour extends React.Component {
       }
     }
     this.props.createNewTour(tourObj)
+    let newTourSelected = true
+    this.setState({tourSelected: newTourSelected})
 
   }
 
@@ -164,19 +144,31 @@ class CreateTour extends React.Component {
     return null
   }
 
+  get locationsAdder() {
+    if (this.state.tourSelected) {
+      return (
+        <>
+        <input className="search-bar" id="autocomplete" placeholder="search for a location to add" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}></input>
+        <button onClick={e=> this.increment(e)}>add location</button>
+        {this.state.locations.length ? this.state.locations.map((addressObj, i) => <LocationAdder key={i} addresses={addressObj} tourId={this.state.tourId}/> ) : null }
+        <button>Save Tour</button>
+
+
+        {this.marker}
+        </>
+      )
+    }
+  }
+
   render() {
     return(
       <div className="create-tour-container">
         <h1>Create a Tour</h1>
           {!this.state.tourSelected ? this.tourWidget : this.currentTour}
-          <input className="search-bar" id="autocomplete" placeholder="search for a location to add" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}></input>
-          <button onClick={e=> this.increment(e)}>add location</button>
-          {this.state.locations.length ? this.state.locations.map((addressObj, i) => <LocationAdder key={i} addresses={addressObj} tourId={this.state.tourId}/> ) : null }
-          <button>Save Tour</button>
 
-          <div id="map" className={this.state.mode === "off" ? "no-display" : null}>
+          {this.locationsAdder}
+          <div id="map" className="no-display">
           </div>
-          {this.marker}
       </div>
     )
   }
@@ -184,7 +176,8 @@ class CreateTour extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tours: state.tours
+    tours: state.tours,
+    user: state.user.user
   }
 }
 
@@ -200,3 +193,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(CreateTour)
 //post request to save Locations
 //post request to save Tours
 //spacing styling?
+// fetch('http://localhost:3000/api/v1/tours', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json',
+//     'Authorization': `Bearer ${localStorage.getItem('token')}`
+//   },
+//   body: JSON.stringify({
+//     tour: {
+//       name: this.state.name,
+//       address: this.state.address,
+//       user_id: this.props.user.id
+//     }
+//   })
+// })
+// .then(r=>r.json())
+// .then(console.log)

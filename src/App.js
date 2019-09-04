@@ -6,7 +6,7 @@ import { getProfile } from './actions/user'
 // import { makeMap } from './actions/tours'
 import { Route } from "react-router-dom";
 import Login from './login'
-import CreateTour from './containers/CreateTour'
+import CreateTour2 from './containers/CreateTour2'
 import Dashboard from './containers/Dashboard'
 import Home from './containers/Home'
 import Sidebar from './containers/Sidebar'
@@ -67,7 +67,7 @@ class App extends React.Component {
         <Sidebar/>
         <div className="container">
           < Route path="/" exact component={Home} />
-          < Route path="/create-tour/" component={CreateTour} />
+          < Route path="/create-tour/" component={CreateTour2} />
           < Route path="/profile/" component={Dashboard} />
           < Route path="/analytics/" component={Home} />
           < Route path="/tours/:id" component={ViewSelectedTour} />
