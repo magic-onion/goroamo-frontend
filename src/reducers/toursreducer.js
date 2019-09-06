@@ -17,10 +17,14 @@ function toursReducer(state = init, action) {
     return newState
 
     case "GET_TOURS":
-    console.log('reducer')
     let toursFetched = {...state, tours: action.payload}
-    console.log(toursFetched)
     return toursFetched
+
+    case "SAVE_MAP":
+    console.log(action.payload.getDiv())
+
+    let newMap = {...state, testMap: action.payload}
+    return newMap
 
     case "STORE_CREATED_TOUR":
     let newCurrentTour = {...state, createdTour: action.payload}

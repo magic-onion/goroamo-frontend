@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 
 class LocationAdder extends React.Component {
@@ -42,16 +43,6 @@ class LocationAdder extends React.Component {
     .then(r=>r.json())
     .then(console.log)
   }
-
-  // t.string :name
-  //     t.string :description
-  //     t.string :longitude
-  //     t.string :latitude
-  //     t.string :funfact1
-  //     t.string :funfact2
-  //     t.string :funfact3
-  //     t.string :image
-  //     t.belongs_to :user
 
   render() {
     console.log(this.props.addresses)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {makeMap, createNewTour } from '../actions/tours'
-
+import AddLocationToTour from './addLocationToTour'
 class CreateTour2 extends React.Component {
   constructor(props) {
     super(props)
@@ -59,6 +59,7 @@ class CreateTour2 extends React.Component {
     return(
       <div>
       {!this.state.tourCreated ? this.createTourWidget : this.currentTour}
+      {this.state.tourCreated? <AddLocationToTour/> : null}
       </div>
     )
   }
