@@ -4,7 +4,8 @@ const init = {
   tours: [],
   testMap: {},
   createdTour: {},
-  mode: ""
+  mode: "",
+  locations: []
 }
 
 
@@ -29,6 +30,12 @@ function toursReducer(state = init, action) {
     case "STORE_CREATED_TOUR":
     let newCurrentTour = {...state, createdTour: action.payload}
     return newCurrentTour
+
+    case "SAVE_SINGLE_LOCATION":
+    let newLocs = state.locations
+    newLocs.push(action.payload)
+    let newLocationState = {...state, locations: newLocs}
+    return newLocationState
 
     default:
     return state

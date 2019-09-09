@@ -29,6 +29,7 @@ class CreateTour2 extends React.Component {
         name: this.state.name,
         location: this.state.location,
         distance: this.state.distance,
+        user_id: this.props.user.user.id,
         duration: this.state.duration
       }
     }
@@ -56,10 +57,11 @@ class CreateTour2 extends React.Component {
     )
   }
   render() {
+    console.log(typeof this.props.user.user.id)
     return(
       <div>
       {!this.state.tourCreated ? this.createTourWidget : this.currentTour}
-      {this.state.tourCreated? <AddLocationToTour/> : null}
+      {this.state.tourCreated? <AddLocationToTour tourId={this.props.tours.createdTour.id}/> : null}
       </div>
     )
   }

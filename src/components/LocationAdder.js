@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { saveSingleLocation } from '../actions/tours'
 
 
 class LocationAdder extends React.Component {
@@ -20,6 +21,20 @@ class LocationAdder extends React.Component {
   }
 
   handleSaveLocation(e) {
+
+    let locObj = {
+      tour_id: this.props.tourId,
+      location: {
+        name: this.props.addresses.formatted_address,
+        latitude: this.props.addresses.geometry.location.lat(),
+        longitude: this.props.addresses.geometry.location.lng(),
+        funfact1: this.state.funFact1,
+        funfact2: this.state.funFact2,
+        funfact3: this.state.funFact3,
+        image: this.state.image,
+        user_id: this.props.user,
+      }
+    }
     fetch('http://localhost:3000/api/v1/locations', {
       method: 'POST',
       headers: {
@@ -64,4 +79,18 @@ class LocationAdder extends React.Component {
 
 }
 
-export default LocationAdder
+const mapStateToProps = state => {
+  return {
+    tours: state.tours,
+    user: state.user.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveSingleLocation: (obj) => dispatch(saveSingleLocation(obj)),
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationAdder)

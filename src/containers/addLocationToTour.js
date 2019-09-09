@@ -10,7 +10,7 @@ class AddLocationToTour extends React.Component {
     this.state = {
       query: "",
       addressObj: {},
-      counter: 0
+      locations: []
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -36,24 +36,22 @@ class AddLocationToTour extends React.Component {
   }
 
   increment() {
-    let newCount = this.state.counter + 1
-    this.setState({counter: newCount})
-    console.log(this.state.counter)
+    let locArray = this.state.locations
+    let loc = this.state.addressObj
+    locArray.push(loc)
+    this.setState({locations: locArray})
   }
 
 
   handlePlaceSelect() {
     let newPlace = this.autocomplete.getPlace()
+
     this.setState({addressObj: newPlace, query: newPlace.formatted_addreess})
 
   }
 
   get locations() {
-    for (let i=0; i < this.state.counter; i++) {
-      return (
-        <LocationAdder addresses={this.state.addressObj} key={i}/>
-      )
-    }
+    return this.state.locations.map((i,j) => <LocationAdder addresses={i} key={j} tourId={this.props.tourId}/>)
   }
 
 
