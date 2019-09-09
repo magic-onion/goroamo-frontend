@@ -58,11 +58,13 @@ class AddLocationToTour extends React.Component {
   render() {
     return(
       <div>
+      <p>{this.state.locations.length ? "Add another place via search" : "Search for a location here"}</p>
         <input className="search-bar" id="autocomplete" placeholder="search for a location to add" hinttext="Search City" value={this.state.query} onChange={e=>this.handleChange(e)}></input>
         <button onClick={e=> this.increment(e)}>add location</button>
         <div id="map" style={{width: 600, height: 500, margin: 10}}>
         </div>
         {this.locations}
+        {this.state.locations.length ? <p>click to save locations</p> : null}
       </div>
     )
   }
