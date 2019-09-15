@@ -67,24 +67,3 @@ export const createNewTour = (tourObj) => {
 }
 
 export const storeCreatedTour = (tourObj) => ({type: "STORE_CREATED_TOUR", payload: tourObj})
-
-export const saveSingleLocation = (locObj) => {
-  return (dispatch) => {
-    let config = {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('token')}`
-      },
-      body: JSON.stringify(locObj)
-    }
-    fetch(`http://localhost:3000/api/v1/locations`, config)
-    .then(r=>r.json())
-    .then(p=> {
-      console.log(p)
-      storeLocations(p)
-    })
-  }
-}
-
-export const storeLocations = (locationsObj) => ({type: "SAVE_SINGLE_LOCATION", payload: locationsObj})

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { makeMap, createNewTour } from '../actions/tours'
 import Marker from '../components/Marker'
 import LocationAdder from '../components/LocationAdder'
+import SaveTourButton from '../components/saveTourButton'
 
 class AddLocationToTour extends React.Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class AddLocationToTour extends React.Component {
   }
 
   get locations() {
-    return this.state.locations.map((i,j) => <LocationAdder addresses={i} key={j} tourId={this.props.tourId}/>)
+    return this.state.locations.map((i,j) => <LocationAdder placeObj={i} key={j} tourId={this.props.tourId}/>)
   }
 
 
@@ -64,7 +65,7 @@ class AddLocationToTour extends React.Component {
         <div id="map" style={{width: 600, height: 500, margin: 10}}>
         </div>
         {this.locations}
-        {this.state.locations.length ? <p>click to save locations</p> : null}
+        {this.state.locations.length ? <SaveTourButton/> : null}
       </div>
     )
   }

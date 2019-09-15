@@ -29,12 +29,29 @@ function toursReducer(state = init, action) {
 
     case "STORE_CREATED_TOUR":
     let newCurrentTour = {...state, createdTour: action.payload}
+    console.log(newCurrentTour)
     return newCurrentTour
 
-    case "SAVE_SINGLE_LOCATION":
+    case "INITIAL_ADD":
+    let addedLoc = state.locations
+    addedLoc.push(action.payload)
+    console.log(state.locations)
+    let addedLocState = {...state, locations: addedLoc}
+    return addedLocState
+
+    case "LIVE_STORING":
     let newLocs = state.locations
-    newLocs.push(action.payload)
-    let newLocationState = {...state, locations: newLocs}
+    let changedLocs = newLocs.map((locObj) => {
+      if (locObj.name === action.payload.name) {
+        let newLocObj = action.payload
+        return newLocObj
+      }
+      else {
+        return locObj
+      }
+    })
+    let newLocationState = {...state, locations: changedLocs}
+    console.log(newLocationState)
     return newLocationState
 
     default:

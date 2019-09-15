@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cloudinary-core": "^2.7.4",
+    "cloudinary-react": "^1.1.4",
     "google-map-react": "^1.1.4",
     "google-maps-react": "^2.0.2",
     "react": "^16.8.6",
