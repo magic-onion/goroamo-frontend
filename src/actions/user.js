@@ -88,7 +88,6 @@ export const getProfile = () => {
     .then(r=>r.json())
     .then(p => {
       dispatch(storeUser(p))
-      console.log(p)
     })
   }
 }

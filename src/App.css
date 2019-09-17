@@ -22,7 +22,8 @@ table {
   position: fixed;
   width: 10%;
   height: 100vh;
-  background: #007BCB;
+  background: #3775B7;
+  /* background: #007BCB;  */
   color: white;
 
 }
@@ -30,6 +31,8 @@ table {
 .nav-container {
   display: flex;
   flex-direction: column;
+  background-color: #3775B7;
+
 }
 
 .nav-item {
@@ -89,7 +92,7 @@ table {
 
 .active-1 {
   color: white;
-  background-color: #007BCB;
+  background-color: #3775B7;
   border: solid green 1px;
   margin: auto;
   padding: 2% 8% 2% 8%;
@@ -140,7 +143,7 @@ table {
 }
 .dashboard-create-link-div {
   float: right;
-  background-color: #007BCB;
+  background-color: #3775B7;
   border: none;
   color: white;
   max-width: 20%;
@@ -248,4 +251,8 @@ table {
 .create-tour-input {
   margin: 5px;
   width: 180px;
+}
+
+.logo-img {
+  width: 100%;
 }

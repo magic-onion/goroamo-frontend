@@ -12,7 +12,6 @@ import Home from './containers/Home'
 import Sidebar from './containers/Sidebar'
 import ViewTour from './containers/ViewTour'
 import ViewSelectedTour from './components/ViewSelectedTour'
-import Cloudinary from './components/cloudinary'
 import API_KEY from './environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
@@ -65,7 +64,6 @@ class App extends React.Component {
     if (localStorage.getItem('token')) {
       return (
         <>
-        <Cloudinary/>
         <Sidebar/>
         <div className="container">
           < Route path="/" exact component={Home} />

@@ -25,7 +25,6 @@ class CurrentTours extends React.Component {
 
 
   render() {
-    console.log(this.props)
     return (
       <div className="dashboard-table">
         <span className="dashboard-headline">Current Tours</span>

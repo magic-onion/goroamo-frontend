@@ -54,6 +54,16 @@ function toursReducer(state = init, action) {
     console.log(newLocationState)
     return newLocationState
 
+    case "ADDING_IMG":
+    console.log('adding img')
+    let locationsImgAdded = state.locations.map( (loc) => {
+      if (loc.name === action.payload.locName) {
+        return {...loc, image: action.payload.imgUrl}
+      }
+    })
+    let addedImgState = {...state, locations: locationsImgAdded}
+    return addedImgState
+
     default:
     return state
   }

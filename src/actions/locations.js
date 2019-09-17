@@ -34,6 +34,14 @@ export const saveAllLocs = (obj) => {
   }
 }
 
+export const saveImg = (locName, imgUrl) => {
+  return (dispatch) => {
+    dispatch(saveImgDataToLocation(locName, imgUrl))
+  }
+}
+
+export const saveImgDataToLocation = (locName, imgUrl) => ({type: "ADDING_IMG", payload: {locName: locName, imgUrl: imgUrl}})
+
 
 
 

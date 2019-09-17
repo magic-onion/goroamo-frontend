@@ -1,6 +1,8 @@
 import React from 'react'
+import Script from 'react-load-script'
 import { connect } from 'react-redux'
-import { savingLocation, saveInitialLoc } from '../actions/locations'
+import { savingLocation, saveInitialLoc, saveImg } from '../actions/locations'
+import Cloudinary from './cloudinary'
 
 
 class LocationAdder extends React.Component {
@@ -12,11 +14,16 @@ class LocationAdder extends React.Component {
       funFact1: '',
       funFact2: '',
       funFact3: '',
-      description: ''
+      description: '',
+      uploaded: false,
+      widget: {},
+      locObj: {}
     }
 
     this.saveLocToState = this.saveLocToState.bind(this)
     this.handleStoreLocation = this.handleStoreLocation.bind(this)
+    this.handleCloud = this.handleCloud.bind(this)
+    this.openWidget = this.openWidget.bind(this)
   }
 
   componentDidMount() {
@@ -37,6 +44,23 @@ class LocationAdder extends React.Component {
     this.props.saveInitialLoc(initializeObj)
   }
 
+  openWidget() {
+    this.state.widget.open()
+  }
+
+  handleCloud() {
+    let myWidget = window.cloudinary.createUploadWidget({
+      cloudName: 'goroamo',
+      uploadPreset: 'preset_test'}, (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log('Done! Here is the image info: ', result.info);
+          this.setState({...this.state, uploaded: true, image: result.info.thumbnail_url})
+        }
+      })
+    this.setState({widget: myWidget})
+  }
+
+
   handleChange(e) {
     this.setState({[e.target.id]: e.target.value})
   }
@@ -56,6 +80,7 @@ class LocationAdder extends React.Component {
         user_id: this.props.user.user.id
       }
     }
+    console.log(saveLoc)
     this.saveLocToState(saveLoc)
   }
 
@@ -63,13 +88,22 @@ class LocationAdder extends React.Component {
     this.props.savingLocation(obj)
   }
 
+  get img() {
+    return <img src={this.state.image}/>
+  }
+
 
 
   render() {
-    console.log(this.props.addresses)
+    console.log(this.state, this.props)
     return (
+      <>
+      <Script
+        url="https://widget.cloudinary.com/v2.0/global/all.js"
+        onLoad={this.handleCloud}
+      />
       <div className="location-adder" onBlur={(e) => this.handleStoreLocation(e)}>
-        <input onChange={e=>this.handleChange(e)} className="drag-drop" type="file" placeholder="upload file"></input>
+        {this.state.uploaded ? this.img : <button onClick={this.openWidget} id="upload_widget">Upload Files</button>}
         <p>{this.props.placeObj.formatted_address} (map placeholder)</p>
         <div>
           <p>fun facts</p>
@@ -79,6 +113,7 @@ class LocationAdder extends React.Component {
           </div>
         <textarea onChange={e=>this.handleChange(e)} rows="10" cols="30" defaultValue="description" id="description"></textarea>
       </div>
+      </>
     )
   }
 
@@ -94,7 +129,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     savingLocation: (obj) => dispatch(savingLocation(obj)),
-    saveInitialLoc: (obj) => dispatch(saveInitialLoc(obj))
+    saveInitialLoc: (obj) => dispatch(saveInitialLoc(obj)),
+    saveImg: (locName, imgUrl) => dispatch(saveImg(locName, imgUrl))
   }
 }
 

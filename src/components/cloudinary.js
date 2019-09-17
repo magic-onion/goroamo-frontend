@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import CLOUDINARY_URL from '../environment'
 import Script from 'react-load-script'
 
@@ -11,9 +12,11 @@ class Cloudinary extends React.Component {
     super(props)
     this.state = {
       uploaded: false,
-      image: ""
+      image: "",
+      widget: {}
     }
     this.handleCloud = this.handleCloud.bind(this)
+    this.openWidget = this.openWidget.bind(this)
   }
 
   handleCloud() {
@@ -24,31 +27,30 @@ class Cloudinary extends React.Component {
           console.log('Done! Here is the image info: ', result.info);
           this.setState({uploaded: true, image: result.info.thumbnail_url})
         }
-      }
-    )
+      })
+    this.setState({widget: myWidget})
+  }
 
-    document.getElementById("upload_widget").addEventListener("click", function(){
-        myWidget.open();
-      }, false);
+  openWidget() {
+    this.state.widget.open()
   }
 
   get img() {
-    if (this.state.uploaded) {
-      return (
-        <img src={this.state.image}/>
-      )
-    }
-    return null
+      return <img src={this.state.image}/>
   }
+
+  componentDidUpdate() {
+    if (this.state.uploaded) {
+      this.props.saveImg(this.props.name, this.state.image)
+    }
+  }
+
   render() {
+    console.log(this.props, this.state)
     return (
       <div>
-      <Script
-        url="https://widget.cloudinary.com/v2.0/global/all.js"
-        onLoad={this.handleCloud}
-      />
-        <button id="upload_widget">Upload Files</button>
-        {this.img}
+
+        {this.state.uploaded ? this.img : <button onClick={this.openWidget} id="upload_widget">Upload Files</button>}
       </div>
     )
   }

@@ -4,7 +4,7 @@ function Sidebar() {
   return(
     <div className="sidebar">
     <div className="nav-container">
-
+      <img className="logo-img" src={require('../assets/logo-side.png')} alt="GoRoamo-logo"></img>
       <div className="nav-item">
         <img className="nav-img" src={require(`../assets/tour-icon.png`)} alt="hi"></img>
         <NavLink exact to="/" className="nav">Current Tours</NavLink>
