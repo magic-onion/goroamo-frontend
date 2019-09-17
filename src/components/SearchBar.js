@@ -26,19 +26,13 @@ class Search extends Component {
   }
 
   handleScriptLoad() {
-    // Declare Options For Autocomplete
-    var options = {
-      // types: ['(cities)', 'address', 'geocode'],
-    };
+    var options = {};
 
     // Initialize Google Autocomplete
-    /*global google*/ // To disable any eslint 'google not defined' errors
     this.autocomplete = new google.maps.places.Autocomplete(
       document.getElementById('autocomplete'),
       options,
     );
-
-    // Fire Event when a suggested name is selected
     this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
   }
 
@@ -137,16 +131,3 @@ class Search extends Component {
 }
 
 export default Search;
-
-// t.string :name
-//     t.string :description
-//     t.string :longitude
-//     t.string :latitude
-//     t.string :address1
-//     t.string :address2
-//     t.string :city
-//     t.string :region
-//     t.string :country
-//     t.string :placeid
-//     t.integer :postcode
-//     t.belongs_to :user
