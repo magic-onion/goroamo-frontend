@@ -37,10 +37,15 @@ class AddLocationToTour extends React.Component {
   }
 
   increment() {
-    let locArray = this.state.locations
-    let loc = this.state.addressObj
-    locArray.push(loc)
-    this.setState({locations: locArray})
+    if (this.state.addressObj.formatted_address) {
+      let locArray = this.state.locations
+      let loc = this.state.addressObj
+      locArray.push(loc)
+      this.setState({locations: locArray})
+    }
+    else {
+      alert("You must search for and select a location from the search bar")
+    }
   }
 
 

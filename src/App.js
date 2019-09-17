@@ -90,8 +90,8 @@ class App extends React.Component {
     return (
       <>
       <Script
-        url= { url }
-        onLoad={this.handleScriptLoad}
+      url= { url }
+      onLoad={this.handleScriptLoad}
       />
       {this.loggedIn}
       </>

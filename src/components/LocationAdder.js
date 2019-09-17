@@ -11,11 +11,14 @@ class LocationAdder extends React.Component {
     super(props)
 
     this.state = {
+      name: "Name of Location",
       funFact1: '',
       funFact2: '',
       funFact3: '',
       description: '',
       uploaded: false,
+      image: "",
+      thumbnail: "",
       widget: {},
       locObj: {}
     }
@@ -31,6 +34,7 @@ class LocationAdder extends React.Component {
       tour_id: this.props.tourId,
       location: {
         name: this.props.placeObj.formatted_address,
+        address: this.props.placeObj.formatted_address,
         latitude: this.props.placeObj.geometry.location.lat(),
         longitude: this.props.placeObj.geometry.location.lng(),
         funfact1: this.state.funFact1,
@@ -38,6 +42,7 @@ class LocationAdder extends React.Component {
         funfact3: this.state.funFact3,
         description: this.state.description,
         image: this.state.image,
+        thumbnail: this.state.thumbnail,
         user_id: this.props.user.user.id
       }
     }
@@ -54,7 +59,7 @@ class LocationAdder extends React.Component {
       uploadPreset: 'preset_test'}, (error, result) => {
         if (!error && result && result.event === "success") {
           console.log('Done! Here is the image info: ', result.info);
-          this.setState({...this.state, uploaded: true, image: result.info.thumbnail_url})
+          this.setState({...this.state, uploaded: true, thumbnail: result.info.thumbnail_url, image: result.info.url})
         }
       })
     this.setState({widget: myWidget})
@@ -69,7 +74,8 @@ class LocationAdder extends React.Component {
     let saveLoc = {
       tour_id: this.props.tourId,
       location: {
-        name: this.props.placeObj.formatted_address,
+        name: this.state.name,
+        address: this.props.placeObj.formatted_address,
         latitude: this.props.placeObj.geometry.location.lat(),
         longitude: this.props.placeObj.geometry.location.lng(),
         funfact1: this.state.funFact1,
@@ -77,6 +83,7 @@ class LocationAdder extends React.Component {
         funfact3: this.state.funFact3,
         description: this.state.description,
         image: this.state.image,
+        thumbnmail: this.state.thumbnail,
         user_id: this.props.user.user.id
       }
     }
@@ -89,7 +96,7 @@ class LocationAdder extends React.Component {
   }
 
   get img() {
-    return <img alt={this.state.image} src={this.state.image}/>
+    return <img alt={this.state.image} src={this.state.thumbnail}/>
   }
 
 
@@ -104,12 +111,13 @@ class LocationAdder extends React.Component {
       />
       <div className="location-adder" onBlur={(e) => this.handleStoreLocation(e)}>
         {this.state.uploaded ? this.img : <button onClick={this.openWidget} id="upload_widget">Upload Files</button>}
-        <p>{this.props.placeObj.formatted_address} (map placeholder)</p>
-        <div>
-          <p>fun facts</p>
-          <input onChange={e=>this.handleChange(e)} id="funFact1"></input>
-          <input onChange={e=>this.handleChange(e)} id="funFact2"></input>
-          <input onChange={e=>this.handleChange(e)} id="funFact3"></input>
+          <div>
+            <p>Address: {this.props.placeObj.formatted_address}</p>
+            <input onChange={e=>this.handleChange(e)} id="name" value={this.state.name}></input>
+            <p>fun facts</p>
+            <input onChange={e=>this.handleChange(e)} id="funFact1"></input>
+            <input onChange={e=>this.handleChange(e)} id="funFact2"></input>
+            <input onChange={e=>this.handleChange(e)} id="funFact3"></input>
           </div>
         <textarea onChange={e=>this.handleChange(e)} rows="10" cols="30" defaultValue="description" id="description"></textarea>
       </div>

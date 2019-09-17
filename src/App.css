@@ -259,9 +259,8 @@ table {
 }
 
 
-/* Loading Modal */
-/* .loader { */
-  /* position: relative;
+.loader {
+  position: relative;
   text-align: center;
   margin: 15px auto 35px auto;
   z-index: 9999;
@@ -285,4 +284,4 @@ table {
   to {
     -webkit-transform: rotate(360deg);
   }
-} */
+}
