@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import CurrentTours from '../components/CurrentTours'
-import ProfileWidget from '../components/ProfileWidget'
+// import ProfileWidget from '../components/ProfileWidget'
 
 import { connect } from 'react-redux'
 

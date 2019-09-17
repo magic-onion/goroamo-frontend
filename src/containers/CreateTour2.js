@@ -57,7 +57,6 @@ class CreateTour2 extends React.Component {
     )
   }
   render() {
-    console.log(typeof this.props.user.user.id)
     return(
       <div>
       {!this.state.tourCreated ? this.createTourWidget : this.currentTour}

@@ -1,9 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import CLOUDINARY_URL from '../environment'
-import Script from 'react-load-script'
+// import { connect } from 'react-redux'
+// import CLOUDINARY_URL from '../environment'
+// import Script from 'react-load-script'
 
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 
 class Cloudinary extends React.Component {
@@ -36,7 +36,7 @@ class Cloudinary extends React.Component {
   }
 
   get img() {
-      return <img src={this.state.image}/>
+      return <img alt="alt" src={this.state.image}/>
   }
 
   componentDidUpdate() {

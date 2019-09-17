@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { makeMap, createNewTour } from '../actions/tours'
-import Marker from '../components/Marker'
+// import Marker from '../components/Marker'
 import LocationAdder from '../components/LocationAdder'
 import SaveTourButton from '../components/saveTourButton'
 

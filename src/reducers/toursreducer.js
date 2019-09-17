@@ -22,14 +22,11 @@ function toursReducer(state = init, action) {
     return toursFetched
 
     case "SAVE_MAP":
-    console.log(action.payload.getDiv())
-
     let newMap = {...state, testMap: action.payload}
     return newMap
 
     case "STORE_CREATED_TOUR":
     let newCurrentTour = {...state, createdTour: action.payload}
-    console.log(newCurrentTour)
     return newCurrentTour
 
     case "INITIAL_ADD":
@@ -60,6 +57,7 @@ function toursReducer(state = init, action) {
       if (loc.name === action.payload.locName) {
         return {...loc, image: action.payload.imgUrl}
       }
+      return loc
     })
     let addedImgState = {...state, locations: locationsImgAdded}
     return addedImgState

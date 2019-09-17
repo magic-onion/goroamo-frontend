@@ -1,6 +1,6 @@
 import React from 'react'
-import Marker from '../components/Marker'
-import LocationViewSelectedTour from './LocationViewSelectedTour'
+// import Marker from '../components/Marker'
+// import LocationViewSelectedTour from './LocationViewSelectedTour'
 import ViewSelectedLocation from './ViewSelectedLocation'
 
 class ViewSelectedTour extends React.Component {
@@ -72,6 +72,7 @@ class ViewSelectedTour extends React.Component {
         //   <Marker location={loc} lat={parseFloat(loc.latitude)} lng={parseFloat(loc.longitude)} key={i} map={this.tourMap}/>
         //   </>
         // )
+        return null
 
       })
     }

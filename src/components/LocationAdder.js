@@ -2,7 +2,7 @@ import React from 'react'
 import Script from 'react-load-script'
 import { connect } from 'react-redux'
 import { savingLocation, saveInitialLoc, saveImg } from '../actions/locations'
-import Cloudinary from './cloudinary'
+// import Cloudinary from './cloudinary'
 
 
 class LocationAdder extends React.Component {
@@ -89,7 +89,7 @@ class LocationAdder extends React.Component {
   }
 
   get img() {
-    return <img src={this.state.image}/>
+    return <img alt={this.state.image} src={this.state.image}/>
   }
 
 

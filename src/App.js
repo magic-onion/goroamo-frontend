@@ -42,7 +42,6 @@ class App extends React.Component {
         coords.push(position.coords.latitude);
         coords.push(position.coords.longitude);
       });
-      console.log(coords)
       this.setState({coords: coords})
     }
   }

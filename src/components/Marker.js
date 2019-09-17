@@ -1,7 +1,7 @@
 
 function Marker(props) {
   console.log(props)
-  let marker = new window.google.maps.Marker({
+  new window.google.maps.Marker({
     position: {lat: props.lat, lng: props.lng},
     map: props.map
   })
