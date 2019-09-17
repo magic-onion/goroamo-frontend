@@ -26,31 +26,27 @@ class App extends React.Component {
       userId: 0
     }
     this.handleScriptLoad = this.handleScriptLoad.bind(this)
-    this.doSomething = this.doSomething.bind(this)
     this.getCoords = this.getCoords.bind(this)
   }
 
   handleScriptLoad() {
+    console.log('about to get coords')
     this.getCoords()
     // this.props.makeMap()
   }
 
   getCoords() {
+    console.log('getting coords')
     if (navigator.geolocation) {
       let coords = []
       navigator.geolocation.getCurrentPosition(function(position) {
         coords.push(position.coords.latitude);
         coords.push(position.coords.longitude);
       });
+      console.log(coords)
       this.setState({coords: coords})
     }
   }
-
-  doSomething(lat, lng) {
-    this.setState({
-      coords: [lat, lng]
-    })
-}
 
 
   componentDidMount() {

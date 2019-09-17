@@ -2,6 +2,7 @@ import React from 'react'
 
 class ViewSelectedLocation extends React.Component {
   render() {
+    console.log(this.props)
     return (
       <div className="tour-location-detail">
         {this.props.location.image ? <img alt={this.props.location.image} src={this.props.location.image}/> : null}

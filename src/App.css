@@ -184,6 +184,14 @@ table {
   margin-right: 20px;
 }
 
+.list-view-item-to-click {
+  width: 10%;
+}
+
+.list-view-item-to-click:hover {
+  background: red;
+}
+
 .list-view-tour {
   display: flex;
   flex-direction: row;

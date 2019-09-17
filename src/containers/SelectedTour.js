@@ -21,7 +21,7 @@ class SelectedTour extends React.Component {
 
   get listItem() {
     return (
-      <p onClick={this.handleClick}>{this.props.tour.name}</p>
+      <p className="list-view-item-to-click" onClick={this.handleClick}>{this.props.tour.name}</p>
     )
   }
 
@@ -49,7 +49,6 @@ class SelectedTour extends React.Component {
   }
 
   render() {
-    console.log(this.props.tour)
     return (
       <div>
       {this.condition}

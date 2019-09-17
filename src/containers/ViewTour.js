@@ -8,8 +8,24 @@ class ViewTour extends React.Component {
     super(props)
 
     this.state = {
-      mapViewSelected: false
+      mapViewSelected: false,
+      coords: []
     }
+ }
+
+ componentDidMount() {
+   if (this.props.coords.length) {
+     return null
+   }
+   else if (navigator.geolocation) {
+     let coords = []
+     navigator.geolocation.getCurrentPosition(function(position) {
+       coords.push(position.coords.latitude);
+       coords.push(position.coords.longitude);
+     });
+     console.log(coords)
+     this.setState({coords: coords})
+   }
  }
 
  handleSelect(e) {
@@ -31,7 +47,7 @@ class ViewTour extends React.Component {
         <span onClick={e=>this.handleSelect(e)} className={this.state.mapViewSelected ? "active-1" : "inactive-1"} id="map-view" >Map View</span>
         <span onClick={e=>this.handleSelect(e)} className={this.state.mapViewSelected ? "inactive-1" : "active-1"} id="list-view">List View</span>
       </div>
-      {this.state.mapViewSelected ? <ToursContainer {...this.props} coords={this.props.coords} tours={this.props.tours.tours} /> : <ListView tours={this.props.tours.tours}/> }
+      {this.state.mapViewSelected ? <ToursContainer {...this.props} coords={this.props.coords.length ? this.props.coords : this.state.coords} tours={this.props.tours.tours} /> : <ListView tours={this.props.tours.tours}/> }
      </>
    )
  }
