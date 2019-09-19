@@ -6,7 +6,8 @@ const init = {
   testMap: {},
   createdTour: {},
   mode: "",
-  locations: []
+  locations: [],
+  focusedTour: {}
 }
 
 
@@ -48,6 +49,11 @@ function toursReducer(state = init, action) {
     })
     let newLocationState = {...state, locations: changedLocs}
     return newLocationState
+
+    case "STORE_FETCHED_TOUR":
+    console.log(action.payload)
+    let fetchedTourState = {...state, focusedTour: action.payload}
+    return fetchedTourState
 
     default:
     return state

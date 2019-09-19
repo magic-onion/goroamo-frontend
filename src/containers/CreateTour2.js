@@ -58,9 +58,7 @@ class CreateTour2 extends React.Component {
   }
 
   get markers() {
-    console.log(this.props.tours.locations)
     return this.props.tours.locations.map ((loc) => {
-      console.log(loc)
       let marker = new window.google.maps.Marker({
         position: {lat: loc.location.latitude, lng: loc.location.longitude},
         map: this.props.tours.testMap

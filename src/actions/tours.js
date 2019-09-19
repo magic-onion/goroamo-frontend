@@ -65,3 +65,22 @@ export const createNewTour = (tourObj) => {
 }
 
 export const storeCreatedTour = (tourObj) => ({type: "STORE_CREATED_TOUR", payload: tourObj})
+
+export const getSingleTour = (param) => {
+  return (dispatch) => {
+    let config = {
+      method: 'get',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+    let fetchString = `http://localhost:3000/api/v1/tours/${param}`
+    console.log(fetchString)
+    fetch(fetchString, config)
+      .then(r=>r.json())
+      .then(p => dispatch(storeFocusedTour(p)))
+  }
+}
+
+export const storeFocusedTour = (tourObj) => ({type: 'STORE_FETCHED_TOUR', payload: tourObj})
