@@ -30,7 +30,6 @@ class ViewSelectedTour extends React.Component {
     if (this.props.location.state.locations.length) {
       let locationsArray = this.props.location.state.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
       let waypoints = []
-      console.log(locationsArray)
       let directionService = new window.google.maps.DirectionsService();
       let directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
       directionsDisplay.setMap(this.tourMap)
@@ -39,7 +38,6 @@ class ViewSelectedTour extends React.Component {
           return {location: new window.google.maps.LatLng(el.latitude, el.longitude), stopover: true}
         })
       }
-      console.log(waypoints)
 
       let startLat = parseFloat(this.props.location.state.locations[0].latitude)
       let startLng = parseFloat(this.props.location.state.locations[0].longitude)
@@ -55,7 +53,6 @@ class ViewSelectedTour extends React.Component {
       }
       directionService.route(request, function(response, status) {
         if (status === 'OK') {
-          console.log(response)
           directionsDisplay.setDirections(response)
         }
       })
@@ -64,18 +61,11 @@ class ViewSelectedTour extends React.Component {
 
 
       return this.props.location.state.locations.map( (loc, i) => {
-
         let marker = new window.google.maps.Marker({
           position: {lat: parseFloat(loc.latitude), lng: parseFloat(loc.longitude)},
           map: this.tourMap
           })
-
         marker.addListener('click', (e)=>this.clicking(e, loc))
-        // return (
-        //   <>
-        //   <Marker location={loc} lat={parseFloat(loc.latitude)} lng={parseFloat(loc.longitude)} key={i} map={this.tourMap}/>
-        //   </>
-        // )
         return null
 
       })
@@ -114,7 +104,6 @@ class ViewSelectedTour extends React.Component {
   }
 
   scriptLoader() {
-    console.log(window.google)
     this.tourMap = new window.google.maps.Map(document.getElementById('map-3'), {
       center: {lat: 43.650, lng: -79.384},
       zoom: 14
@@ -123,7 +112,6 @@ class ViewSelectedTour extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="viewing-tour-container">
 
@@ -137,35 +125,3 @@ class ViewSelectedTour extends React.Component {
 }
 
 export default ViewSelectedTour
-
-
-//Need to fetch the tour info if this container is mounted without the link
-
-
-// function initMap() {
-//   var directionsService = new google.maps.DirectionsService();
-//   var directionsDisplay = new google.maps.DirectionsRenderer();
-//   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-//   var mapOptions = {
-//     zoom:7,
-//     center: chicago
-//   }
-//   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-//   directionsDisplay.setMap(map);
-//   directionsDisplay.setPanel(document.getElementById('directionsPanel'));
-// }
-//
-// function calcRoute() {
-//   var start = document.getElementById('start').value;
-//   var end = document.getElementById('end').value;
-//   var request = {
-//     origin:start,
-//     destination:end,
-//     travelMode: 'DRIVING'
-//   };
-//   directionsService.route(request, function(response, status) {
-//     if (status == 'OK') {
-//       directionsDisplay.setDirections(response);
-//     }
-//   });
-// }

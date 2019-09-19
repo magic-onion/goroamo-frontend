@@ -15,7 +15,6 @@ function toursReducer(state = init, action) {
 
     case "MAKE_CREATE_TOUR_MAP":
     let newState = {...state, testMap: action.payload, mode: "create-tour"}
-    console.log(newState)
     return newState
 
     case "GET_TOURS":
@@ -33,7 +32,6 @@ function toursReducer(state = init, action) {
     case "INITIAL_ADD":
     let addedLoc = state.locations
     addedLoc.push(action.payload)
-    console.log(state.locations)
     let addedLocState = {...state, locations: addedLoc}
     return addedLocState
 
@@ -49,19 +47,7 @@ function toursReducer(state = init, action) {
       }
     })
     let newLocationState = {...state, locations: changedLocs}
-    console.log(newLocationState)
     return newLocationState
-
-    case "ADDING_IMG":
-    console.log('adding img')
-    let locationsImgAdded = state.locations.map( (loc) => {
-      if (loc.name === action.payload.locName) {
-        return {...loc, image: action.payload.imgUrl}
-      }
-      return loc
-    })
-    let addedImgState = {...state, locations: locationsImgAdded}
-    return addedImgState
 
     default:
     return state

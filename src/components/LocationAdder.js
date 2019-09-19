@@ -1,7 +1,7 @@
 import React from 'react'
 import Script from 'react-load-script'
 import { connect } from 'react-redux'
-import { savingLocation, saveInitialLoc, saveImg } from '../actions/locations'
+import { savingLocation, saveInitialLoc } from '../actions/locations'
 // import Cloudinary from './cloudinary'
 
 
@@ -89,7 +89,6 @@ class LocationAdder extends React.Component {
         user_id: this.props.user.user.id
       }
     }
-    console.log(saveLoc)
     this.saveLocToState(saveLoc)
   }
 
@@ -138,55 +137,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     savingLocation: (obj) => dispatch(savingLocation(obj)),
-    saveInitialLoc: (obj) => dispatch(saveInitialLoc(obj)),
-    saveImg: (locName, imgUrl) => dispatch(saveImg(locName, imgUrl))
+    saveInitialLoc: (obj) => dispatch(saveInitialLoc(obj))
   }
 }
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationAdder)
-
-
-
-
-
-
-
-// handleSaveLocation(e) {
-//
-  // let locObj = {
-  //   tour_id: this.props.tourId,
-  //   location: {
-  //     name: this.props.addresses.formatted_address,
-  //     latitude: this.props.addresses.geometry.location.lat(),
-  //     longitude: this.props.addresses.geometry.location.lng(),
-  //     funfact1: this.state.funFact1,
-  //     funfact2: this.state.funFact2,
-  //     funfact3: this.state.funFact3,
-  //     image: this.state.image,
-  //     user_id: this.props.user,
-  //   }
-  // }
-//   fetch('http://localhost:3000/api/v1/locations', {
-//     method: 'POST',
-//     headers: {
-//       'content-type': 'application/json',
-//       'Authorization': `Bearer ${localStorage.getItem('token')}`
-//     },
-//     body: JSON.stringify({
-//       tour_id: this.props.tourId,
-//       location: {
-//         name: this.props.addresses.formatted_address,
-//         latitude: this.props.addresses.geometry.location.lat(),
-//         longitude: this.props.addresses.geometry.location.lng(),
-//         funfact1: this.state.funFact1,
-//         funfact2: this.state.funFact2,
-//         funfact3: this.state.funFact3,
-//         image: this.state.image,
-//         user_id: 1,
-//       }
-//     })
-//   })
-//   .then(r=>r.json())
-//   .then(console.log)
-// }

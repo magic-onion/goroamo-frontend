@@ -18,7 +18,6 @@ class ListView extends React.Component {
       return el.tour.id === parseInt(e.target.id)
     })
     this.setState({tourSelected: newTourSelected, focusedTour: tour})
-    console.log(tour)
   }
 
   get tours() {
@@ -43,7 +42,6 @@ class ListView extends React.Component {
   }
 
   render() {
-    console.log(this.state.focusedTour)
     return(
       <div className="list-container">
         {!this.state.tourSelected ? this.tours : <SelectedTour tour={this.state.focusedTour.tour} locations={this.state.focusedTour.locations}/> }

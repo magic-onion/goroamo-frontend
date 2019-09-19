@@ -17,7 +17,6 @@ export const storeInitialLocation = (obj) => ({type: "INITIAL_ADD", payload: obj
 export const saveAllLocs = (obj) => {
   return(dispatch) => {
     for (let el of obj.locations) {
-      console.log(el)
       let config = {
         method: 'POST',
         headers: {
@@ -32,15 +31,6 @@ export const saveAllLocs = (obj) => {
     }
   }
 }
-
-export const saveImg = (locName, imgUrl) => {
-  return (dispatch) => {
-    dispatch(saveImgDataToLocation(locName, imgUrl))
-  }
-}
-
-export const saveImgDataToLocation = (locName, imgUrl) => ({type: "ADDING_IMG", payload: {locName: locName, imgUrl: imgUrl}})
-
 
 
 

@@ -59,7 +59,6 @@ export const createNewTour = (tourObj) => {
     })
     .then(r=>r.json())
     .then(p => {
-      console.log(p)
       dispatch(storeCreatedTour(p))
     })
   }

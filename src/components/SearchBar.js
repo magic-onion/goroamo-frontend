@@ -48,8 +48,6 @@ class Search extends Component {
     // Extract City From Address Object
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
-    console.log(addressObject.geometry.location.lat())
-    console.log(this.props.addresses)
     // Check if address is valid
     if (address) {
       // Set State
@@ -60,13 +58,11 @@ class Search extends Component {
         }
       );
     }
-    console.log(this.state.query)
   }
 
   handleAddLocation() {
   if (this.state.query.length) {
     let addressObject = this.autocomplete.getPlace();
-    console.log(addressObject.geometry.location.lat())
     this.props.addresses.push(addressObject)
 
 
@@ -106,7 +102,6 @@ class Search extends Component {
   }
 
   get locations() {
-  console.log('getter')
     if (this.props.addresses !== undefined) {
       return this.props.addresses.map((obj, i) =>  <LocationDetail key={i} address={obj.formatted_address}/>)
     }

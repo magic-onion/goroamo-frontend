@@ -27,7 +27,6 @@ class ViewTour extends React.Component {
        coords.push(position.coords.latitude);
        coords.push(position.coords.longitude);
      });
-     console.log(coords)
      this.setState({coords: coords})
    }
  }
@@ -44,7 +43,6 @@ class ViewTour extends React.Component {
 
 
  render() {
-   console.log(this.props.tours.tours)
    return (
      <>
       <div className="list-and-map-view-selector">
