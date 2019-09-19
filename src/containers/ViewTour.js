@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { getAllTours } from '../actions/tours'
 import ToursContainer from './ToursContainer'
 import ListView from './ListView'
 
@@ -14,6 +15,9 @@ class ViewTour extends React.Component {
  }
 
  componentDidMount() {
+   if (!this.props.tours.loaded) {
+     this.props.getAllTours()
+   }
    if (this.props.coords.length) {
      return null
    }
@@ -59,4 +63,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(ViewTour)
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllTours: () => dispatch(getAllTours())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewTour)

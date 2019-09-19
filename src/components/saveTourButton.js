@@ -19,7 +19,7 @@ class SaveTourButton extends React.Component {
 
   render() {
     return(
-      <div onClick={e=>this.handleSubmit(e)}>
+      <div className="save-tour-button" onClick={e=>this.handleSubmit(e)}>
         <p>Click here to save your tour </p>
       </div>
     )

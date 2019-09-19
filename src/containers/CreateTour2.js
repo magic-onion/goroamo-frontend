@@ -51,17 +51,17 @@ class CreateTour2 extends React.Component {
 
   get currentTour() {
     return(
-      <div>
+      <>
         <h1>{this.state.name}</h1>
-      </div>
+      </>
     )
   }
   render() {
     return(
-      <div>
+      <>
       {!this.state.tourCreated ? this.createTourWidget : this.currentTour}
       {this.state.tourCreated? <AddLocationToTour tourId={this.props.tours.createdTour.id}/> : null}
-      </div>
+      </>
     )
   }
 }

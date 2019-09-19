@@ -16,6 +16,7 @@ table {
   background: white;
   margin-left: 10%;
   border: solid green 3px;
+  background: #f0f0f0
 }
 
 .sidebar {
@@ -54,17 +55,75 @@ table {
 
 }
 
+/* TOUR EDITING */
+
+.tour-editing-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  background: #fefefe;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
+}
+
+/* LOC ADDER */
+.location-searcher {
+  display: flex;
+  justify-content: space-evenly;
+  border: solid #dedede 1px;
+  margin: .5% 0 0 .6%;
+  width: 70%;
+  padding:  .3%;
+}
+
+.search-bar {
+  width: 250px;
+}
+
+.save-tour-button {
+  border: solid pink 1px;
+}
+
+.save-tour-button:hover {
+  border-radius: 5px;
+  background: grey;
+}
 
 .location-adder {
   display: flex;
+  flex-direction: row;
+  width: 98%;
   margin: 15px;
+  border: solid green 1px;
+}
+
+.location-adder-form {
+  border: solid black 2px;
+  flex-basis: 20%;
+}
+
+.location-adder-thumbnail {
+  width: 12%;
+  height: 12%;
+  margin: 3px;
+}
+
+.location-adder-button {
+  width: 10%;
+}
+
+.location-editing-form {
+  border: solid grey 1px;
+}
+.cloudinary-upload-button {
+  width: 5%;
+  height: 5%;
+  background: pink;
 }
 
 
-.search-bar {
-  margin: 3%;
-  width: 250px;
-}
 
 #map {
   height: 200%;
@@ -199,9 +258,15 @@ table {
 }
 
 .list-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
   overflow: auto;
-  border: solid black 1px;
-  width: 80%;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
+  width: 40%;
 }
 
 

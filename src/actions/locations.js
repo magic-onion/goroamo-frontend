@@ -1,6 +1,5 @@
 export const savingLocation = (locObj) => {
   return(dispatch) => {
-    console.log('hi')
     dispatch(savingLocationToState(locObj))
   }
 }

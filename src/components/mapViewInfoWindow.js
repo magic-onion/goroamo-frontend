@@ -2,15 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class MapViewInfoWindow extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
 
   render() {
     let linkString = `/tours/${this.props.tour.tour.id}`
     return (
       <div>
         <p>Name: {this.props.tour.tour.name}</p>
+        <p>Locations: {this.props.tour.locations.length}</p>
         <Link to={{
           pathname: linkString,
           state: {

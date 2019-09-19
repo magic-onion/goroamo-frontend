@@ -1,7 +1,10 @@
 import React from 'react'
 // import Marker from '../components/Marker'
 // import LocationViewSelectedTour from './LocationViewSelectedTour'
+import Script from 'react-load-script'
 import ViewSelectedLocation from './ViewSelectedLocation'
+import API_KEY from '../environment'
+const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
 class ViewSelectedTour extends React.Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class ViewSelectedTour extends React.Component {
     }
 
     this.clicking = this.clicking.bind(this)
+    this.scriptLoader = this.scriptLoader.bind(this)
   }
 
   clicking(e, obj) {
@@ -84,6 +88,33 @@ class ViewSelectedTour extends React.Component {
   }
 
   componentDidMount() {
+    if (window.google) {
+      this.tourMap = new window.google.maps.Map(document.getElementById('map-3'), {
+        center: {lat: 43.650, lng: -79.384},
+        zoom: 14
+      })
+      this.setState({mount: true})
+    }
+    else {
+      return (
+        <>
+        {this.script}
+        </>
+      )
+    }
+  }
+
+  get script() {
+    return (
+      <Script
+      url= { url }
+      onLoad={this.scriptLoader}
+      />
+    )
+  }
+
+  scriptLoader() {
+    console.log(window.google)
     this.tourMap = new window.google.maps.Map(document.getElementById('map-3'), {
       center: {lat: 43.650, lng: -79.384},
       zoom: 14
@@ -92,7 +123,7 @@ class ViewSelectedTour extends React.Component {
   }
 
   render() {
-    console.log(this.state.focusedLocation)
+    console.log(this.props)
     return (
       <div className="viewing-tour-container">
 
@@ -107,6 +138,8 @@ class ViewSelectedTour extends React.Component {
 
 export default ViewSelectedTour
 
+
+//Need to fetch the tour info if this container is mounted without the link
 
 
 // function initMap() {

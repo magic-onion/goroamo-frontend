@@ -59,6 +59,8 @@ class LocationAdder extends React.Component {
       uploadPreset: 'preset_test'}, (error, result) => {
         if (!error && result && result.event === "success") {
           console.log('Done! Here is the image info: ', result.info);
+          //transform image here
+          // let urlThumbnail = `https://res.cloudinary.com/goroamo/image/upload/w_400,h_400,c_crop,g_face,r_max/${result.info.public_id}.jpeg`
           this.setState({...this.state, uploaded: true, thumbnail: result.info.thumbnail_url, image: result.info.url})
         }
       })
@@ -96,13 +98,12 @@ class LocationAdder extends React.Component {
   }
 
   get img() {
-    return <img alt={this.state.image} src={this.state.thumbnail}/>
+    return <img className="location-adder-thumbnail" alt={this.state.image} src={this.state.thumbnail}/>
   }
 
 
 
   render() {
-    console.log(this.state, this.props)
     return (
       <>
       <Script
@@ -110,16 +111,16 @@ class LocationAdder extends React.Component {
         onLoad={this.handleCloud}
       />
       <div className="location-adder" onBlur={(e) => this.handleStoreLocation(e)}>
-        {this.state.uploaded ? this.img : <button onClick={this.openWidget} id="upload_widget">Upload Files</button>}
-          <div>
-            <p>Address: {this.props.placeObj.formatted_address}</p>
-            <input onChange={e=>this.handleChange(e)} id="name" value={this.state.name}></input>
+        {this.state.uploaded ? this.img : <button className="cloudinary-upload-button" onClick={this.openWidget} id="upload_widget">Add an Image!</button>}
+          <div className="location-editing-form">
+            <span>Address: {this.props.placeObj.formatted_address}</span>
+            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="name" value={this.state.name}></input>
             <p>fun facts</p>
-            <input onChange={e=>this.handleChange(e)} id="funFact1"></input>
-            <input onChange={e=>this.handleChange(e)} id="funFact2"></input>
-            <input onChange={e=>this.handleChange(e)} id="funFact3"></input>
+            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact1"></input>
+            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact2"></input>
+            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact3"></input>
+            <textarea onChange={e=>this.handleChange(e)} rows="10" cols="30" defaultValue="description" id="description"></textarea>
           </div>
-        <textarea onChange={e=>this.handleChange(e)} rows="10" cols="30" defaultValue="description" id="description"></textarea>
       </div>
       </>
     )

@@ -15,7 +15,6 @@ import ViewSelectedTour from './components/ViewSelectedTour'
 import API_KEY from './environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
-
 class App extends React.Component {
 
   constructor(props) {
@@ -30,13 +29,11 @@ class App extends React.Component {
   }
 
   handleScriptLoad() {
-    console.log('about to get coords')
     this.getCoords()
     // this.props.makeMap()
   }
 
   getCoords() {
-    console.log('getting coords')
     if (navigator.geolocation) {
       let coords = []
       navigator.geolocation.getCurrentPosition(function(position) {
