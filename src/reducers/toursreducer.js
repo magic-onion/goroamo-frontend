@@ -7,7 +7,8 @@ const init = {
   createdTour: {},
   mode: "",
   locations: [],
-  focusedTour: {}
+  focusedTour: {id: null},
+  currentLocation: {}
 }
 
 

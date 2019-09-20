@@ -76,10 +76,9 @@ export const getSingleTour = (param) => {
       }
     }
     let fetchString = `http://localhost:3000/api/v1/tours/${param}`
-    console.log(fetchString)
     fetch(fetchString, config)
       .then(r=>r.json())
-      .then(p => dispatch(storeFocusedTour(p)))
+      .then(p => dispatch(storeFocusedTour(p.tour)))
   }
 }
 

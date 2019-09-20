@@ -2,7 +2,7 @@ import React from 'react';
 import Script from 'react-load-script'
 import './App.css';
 import { connect } from 'react-redux'
-import { getProfile } from './actions/user'
+import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'
 import { Route } from "react-router-dom";
 import Login from './login'
@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   handleScriptLoad() {
-    this.getCoords()
+    this.props.sendUserLocation()
     // this.props.makeMap()
   }
 
@@ -40,7 +40,6 @@ class App extends React.Component {
         coords.push(position.coords.latitude);
         coords.push(position.coords.longitude);
       });
-      console.log(coords)
       this.setState({coords: coords})
     }
   }
@@ -101,7 +100,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProfile: () => dispatch(getProfile())
+    getProfile: () => dispatch(getProfile()),
+    sendUserLocation: () => dispatch(sendUserLocation())
   }
 }
 

@@ -94,9 +94,21 @@ export const getProfile = () => {
 
 export const storeUser = (userObj) => ({type: "STORE_USER", payload: userObj})
 
+export const sendUserLocation = () => {
+  return (dispatch) => {
+    let coords = []
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log(position)
+        coords.push(position.coords.latitude);
+        coords.push(position.coords.longitude);
+      });
+    }
+    dispatch(storeLocationCoords(coords))
+  }
+}
 
-
-
+export const storeLocationCoords = (array) => ({type: 'STORE_LOCATION', payload: array})
 
 
 
