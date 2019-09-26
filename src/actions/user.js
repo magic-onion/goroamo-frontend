@@ -99,7 +99,6 @@ export const sendUserLocation = () => {
     let coords = []
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        console.log(position)
         coords.push(position.coords.latitude);
         coords.push(position.coords.longitude);
       });

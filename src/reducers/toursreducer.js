@@ -1,7 +1,7 @@
 
 
 const init = {
-  loaded: false,
+  tourLoaded: false,
   tours: [],
   testMap: {},
   createdTour: {},
@@ -50,6 +50,10 @@ function toursReducer(state = init, action) {
     })
     let newLocationState = {...state, locations: changedLocs}
     return newLocationState
+
+    case "TOUR_NOW_LOADED":
+    let tourIsLoadedState = {...state, tourLoaded: true}
+    return tourIsLoadedState
 
     case "STORE_FETCHED_TOUR":
     console.log(action.payload)

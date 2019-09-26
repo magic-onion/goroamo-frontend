@@ -83,3 +83,12 @@ export const getSingleTour = (param) => {
 }
 
 export const storeFocusedTour = (tourObj) => ({type: 'STORE_FETCHED_TOUR', payload: tourObj})
+
+
+export const tourIsLoaded = () => {
+  return dispatch => {
+    dispatch(markTourAsLoaded())
+  }
+}
+
+export const markTourAsLoaded = () => ({type: "TOUR_NOW_LOADED"})

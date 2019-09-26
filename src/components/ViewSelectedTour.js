@@ -2,7 +2,7 @@ import React from 'react'
 // import Marker from '../components/Marker'
 // import LocationViewSelectedTour from './LocationViewSelectedTour'
 import { connect } from 'react-redux'
-import { getSingleTour } from '../actions/tours'
+import { getSingleTour, tourIsLoaded } from '../actions/tours'
 import { sendUserLocation } from '../actions/user'
 import Script from 'react-load-script'
 import ViewSelectedLocation from './ViewSelectedLocation'
@@ -10,7 +10,11 @@ import Loader from './loader'
 import LocationSelector from './locationSelector'
 import API_KEY from '../environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
-let directionService, directionsDisplay, markers
+
+//set the path, set from current location to next location, set directions from
+
+// need a separate method to call directions only one time
+//needs to keep track of them to set different directions
 
 
 class ViewSelectedTour extends React.Component {
@@ -18,20 +22,32 @@ class ViewSelectedTour extends React.Component {
     super(props)
 
     this.state = {
+      tourStarted: false,
       mapMounted: false,
       window: false,
       tourLoaded: false,
-      tourStarted: false,
       focusedLocation: {},
       tour: {},
       directionService: {},
       directionsDisplay: {},
-      markers: []
+      markers: [],
+      tourMap: {},
+      maxLocs: 0,
+      currentImage: "",
+      images: [],
+      locationCounter: 0,
+      imageLoaded: false,
+      widget: {},
+      displayMode: "viewing"
     }
 
     this.clicking = this.clicking.bind(this)
     this.scriptLoader = this.scriptLoader.bind(this)
     this.startTour = this.startTour.bind(this)
+    this.newLocations = this.newLocations.bind(this)
+    this.nextLocation = this.nextLocation.bind(this)
+    this.uploadImage = this.uploadImage.bind(this)
+    this.handleCloud = this.handleCloud.bind(this)
   }
 
   componentDidMount() {
@@ -39,24 +55,33 @@ class ViewSelectedTour extends React.Component {
     this.props.sendUserLocation()
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     // console.log(prevProps.tours.focusedTour.id, this.props.tours.focusedTour.id)
     if (prevProps.tours.focusedTour.id !== this.props.tours.focusedTour.id) {
-      this.setState({tourLoaded: true})
+      this.setState({tourLoaded: true, maxLocs: this.props.tours.focusedTour.locations.length - 1})
+      this.props.tourIsLoaded()
+    }
+    if (prevProps.tours.tourLoaded !== this.props.tours.tourLoaded) {
+      console.log('mounting map')
+    }
+    if (prevState.mapMounted !== this.state.mapMounted) {
+      console.log('phasing')
+      this.newLocations()
     }
   }
 
-
-
   scriptLoader() {
+    let initLat = 43.651070
+    let initLng = -79.347015
     this.tourMap = new window.google.maps.Map(document.getElementById('map-3'), {
-      center: {lat: 44.999013, lng: -93.24663629999999},
+      center: {lat: initLat, lng: initLng},
       zoom: 14
     })
-    let directionService = new window.google.maps.DirectionsService();
-    let directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
-    directionsDisplay.setMap(this.tourMap)
-    this.setState({mapMounted: true, directionService: directionService, directionsDisplay: directionsDisplay})
+    this.directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
+    this.directionsDisplay.setMap(this.tourMap)
+    this.directionsService = new window.google.maps.DirectionsService();
+    console.log(this.directionsService)
+    this.setState({mapMounted: true})
 
   }
 
@@ -64,85 +89,146 @@ class ViewSelectedTour extends React.Component {
     this.setState({window: true, focusedLocation: obj})
   }
 
-  get newLocations() {
+  newLocations() {
     if (this.state.tourLoaded && this.state.mapMounted) {
-      console.log("hello in true value")
-      if (this.state.tourLoaded && this.props.tours.focusedTour.locations.length) {
-      let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
-      let waypoints = []
-      directionService = new window.google.maps.DirectionsService();
-      directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
-      directionsDisplay.setMap(this.tourMap)
-      if (locationsArray.length > 2) {
-        waypoints = locationsArray.slice(1,-1).map( (el) => {
-        return {location: new window.google.maps.LatLng(el.latitude, el.longitude), stopover: true}
-        })
-      }
-      let startLat = parseFloat(this.props.tours.focusedTour.locations[0].latitude)
-      let startLng = parseFloat(this.props.tours.focusedTour.locations[0].longitude)
-      let endLat = parseFloat(this.props.tours.focusedTour.locations[this.props.tours.focusedTour.locations.length-1].latitude)
-      let endLng = parseFloat(this.props.tours.focusedTour.locations[this.props.tours.focusedTour.locations.length-1].longitude)
-      let start = new window.google.maps.LatLng(startLat, startLng)
-      let end = new window.google.maps.LatLng(endLat, endLng)
-      let request = {
-            origin: start,
-            destination: end,
-            waypoints: waypoints,
-            travelMode: 'WALKING'
-          }
-      directionService.route(request, function(response, status) {
-        if (status === 'OK') {
-          console.log(this)
-          directionsDisplay.setDirections(response)
+        let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
+        let waypoints = []
+        if (locationsArray.length > 2) {
+              waypoints = locationsArray.slice(1,-1).map( (el) => {
+                return {location: new window.google.maps.LatLng(el.latitude, el.longitude), stopover: true}
+              })
+            }
+        let startLat = locationsArray[0].latitude
+        let startLng = locationsArray[0].longitude
+        let endLat = locationsArray[locationsArray.length-1].latitude
+        let endLng = locationsArray[locationsArray.length-1].longitude
+        let start = new window.google.maps.LatLng(startLat, startLng)
+        let end = new window.google.maps.LatLng(endLat, endLng)
+        let request = {
+          origin: start,
+          destination: end,
+          waypoints: waypoints,
+          travelMode: 'WALKING'
         }
-      })
-      markers = []
-      return this.props.location.state.locations.map( (loc, i) => {
-        let marker = new window.google.maps.Marker({
-            position: {lat: parseFloat(loc.latitude), lng: parseFloat(loc.longitude)},
+        console.log(request)
+        let directionsDisplay = this.directionsDisplay
+        this.directionsService.route(request, function(response, status) {
+              if (status === 'OK') {
+                directionsDisplay.setDirections(response)
+                console.log(this)
+              }
+            })
+        let markers = []
+        locationsArray.map( (loc, i) => {
+          let marker = new window.google.maps.Marker({
+            position: {lat: loc.latitude, lng: loc.longitude},
             map: this.tourMap
-        })
-        marker.addListener('click', (e)=>this.clicking(e, loc))
-        markers.push(marker)
+            })
+          marker.addListener('click', (e)=>this.clicking(e, loc))
+          markers.push(marker)
+          console.log(markers)
           return null
-        console.log(markers)
+
+        })
+        this.setState({markers: markers})
+
+    }
+  }
+
+  startTour(e) {
+    this.state.markers.map((m) => m.setMap(null))
+    let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
+    let start = new window.google.maps.LatLng(this.props.user.coords[0], this.props.user.coords[1])
+    let end = new window.google.maps.LatLng(locationsArray[0].latitude, locationsArray[0].longitude)
+    let markers = [[this.props.user.coords[0], this.props.user.coords[1]], [locationsArray[0].latitude, locationsArray[0].longitude]]
+    let request = {
+      origin: start,
+      destination: end,
+      waypoints: [],
+      travelMode: 'WALKING'
+    }
+    let directionsDisplay = this.directionsDisplay
+    this.directionsService.route(request, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response)
+            console.log(response)
+          }
       })
+    for (let marker of markers) {
+      let newMarker = new window.google.maps.Marker({
+        position: {lat: marker[0], lng: marker[1]},
+        map: this.tourMap
+        })
     }
-    }
-      return <p>no locations saved!</p>
+    this.setState({displayMode: "started", markers: markers})
   }
 
-startTour(e) {
-  console.log(directionService, directionsDisplay)
-  for (let i=0; i < markers.length; i++) {
-    console.log(markers[i])
-    markers[i].setVisible(false)
-    console.log(markers[i])
-  }
-  console.log(markers)
-
-  directionsDisplay.setDirections({})
-  let start = new window.google.maps.LatLng(this.props.user.coords[0], this.props.user.coords[1])
-  let endLat = parseFloat(this.state.focusedLocation.latitude)
-  let endLng = parseFloat(this.state.focusedLocation.longitude)
-  let end = new window.google.maps.LatLng(endLat, endLng)
-  let request = {
-    origin: start,
-    destination: end,
-    travelMode: 'WALKING'
-  }
-  directionService.route(request, function(response, status) {
-    if (status === 'OK') {
-      console.log(response)
-      directionsDisplay.setDirections(response)
+  nextLocation(e) {
+    console.log(this.state.locationCounter)
+    if (this.state.locationCounter !== this.state.maxLocs) {
+      let counter = this.state.locationCounter
+      let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
+      let start = new window.google.maps.LatLng(locationsArray[0+counter].latitude, locationsArray[0+counter].longitude)
+      let end = new window.google.maps.LatLng(locationsArray[1+counter].latitude, locationsArray[1+this.state.locationCounter].longitude)
+      let markers = [[locationsArray[0+this.state.locationCounter].latitude, locationsArray[0+this.state.locationCounter].longitude], [locationsArray[1+this.state.locationCounter].latitude, locationsArray[1+this.state.locationCounter].longitude]]
+      let request = {
+        origin: start,
+        destination: end,
+        waypoints: [],
+        travelMode: 'WALKING'
+      }
+      let gMarkers = []
+      for (let marker of markers) {
+        let newMarker = new window.google.maps.Marker({
+          position: {lat: marker[0], lng: marker[1]},
+          map: this.tourMap
+          })
+        gMarkers.push(newMarker)
+      }
+      let directionsDisplay = this.directionsDisplay
+      this.directionsService.route(request, function(response, status) {
+            if (status === 'OK') {
+              directionsDisplay.setDirections(response)
+              console.log(response)
+            }
+        })
+        let newCounter = this.state.locationCounter + 1
+        this.setState({markers: gMarkers, locationCounter: newCounter, displayMode: 'started'})
     }
-  })
-  let marker = new window.google.maps.Marker({
-    position: {lat: endLat, lng: endLng},
-    map: this.tourMap
-  })
+    else {
+      this.setState({displayMode: 'ended'})
+    }
 
-}
+  }
+
+  get controls() {
+    if (this.state.displayMode === 'viewing') {
+      return <button onClick={(e)=>this.startTour(e)}>Start tour here?</button>
+    }
+    if (this.state.displayMode === 'started') {
+      let thumbnail = this.state.images[this.state.locationCounter]
+      return (
+        <div>
+          <button onClick={e=>this.uploadImage(e)}>upload image here </button>
+        </div>
+      )
+    }
+    if (this.state.displayMode === 'location') {
+      return (
+        <>
+        <ViewSelectedLocation location={this.props.tours.focusedTour.locations[this.state.locationCounter]} image={this.state.currentImage}/>
+        <button onClick={e=>this.nextLocation(e)}>next</button>
+        </>
+      )
+    }
+    if (this.state.displayMode === 'ended') {
+      return <p>Thanks for taking this tour!</p>
+    }
+  }
+
+  uploadImage() {
+    this.state.widget.open()
+  }
 
 
 
@@ -150,32 +236,51 @@ startTour(e) {
     return (
       <>
       <LocationSelector location={this.state.focusedLocation}/>
-      <button onClick={(e)=>this.startTour(e)}>Start tour here?</button>
       </>
     )
   }
 
+  handleCloud() {
+    let myWidget = window.cloudinary.createUploadWidget({
+      cloudName: 'goroamo',
+      uploadPreset: 'preset_test'}, (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log('Done! Here is the image info: ', result.info);
+          //transform image here
+          let imageArray = this.state.images
+          imageArray.push(result.info.url)
+          this.setState({...this.state, currentImage: result.info.url, image: result.info.url, displayMode: 'location'})
+        }
+      })
+    this.setState({widget: myWidget})
+  }
+
 
   render() {
-    console.log(this.props)
+    console.log(this.state.locationCounter, this.state.displayMode)
     return (
       <>
       <Script
       url= { url }
       onLoad={this.scriptLoader}
       />
+      <Script
+        url="https://widget.cloudinary.com/v2.0/global/all.js"
+        onLoad={this.handleCloud}
+      />
+
       <div className="viewing-tour-container">
-        {this.script}
-        {this.state.tourLoaded ? this.newLocations : <Loader/>}
         <div style={{width: 400, height: 400, margin: 50}} id="map-3">
         </div>
         {this.state.window ? this.focusedLocation : null}
+        {this.controls}
       </div>
       </>
     )
   }
 }
 
+// {this.state.tourLoaded ? this.newLocations : <Loader/>}
 // {this.state.mount ? this.locations : null}
 const mapStateToProps = state => {
   return {
@@ -187,7 +292,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getSingleTour: (param) => dispatch(getSingleTour(param)),
-    sendUserLocation: () => dispatch(sendUserLocation())
+    sendUserLocation: () => dispatch(sendUserLocation()),
+    tourIsLoaded: () => dispatch(tourIsLoaded())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ViewSelectedTour)
@@ -206,21 +312,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(ViewSelectedTour)
 //   if (this.props.location.state.locations.length) {
     // let locationsArray = this.props.location.state.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
     // let waypoints = []
-    // let directionService = new window.google.maps.DirectionsService();
-    // let directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
-    // directionsDisplay.setMap(this.tourMap)
-    // if (locationsArray.length > 2) {
-    //   waypoints = locationsArray.slice(1,-1).map( (el) => {
-    //     return {location: new window.google.maps.LatLng(el.latitude, el.longitude), stopover: true}
-    //   })
-    // }
+//     let directionService = new window.google.maps.DirectionsService();
+//     let directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
+//     directionsDisplay.setMap(this.tourMap)
+//     if (locationsArray.length > 2) {
+//       waypoints = locationsArray.slice(1,-1).map( (el) => {
+//         return {location: new window.google.maps.LatLng(el.latitude, el.longitude), stopover: true}
+//       })
+//     }
 //
-//     let startLat = parseFloat(this.props.location.state.locations[0].latitude)
-//     let startLng = parseFloat(this.props.location.state.locations[0].longitude)
-//     let endLat = parseFloat(this.props.location.state.locations[this.props.location.state.locations.length-1].latitude)
-//     let endLng = parseFloat(this.props.location.state.locations[this.props.location.state.locations.length-1].longitude)
-//     let start = new window.google.maps.LatLng(startLat, startLng)
-//     let end = new window.google.maps.LatLng(endLat, endLng)
+    // let startLat = parseFloat(this.props.location.state.locations[0].latitude)
+    // let startLng = parseFloat(this.props.location.state.locations[0].longitude)
+    // let endLat = parseFloat(this.props.location.state.locations[this.props.location.state.locations.length-1].latitude)
+    // let endLng = parseFloat(this.props.location.state.locations[this.props.location.state.locations.length-1].longitude)
+    // let start = new window.google.maps.LatLng(startLat, startLng)
+    // let end = new window.google.maps.LatLng(endLat, endLng)
 //     let request = {
 //       origin: start,
 //       destination: end,
@@ -233,15 +339,71 @@ export default connect(mapStateToProps, mapDispatchToProps)(ViewSelectedTour)
 //       }
 //     })
 //
-  //   return this.props.location.state.locations.map( (loc, i) => {
-  //     let marker = new window.google.maps.Marker({
-  //       position: {lat: parseFloat(loc.latitude), lng: parseFloat(loc.longitude)},
-  //       map: this.tourMap
-  //       })
-  //     marker.addListener('click', (e)=>this.clicking(e, loc))
-  //     return null
-  //
-  //   })
-  // }
-  // return <p>no locations saved!</p>
+    // return this.props.location.state.locations.map( (loc, i) => {
+    //   let marker = new window.google.maps.Marker({
+    //     position: {lat: parseFloat(loc.latitude), lng: parseFloat(loc.longitude)},
+    //     map: this.tourMap
+    //     })
+    //   marker.addListener('click', (e)=>this.clicking(e, loc))
+    //   return null
+    //
+    // })
+//   }
+//   return <p>no locations saved!</p>
 // }
+
+
+
+
+// console.log("ay")
+// if (this.state.tourLoaded && this.state.mapMounted) {
+//   console.log("hello in true value")
+//   if (this.state.tourLoaded && this.props.tours.focusedTour.locations.length) {
+//     console.log('goodbye in true value')
+//     let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
+//     console.log(locationsArray)
+//     let waypoints = []
+//     let directionService = new window.google.maps.DirectionsService();
+//     let directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
+//     directionsDisplay.setMap(this.tourMap)
+//     if (locationsArray.length > 2) {
+//       waypoints = locationsArray.slice(1,-1).map( (el) => {
+//         return {location: new window.google.maps.LatLng(el.latitude, el.longitude), stopover: true}
+//       })
+//     }
+//     let startLat = parseFloat(this.props.tours.focusedTour.locations[0].latitude)
+//     let startLng = parseFloat(this.props.tours.focusedTour.locations[0].longitude)
+//     let endLat = parseFloat(this.props.tours.focusedTour.locations[this.props.tours.focusedTour.locations.length-1].latitude)
+//     let endLng = parseFloat(this.props.tours.focusedTour.locations[this.props.tours.focusedTour.locations.length-1].longitude)
+//     let start = new window.google.maps.LatLng(startLat, startLng)
+//     let end = new window.google.maps.LatLng(endLat, endLng)
+//     let request = {
+//           origin: start,
+//           destination: end,
+//           waypoints: waypoints,
+//           travelMode: 'WALKING'
+//         }
+//         console.log(directionService, directionsDisplay, request)
+//     directionService.route(request, function(response, status) {
+//       if (status === 'OK') {
+//       directionsDisplay.setDirections(response)
+//       }
+//     })
+//     lketmarkers = []
+//     return this.props.tours.focusedTour.locations.map( (loc, i) => {
+//       let marker = new window.google.maps.Marker({
+//         position: {lat: parseFloat(loc.latitude), lng: parseFloat(loc.longitude)},
+//         map: this.state.tourMap
+//       })
+//     marker.addListener('click', (e)=>this.clicking(e, loc))
+//     markers.push(marker)
+//     console.log(this.state.tourMap.getDiv())
+//     console.log(markers)
+//       return null
+//     })
+//   }
+// }
+// if (this.state.tourStarted) {
+//   directionsDisplay.setMap(null)
+// }
+// return <p>no locations saved!</p>
