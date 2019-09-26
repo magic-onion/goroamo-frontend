@@ -53,19 +53,19 @@ class ViewSelectedTour extends React.Component {
   componentDidMount() {
     this.props.getSingleTour(this.props.match.params.id)
     this.props.sendUserLocation()
+    if (this.props.tours.focusedTour.id) {
+      this.setState({tourLoaded:true})
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log(prevProps.tours.focusedTour.id, this.props.tours.focusedTour.id)
     if (prevProps.tours.focusedTour.id !== this.props.tours.focusedTour.id) {
       this.setState({tourLoaded: true, maxLocs: this.props.tours.focusedTour.locations.length - 1})
       this.props.tourIsLoaded()
     }
     if (prevProps.tours.tourLoaded !== this.props.tours.tourLoaded) {
-      console.log('mounting map')
     }
     if (prevState.mapMounted !== this.state.mapMounted) {
-      console.log('phasing')
       this.newLocations()
     }
   }
@@ -80,7 +80,6 @@ class ViewSelectedTour extends React.Component {
     this.directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
     this.directionsDisplay.setMap(this.tourMap)
     this.directionsService = new window.google.maps.DirectionsService();
-    console.log(this.directionsService)
     this.setState({mapMounted: true})
 
   }
@@ -110,7 +109,6 @@ class ViewSelectedTour extends React.Component {
           waypoints: waypoints,
           travelMode: 'WALKING'
         }
-        console.log(request)
         let directionsDisplay = this.directionsDisplay
         this.directionsService.route(request, function(response, status) {
               if (status === 'OK') {
@@ -126,11 +124,13 @@ class ViewSelectedTour extends React.Component {
             })
           marker.addListener('click', (e)=>this.clicking(e, loc))
           markers.push(marker)
-          console.log(markers)
           return null
 
         })
         this.setState({markers: markers})
+
+    }
+    else {
 
     }
   }
@@ -151,7 +151,6 @@ class ViewSelectedTour extends React.Component {
     this.directionsService.route(request, function(response, status) {
           if (status === 'OK') {
             directionsDisplay.setDirections(response)
-            console.log(response)
           }
       })
     for (let marker of markers) {
@@ -164,7 +163,6 @@ class ViewSelectedTour extends React.Component {
   }
 
   nextLocation(e) {
-    console.log(this.state.locationCounter)
     if (this.state.locationCounter !== this.state.maxLocs) {
       let counter = this.state.locationCounter
       let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
@@ -189,7 +187,6 @@ class ViewSelectedTour extends React.Component {
       this.directionsService.route(request, function(response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response)
-              console.log(response)
             }
         })
         let newCounter = this.state.locationCounter + 1
@@ -296,6 +293,7 @@ const mapDispatchToProps = (dispatch) => {
     tourIsLoaded: () => dispatch(tourIsLoaded())
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(ViewSelectedTour)
 
 //this component should fetch a single tours

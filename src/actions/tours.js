@@ -68,6 +68,7 @@ export const storeCreatedTour = (tourObj) => ({type: "STORE_CREATED_TOUR", paylo
 
 export const getSingleTour = (param) => {
   return (dispatch) => {
+    console.log('fetching single tour')
     let config = {
       method: 'get',
       headers: {

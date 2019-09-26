@@ -1,5 +1,6 @@
 import React from 'react'
 import MapViewInfoWindow from '../components/mapViewInfoWindow'
+import { connect } from 'react-redux'
 
 class ToursContainer extends React.Component {
   constructor(props) {

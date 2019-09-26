@@ -1,6 +1,8 @@
 import React from 'react'
 import SelectedTour from './SelectedTour'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { getSingleTour } from '../actions/tours'
+import { connect } from 'react-redux'
 
 class ListView extends React.Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class ListView extends React.Component {
       focusedTour: {}
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleLink = this.handleLink.bind(this)
   }
 
   handleClick(e) {
@@ -27,18 +30,16 @@ class ListView extends React.Component {
       return(
         <div className="list-view-tour-container" key={i}>
             <SelectedTour tour={el.tour} locations={el.locations}/>
-            <Link to={{
-              pathname: linkString,
-              state: {
-                tour: el.tour,
-                locations: el.locations
-              }
-            }}>View</Link>
+            <Link onClick={ ()=> this.handleLink(el.tour.id)}to={{pathname: linkString}}>View</Link>
           </div>
         )
       })
     }
     return null
+  }
+
+  handleLink(param) {
+    this.props.getSingleTour(param)
   }
 
   render() {
@@ -50,6 +51,25 @@ class ListView extends React.Component {
   }
 }
 
-export default ListView
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getSingleTour: (param) => dispatch(getSingleTour(param)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListView)
 
 //be able to click a tour and go to its pages
+// {{
+//   pathname: linkString,
+//   state: {
+//     tour: el.tour,
+//     locations: el.locations
+//   }
+// }
