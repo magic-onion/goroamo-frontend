@@ -13,6 +13,7 @@ function Login(props) {
 
   function userCreate(e) {
     e.preventDefault()
+    console.log(username, password)
     props.createNewUser(username, password)
   }
 
@@ -39,7 +40,7 @@ function Login(props) {
             name="password"
             />
           <button onClick={e => login(e)}> Login </button>
-          <button onClick={e=> userCreate(e)}> New User </button>
+          <button onClick={e=> userCreate(e)}> Create New Account </button>
           <button onClick={e=>logOut(e)}>Log Out</button>
 
         </form>
@@ -54,7 +55,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createNewUser: () => dispatch(createNewUser()),
+    createNewUser: (username, password) => dispatch(createNewUser(username, password)),
     userLogin: (username, password) => dispatch(userLogin(username, password)),
     logOutUser: () => dispatch(logOutUser())
   }

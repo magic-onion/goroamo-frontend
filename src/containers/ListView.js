@@ -1,6 +1,6 @@
 import React from 'react'
 import SelectedTour from './SelectedTour'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getSingleTour } from '../actions/tours'
 import { connect } from 'react-redux'
 

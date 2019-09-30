@@ -13,11 +13,13 @@ class SaveTourButton extends React.Component {
     let tourObj = {
       locations: this.props.tours.locations
     }
+    console.log(tourObj)
     this.props.saveAllLocs(tourObj)
   }
 
 
   render() {
+    console.log(this.props.tours.locations)
     return(
       <div className="save-tour-button" onClick={e=>this.handleSubmit(e)}>
         <p>Click here to save your tour </p>

@@ -20,7 +20,11 @@ class CurrentTours extends React.Component {
   }
 
   get tourInfo() {
+    if (this.props.tours.tours) {
+
       return this.props.tours.tours.map( (el,i) => <TourInfo key={i} tour={el.tour} locations={el.locations}/>)
+    }
+    return null
   }
 
 

@@ -64,6 +64,7 @@ class ViewSelectedTour extends React.Component {
       this.props.tourIsLoaded()
     }
     if (prevProps.tours.tourLoaded !== this.props.tours.tourLoaded) {
+      this.newLocations()
     }
     if (prevState.mapMounted !== this.state.mapMounted) {
       this.newLocations()
@@ -89,6 +90,7 @@ class ViewSelectedTour extends React.Component {
   }
 
   newLocations() {
+    console.log("in new locations", this.state)
     if (this.state.tourLoaded && this.state.mapMounted) {
         let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
         let waypoints = []
@@ -109,11 +111,11 @@ class ViewSelectedTour extends React.Component {
           waypoints: waypoints,
           travelMode: 'WALKING'
         }
+        console.log(request, startLat,  endLat, locationsArray)
         let directionsDisplay = this.directionsDisplay
         this.directionsService.route(request, function(response, status) {
               if (status === 'OK') {
                 directionsDisplay.setDirections(response)
-                console.log(this)
               }
             })
         let markers = []
@@ -200,12 +202,18 @@ class ViewSelectedTour extends React.Component {
 
   get controls() {
     if (this.state.displayMode === 'viewing') {
-      return <button onClick={(e)=>this.startTour(e)}>Start tour here?</button>
+      return (
+        <>
+        <p> This tour begins at: {this.state.tourLoaded ? this.props.tours.focusedTour.locations[0].name : null}</p>
+        <button onClick={(e)=>this.startTour(e)}>Click Here for Directions to The Start of the Tour</button>
+        </>
+      )
     }
     if (this.state.displayMode === 'started') {
       let thumbnail = this.state.images[this.state.locationCounter]
       return (
         <div>
+        <p>Once you've arrived at {this.props.tours.focusedTour.locations[this.state.locationCounter].name}, take an picture of it!</p>
           <button onClick={e=>this.uploadImage(e)}>upload image here </button>
         </div>
       )
@@ -219,7 +227,22 @@ class ViewSelectedTour extends React.Component {
       )
     }
     if (this.state.displayMode === 'ended') {
-      return <p>Thanks for taking this tour!</p>
+      return (
+        <>
+        <p>Thanks for taking this tour!</p>
+        <p>View the photos of your tour below</p>
+          {this.simpleGallery}
+        </>
+      )
+
+    }
+  }
+
+  get simpleGallery() {
+    if (this.state.images.length) {
+      return this.state.images.map((img, i) => {
+        return <img alt={i} src={img}/>
+      })
     }
   }
 
@@ -254,7 +277,7 @@ class ViewSelectedTour extends React.Component {
 
 
   render() {
-    console.log(this.state.locationCounter, this.state.displayMode)
+    console.log(this.props)
     return (
       <>
       <Script

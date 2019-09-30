@@ -11,7 +11,7 @@ class LocationAdder extends React.Component {
     super(props)
 
     this.state = {
-      name: "Name of Location",
+      name: '',
       funFact1: '',
       funFact2: '',
       funFact3: '',
@@ -113,7 +113,7 @@ class LocationAdder extends React.Component {
         {this.state.uploaded ? this.img : <button className="cloudinary-upload-button" onClick={this.openWidget} id="upload_widget">Add an Image!</button>}
           <div className="location-editing-form">
             <span>Address: {this.props.placeObj.formatted_address}</span>
-            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="name" value={this.state.name}></input>
+            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="name" placeholder="Name of Location"></input>
             <p>fun facts</p>
             <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact1"></input>
             <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact2"></input>
