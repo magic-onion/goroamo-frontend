@@ -109,7 +109,7 @@ class LocationAdder extends React.Component {
         url="https://widget.cloudinary.com/v2.0/global/all.js"
         onLoad={this.handleCloud}
       />
-      <div className="location-adder" onBlur={(e) => this.handleStoreLocation(e)}>
+      <div className="location-adder" onMouseLeave={(e) => this.handleStoreLocation(e)}>
         {this.state.uploaded ? this.img : <button className="cloudinary-upload-button" onClick={this.openWidget} id="upload_widget">Add an Image!</button>}
           <div className="location-editing-form">
             <span>Address: {this.props.placeObj.formatted_address}</span>

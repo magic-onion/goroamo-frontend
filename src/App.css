@@ -155,7 +155,7 @@ table {
   border: solid green 1px;
   margin: auto;
   padding: 2% 8% 2% 8%;
-  border-radius: 15%;
+  border-radius: 25%;
 }
 
 .inactive-1 {
@@ -164,7 +164,7 @@ table {
   border: solid blue 1px;
   margin: auto;
   padding: 2% 8% 2% 8%;
-  border-radius: 15%;
+  border-radius: 25%;
 }
 
 
