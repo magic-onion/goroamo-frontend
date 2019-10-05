@@ -89,6 +89,28 @@
   border: solid green 1px;
 }
 
+.location-adder-name-address {
+  padding: .5%;
+  display: flex;
+  flex-direction: column;
+  border: solid yellow 1px;
+  width: 20%;
+}
+
+.location-adder-fun-facts {
+  padding: .5%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border: solid blue 1px;
+}
+
+.location-adder-description {
+  margin: 10px;
+  border: solid black 2px;
+  background: purple;
+}
+
 .location-adder-form {
   border: solid black 2px;
   flex-basis: 20%;

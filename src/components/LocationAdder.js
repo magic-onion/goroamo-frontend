@@ -122,8 +122,8 @@ class LocationAdder extends React.Component {
               <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact2"></input>
               <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact3"></input>
             </div>
-            <div clasName="location-adder-description">
-            <textarea onChange={e=>this.handleChange(e)} rows="10" cols="30" defaultValue="description" id="description"></textarea>
+            <div className="location-adder-description">
+            <textarea onChange={e=>this.handleChange(e)} rows="7" cols="40" placeholder="description" id="description"></textarea>
             </div>
           </div>
       </div>

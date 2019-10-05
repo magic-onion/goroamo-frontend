@@ -1,0 +1,56 @@
+/* ADDING LOCATION */
+.drag-drop {
+  height: 80px;
+  width: 80px;
+}
+
+.list-view-item {
+  margin-right: 20px;
+}
+
+.list-view-item-to-click {
+  width: 10%;
+}
+
+.list-view-item-to-click:hover {
+  background: red;
+}
+
+.list-view-tour {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  overflow: auto;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
+  width: 40%;
+}
+
+
+.list-view-tour-container {
+  display: flex;
+  flex-direction: column;
+  border: solid grey 1px;
+  padding: 5px;
+  margin: 1% 0 0 1%;
+}
+
+.viewing-tour-container {
+  border: solid grey 1px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-location-detail {
+  font-family: 'Roboto', sans-serif;
+  margin: auto;
+
+}
