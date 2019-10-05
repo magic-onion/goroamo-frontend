@@ -1,0 +1,35 @@
+.sidebar {
+  position: fixed;
+  width: 10%;
+  height: 100vh;
+  background: #3775B7;
+  /* background: #007BCB;  */
+  color: white;
+
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #3775B7;
+
+}
+
+.nav-item {
+  margin: 10px;
+}
+
+.nav {
+  margin-left: 4px;
+  color: white;
+  font-size: .8em;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-img {
+  width: 10%;
+  margin: 0;
+  padding: 0;
+
+}

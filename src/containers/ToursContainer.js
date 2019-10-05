@@ -48,6 +48,7 @@ class ToursContainer extends React.Component {
         <MapViewInfoWindow tour={this.state.tourObj}/>
       )
     }
+    return null
   }
 
   render() {
