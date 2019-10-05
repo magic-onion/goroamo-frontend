@@ -2,6 +2,7 @@ import React from 'react';
 import Script from 'react-load-script'
 import './App.css';
 import './styles/sidebar.css'
+import './styles/create.css'
 import { connect } from 'react-redux'
 import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'

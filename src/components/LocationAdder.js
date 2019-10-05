@@ -112,13 +112,19 @@ class LocationAdder extends React.Component {
       <div className="location-adder" onMouseLeave={(e) => this.handleStoreLocation(e)}>
         {this.state.uploaded ? this.img : <button className="cloudinary-upload-button" onClick={this.openWidget} id="upload_widget">Add an Image!</button>}
           <div className="location-editing-form">
-            <span>Address: {this.props.placeObj.formatted_address}</span>
-            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="name" placeholder="Name of Location"></input>
-            <p>fun facts</p>
-            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact1"></input>
-            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact2"></input>
-            <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact3"></input>
+            <div className="location-adder-name-address">
+              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="name" placeholder="Name of Location"></input>
+              <span>Address: {this.props.placeObj.formatted_address}</span>
+            </div>
+            <div className="location-adder-fun-facts">
+              <span>fun facts</span>
+              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact1"></input>
+              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact2"></input>
+              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact3"></input>
+            </div>
+            <div clasName="location-adder-description">
             <textarea onChange={e=>this.handleChange(e)} rows="10" cols="30" defaultValue="description" id="description"></textarea>
+            </div>
           </div>
       </div>
       </>
