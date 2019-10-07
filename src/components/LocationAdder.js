@@ -110,14 +110,16 @@ class LocationAdder extends React.Component {
         onLoad={this.handleCloud}
       />
       <div className="location-adder" onMouseLeave={(e) => this.handleStoreLocation(e)}>
+        <div className="location-adder-img-container">
         {this.state.uploaded ? this.img : <button className="cloudinary-upload-button" onClick={this.openWidget} id="upload_widget">Add an Image!</button>}
+        </div>
           <div className="location-editing-form">
             <div className="location-adder-name-address">
-              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="name" placeholder="Name of Location"></input>
+              <input className="location-adder-name-form" onChange={e=>this.handleChange(e)} id="name" placeholder="Name of Location"></input>
               <span>Address: {this.props.placeObj.formatted_address}</span>
             </div>
             <div className="location-adder-fun-facts">
-              <span>fun facts</span>
+              <span>Fun Facts:</span>
               <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact1"></input>
               <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact2"></input>
               <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact3"></input>
