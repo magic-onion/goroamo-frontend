@@ -9,6 +9,7 @@ import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'
 import { Route } from "react-router-dom";
 import Login from './login'
+import LogOutButton from './components/logout'
 import CreateTour2 from './containers/CreateTour2'
 import Dashboard from './containers/Dashboard'
 import Home from './containers/Home'
@@ -59,6 +60,7 @@ class App extends React.Component {
       return (
         <>
         <Sidebar/>
+        <LogOutButton/>
         <div className="container">
           < Route path="/" exact component={Home} />
           < Route path="/create-tour/" component={CreateTour2} />

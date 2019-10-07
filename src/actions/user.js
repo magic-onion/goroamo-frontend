@@ -110,13 +110,6 @@ export const sendUserLocation = () => {
 export const storeLocationCoords = (array) => ({type: 'STORE_LOCATION', payload: array})
 
 
-
-
-
-
-
-
-
 export const getAllTours = () => {
   return (dispatch) => {
     let config = {

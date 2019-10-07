@@ -37,10 +37,16 @@
 
 .list-view-tour-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-evenly;
   border: solid grey 1px;
   padding: 5px;
   margin: 1% 0 0 1%;
+  width: 60%;
+}
+
+.list-view-link {
+  
 }
 
 .viewing-tour-container {

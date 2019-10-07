@@ -30,7 +30,7 @@ class ListView extends React.Component {
       return(
         <div className="list-view-tour-container" key={i}>
             <SelectedTour tour={el.tour} locations={el.locations}/>
-            <Link onClick={ ()=> this.handleLink(el.tour.id)}to={{pathname: linkString}}>View</Link>
+            <Link className="list-view-link" onClick={ ()=> this.handleLink(el.tour.id)}to={{pathname: linkString}}>View</Link>
           </div>
         )
       })
