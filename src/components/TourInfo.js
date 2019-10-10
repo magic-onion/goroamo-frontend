@@ -1,9 +1,11 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function TourInfo(props) {
 
   let date = new Date(props.tour.created_at)
-  
+  let navString = `/edit/${props.tour.id}`
+
   return (
     <tr>
       <td className="dashboard-table-data">{props.tour ? props.tour.name : null}</td>
@@ -14,7 +16,7 @@ function TourInfo(props) {
 
       <td className="dashboard-table-data">{props.tour.distance}</td>
 
-      <td className="dashboard-table-data"><button>edit</button></td>
+      <td className="dashboard-table-data"><NavLink to={navString}>edit</NavLink></td>
     </tr>
   )
 }
