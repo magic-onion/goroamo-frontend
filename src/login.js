@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { createNewUser, userLogin, logOutUser } from './actions/user'
+import { createNewUser, userLogin } from './actions/user'
 
 function Login(props) {
   const [username, setUsername] = useState("");
@@ -17,15 +17,11 @@ function Login(props) {
     props.createNewUser(username, password)
   }
 
-  function logOut() {
-    props.logOut()
-  }
-
-
     return (
-      <div className="top-bar">
-        <form>
+      <div className="login-container">
+        <form className="login-form">
           <input
+            className="login-input"
             value={username}
             onChange={e => setUsername(e.target.value)}
             placeholder="username"
@@ -33,15 +29,15 @@ function Login(props) {
             name="username"
              />
           <input
+            className="login-input"
             value={password}
             onChange={e => setPassword(e.target.value)}
             placeholder="Password"
             type="password"
             name="password"
             />
-          <button onClick={e => login(e)}> Login </button>
-          <button onClick={e=> userCreate(e)}> Create New Account </button>
-          <button onClick={e=>logOut(e)}>Log Out</button>
+          <button className="login-button" onClick={e => login(e)}> Login </button>
+          <button className="create-user-button" onClick={e=> userCreate(e)}> Create New Account </button>
 
         </form>
       </div>
@@ -56,8 +52,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createNewUser: (username, password) => dispatch(createNewUser(username, password)),
-    userLogin: (username, password) => dispatch(userLogin(username, password)),
-    logOutUser: () => dispatch(logOutUser())
+    userLogin: (username, password) => dispatch(userLogin(username, password))
   }
 }
 

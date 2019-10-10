@@ -8,11 +8,7 @@ function LogOutButton(props) {
     props.logOutUser()
   }
 
-  return (
-    <div className="log-out-button">
-      <button onClick={(e)=>logOut(e)}>Log Out</button>
-    </div>
-  )
+  return  <button className="log-out-button" onClick={(e)=>logOut(e)}>Log Out</button>
 }
 
 const mapStateToProps = state => {

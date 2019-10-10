@@ -1,4 +1,4 @@
-#root {
+.app-container {
   max-width: 1200px;
 }
 
@@ -19,6 +19,12 @@ table {
   background: #f0f0f0
 }
 
+.home-container {
+  background-color: #d6d6d6;
+  display: flex;
+  border: solid red 3px;
+}
+
 #map {
   height: 200%;
   max-width: 80%;
@@ -35,8 +41,6 @@ table {
   height: 200%;
   position: unset !important;
 }
-
-
 
 
 /* DASHBOARD */
@@ -102,30 +106,6 @@ table {
 
 
 
-
-
-
-
-
-
-
 .no-display {
   display: none;
-}
-
-.top-bar {
-  width: 97%;
-  overflow: inherit;
-  background: #007BCB;
-  border: solid blue 1px;
-}
-
-
-.home-container {
-  background-color: #d6d6d6;
-  display: flex;
-}
-
-.log-out-button {
-  float: right;
 }

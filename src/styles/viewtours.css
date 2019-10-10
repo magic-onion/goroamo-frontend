@@ -72,16 +72,20 @@
 
 .active-1 {
   font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  color: white;
   background-color: #3775B7;
   margin: auto;
   padding: 2% 8% 2% 8%;
-  border-radius: 5%;
+  border-radius: 3%;
 }
 
 .inactive-1 {
   font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  color: white;
   background-color: grey;
   margin: auto;
   padding: 2% 8% 2% 8%;
-  border-radius: 5%;
+  border-radius: 3%;
 }

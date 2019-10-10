@@ -1,10 +1,61 @@
-.log-out-button {
-  float: right;
+.top-bar {
+  display: flex;
+  margin-left: 100%;
+  justify-content: space-evenly;
 }
 
-.top-bar {
-  width: 97%;
+.top-bar-profile  {
+  font-family: 'Roboto', sans-serif;
+  font-size: .9em;
+}
+
+.log-out-button  {
+
+}
+
+.login-container {
+  /* width: 97%;
   overflow: inherit;
-  background: #007BCB;
-  border: solid blue 1px;
+  background: #007BCB; */
+  align-items: center;
+  width: 90%;
+  margin: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form {
+  display: flex;
+  width: 90%;
+  height: 90%;
+  margin: 4%;
+  padding: 2%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background: #e3e3e3;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
+}
+
+.login-input {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  width: 80%;
+  margin: 3%;
+}
+
+.login-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  width:  20%;
+  margin: 2%;
+}
+
+.create-user-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  width:  20%;
+  margin: 2%;
 }

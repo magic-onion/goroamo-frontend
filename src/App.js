@@ -10,7 +10,7 @@ import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'
 import { Route } from "react-router-dom";
 import Login from './login'
-import LogOutButton from './components/logout'
+import TopBar from './containers/TopBar'
 import CreateTour2 from './containers/CreateTour2'
 import Dashboard from './containers/Dashboard'
 import Home from './containers/Home'
@@ -59,9 +59,9 @@ class App extends React.Component {
   get loggedIn() {
     if (localStorage.getItem('token')) {
       return (
-        <>
+        <div className="app-container">
         <Sidebar/>
-        <LogOutButton/>
+        <TopBar/>
         <div className="container">
           < Route path="/" exact component={Home} />
           < Route path="/create-tour/" component={CreateTour2} />
@@ -73,14 +73,14 @@ class App extends React.Component {
             />
 
         </div>
-        </>
+        </div>
       )
     }
     else {
       return (
-        <div className="login-container">
+        <>
           <Login/>
-        </div>
+        </>
       )
     }
   }
