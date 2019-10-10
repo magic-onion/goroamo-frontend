@@ -36,37 +36,13 @@ table {
   position: unset !important;
 }
 
-/* USER VIEW */
-.list-and-map-view-selector {
-  display: flex;
-  margin: 20px;
-  width: 50%;
-}
 
-.active-1 {
-  color: white;
-  background-color: #3775B7;
-  border: solid green 1px;
-  margin: auto;
-  padding: 2% 8% 2% 8%;
-  border-radius: 25%;
-}
-
-.inactive-1 {
-  color: white;
-  background-color: grey;
-  border: solid blue 1px;
-  margin: auto;
-  padding: 2% 8% 2% 8%;
-  border-radius: 25%;
-}
 
 
 /* DASHBOARD */
 .dashboard-table {
   border-radius: 5px;
-  margin-top: 5%;
-  margin-left: 5%;
+  margin: 3%;
   width: 80%;
   background: white;
   padding: 10px;
@@ -94,16 +70,21 @@ table {
   text-decoration: none;
   font-size: 16px;
 }
+
+.create-tour-link-img {
+  max-width: 5%;
+}
 .dashboard-create-link-div {
-  float: right;
+  margin: 1% 0 0 80%;
+  justify-content: space-evenly;
   background-color: #3775B7;
   border: none;
   color: white;
-  max-width: 20%;
-  padding: 10px;
+  max-width: 15%;
+  padding: .2%;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
   font-size: 16px;
   border-radius: 40px;
 }

@@ -61,3 +61,27 @@
   margin: auto;
 
 }
+
+
+/* USER VIEW */
+.list-and-map-view-selector {
+  display: flex;
+  margin: 20px;
+  width: 50%;
+}
+
+.active-1 {
+  font-family: 'Roboto', sans-serif;
+  background-color: #3775B7;
+  margin: auto;
+  padding: 2% 8% 2% 8%;
+  border-radius: 5%;
+}
+
+.inactive-1 {
+  font-family: 'Roboto', sans-serif;
+  background-color: grey;
+  margin: auto;
+  padding: 2% 8% 2% 8%;
+  border-radius: 5%;
+}

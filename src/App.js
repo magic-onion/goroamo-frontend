@@ -4,6 +4,7 @@ import './App.css';
 import './styles/sidebar.css'
 import './styles/create.css'
 import './styles/viewtours.css'
+import './styles/login.css'
 import { connect } from 'react-redux'
 import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'

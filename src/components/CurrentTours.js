@@ -30,12 +30,13 @@ class CurrentTours extends React.Component {
 
   render() {
     return (
+      <>
+      <div  className="dashboard-create-link-div">
+      <img className="create-tour-link-img" src={require(`../assets/plus-icon.png`)} alt="hi"></img>
+      <Link className="dashboard-create-link" to="/create-tour/">Create New Tour</Link>
+      </div>
       <div className="dashboard-table">
         <span className="dashboard-headline">Current Tours</span>
-        <div  className="dashboard-create-link-div">
-          <img className="nav-img" src={require(`../assets/plus-icon.png`)} alt="hi"></img>
-          <Link className="dashboard-create-link" to="/create-tour/">Create New Tour</Link>
-        </div>
         <table>
           <thead>
             <tr>
@@ -53,6 +54,7 @@ class CurrentTours extends React.Component {
           </tbody>
         </table>
       </div>
+      </>
     )
   }
 }
