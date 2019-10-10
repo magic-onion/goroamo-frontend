@@ -3,6 +3,7 @@ import React from 'react'
 function TourInfo(props) {
 
   let date = new Date(props.tour.created_at)
+  
   return (
     <tr>
       <td className="dashboard-table-data">{props.tour ? props.tour.name : null}</td>

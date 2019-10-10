@@ -19,6 +19,7 @@ import Home from './containers/Home'
 import Sidebar from './containers/Sidebar'
 import ViewTour from './containers/ViewTour'
 import ViewSelectedTour from './components/ViewSelectedTour'
+import EditTourContainer from './containers/edittour'
 import API_KEY from './environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
@@ -71,6 +72,7 @@ class App extends React.Component {
               <Route path="/profile/" component={Dashboard} />
               <Route path="/analytics/" component={Home} />
               <Route path="/tours/:id" component={ViewSelectedTour} />
+              <Route path="/edit/:id" component={EditTourContainer}/>
               <Route path="/view-tours/"
                 render={(props) => <ViewTour {...props} coords={this.state.coords} />}
               />
