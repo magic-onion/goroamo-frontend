@@ -107,7 +107,7 @@ export const getEditTour = (param) => {
     let fetchString = `http://localhost:3000/api/v1/tours/${param}`
     fetch(fetchString, config)
       .then(r=>r.json())
-      .then(p => dispatch(storeFocusedTour(p.tour)))
+      .then(p => dispatch(storeEditTour(p.tour)))
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect } from 'react-redux'
-import { getSingleTour }  from '../actions/tours'
+import { getEditTour }  from '../actions/tours'
 
 class EditTourContainer extends React.Component {
   constructor(props) {
@@ -12,11 +12,11 @@ class EditTourContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getSingleTour(this.props.match.params.id)
+    this.props.getEditTour(this.props.match.params.id)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.tours.focusedTour.id !== this.props.tours.focusedTour.id) {
+    if (prevProps.tours.editTour.id !== this.props.tours.editTour.id) {
       this.setState({tourLoaded: true})
     }
   }
@@ -25,7 +25,7 @@ class EditTourContainer extends React.Component {
     console.log(this.props)
     return(
       <>
-      <p>{this.state.tourLoaded ?  this.props.tours.focusedTour.name  : null}</p>
+      <p>{this.state.tourLoaded ?  this.props.tours.editTour.name  : null}</p>
       <p></p>
       </>
     )
@@ -41,7 +41,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSingleTour: (param) => dispatch(getSingleTour(param))
+    getEditTour: (param) => dispatch(getEditTour(param))
   }
 }
 

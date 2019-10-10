@@ -11,7 +11,8 @@ class AddLocationToTour extends React.Component {
     this.state = {
       query: "",
       addressObj: {},
-      locations: []
+      locations: [],
+      tourSavedOnce: false
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -58,6 +59,15 @@ class AddLocationToTour extends React.Component {
 
   get locations() {
     return this.state.locations.map((i,j) => <LocationAdder placeObj={i} key={j} tourId={this.props.tourId}/>)
+  }
+
+  get saveButton() {
+    //shouldn't appear if no locations added
+    //if locations added but never saved, regular saveLocButton
+    //if locations added and saved once, Patch request button
+    if (this.state.savedTourOnce) {
+      return()
+    }
   }
 
 
