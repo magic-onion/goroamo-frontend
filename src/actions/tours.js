@@ -93,3 +93,22 @@ export const tourIsLoaded = () => {
 }
 
 export const markTourAsLoaded = () => ({type: "TOUR_NOW_LOADED"})
+
+export const getEditTour = (param) => {
+  return (dispatch) => {
+    console.log('fetching single tour')
+    let config = {
+      method: 'get',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+    let fetchString = `http://localhost:3000/api/v1/tours/${param}`
+    fetch(fetchString, config)
+      .then(r=>r.json())
+      .then(p => dispatch(storeFocusedTour(p.tour)))
+  }
+}
+
+export const storeEditTour = (tourObj) => ({type: 'STORE_TOUR_TO_EDIT', payload:  tourObj})

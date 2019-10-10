@@ -30,6 +30,7 @@
   border-radius: .4%;
   box-shadow: 0 0 10px rgba(80, 116, 180);
   width: 80%;
+  height: 80%;
 }
 
 
@@ -66,9 +67,10 @@
 /* USER VIEW */
 .list-and-map-view-selector {
   display: flex;
+  justify-content: space-evenly;
   margin: 1%;
   width: 70%;
-  height: 20%;
+  height: 10%;
   max-height: 20%;
   max-width: 70%;
 }
@@ -76,19 +78,25 @@
 .active-1 {
   font-family: 'Roboto', sans-serif;
   font-size: 1.2em;
+  display: flex;
+  align-items: center;
   color: white;
   background-color: #3775B7;
-  margin: auto;
   padding: 2% 8% 2% 8%;
   border-radius: 1%;
+  margin: 1.5%;
+  height: 40%;
 }
 
 .inactive-1 {
   font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
   font-size: 1.2em;
   color: white;
   background-color: grey;
-  margin: auto;
   padding: 2% 8% 2% 8%;
   border-radius: 1%;
+  margin: 1.5%;
+  height: 40%;
 }

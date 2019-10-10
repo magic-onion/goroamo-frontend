@@ -12,7 +12,7 @@
 
 .top-bar-controls {
   float: right;
-  margin: .1% .1% .1% 75%;
+  margin: .1% .1% .1% 72%;
   width: 20%;
   display: flex;
   justify-content: flex-end;
@@ -23,14 +23,22 @@
   font-family: 'Roboto', sans-serif;
   font-size: .9em;
   color: white;
-  margin: .5% 4% .5% .5%;
+  margin: .5% 10% .5% .5%;
   padding-top: 2.5%;
 
 }
 
 .log-out-button  {
   margin: 2% 3% .5% .5%;
-  border: solid black 1px;
+  border-radius: 2%;
+  height: 50%;
+
+}
+
+.log-out-button:hover  {
+  margin: 2% 3% .5% .5%;
+  background: #ffbf2f;
+  border:  solid black 1px;
   border-radius: 2%;
   height: 50%;
 

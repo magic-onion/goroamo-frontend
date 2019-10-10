@@ -8,7 +8,8 @@ const init = {
   mode: "",
   locations: [],
   focusedTour: {id: null},
-  currentLocation: {}
+  currentLocation: {},
+  editTour: {id: null}
 }
 
 
@@ -58,10 +59,13 @@ function toursReducer(state = init, action) {
     return tourIsLoadedState
 
     case "STORE_FETCHED_TOUR":
-    console.log(action.payload)
     let fetchedTourState = {...state, focusedTour: action.payload}
     return fetchedTourState
 
+    case "STORE_TOUR_TO_EDIT":
+    let fetchForEdit = {...state, editTour: action.payload}
+    return fetchForEdit
+    
     default:
     return state
   }
