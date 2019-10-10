@@ -1,0 +1,54 @@
+/* DASHBOARD */
+.dashboard-table {
+  border-radius: 5px;
+  background: white;
+  width: 95%;
+  margin: 2%;
+  padding: .5%;
+  overflow: auto;
+}
+
+.dashboard-table-headers {
+  background-color: white;
+  color: #97A1AA;
+  padding: 20px;
+
+}
+
+.dashboard-table-data {
+  background-color: white;
+  max-width: 80%;
+  padding: 20px;
+  padding-left: 35px;
+}
+
+.dashboard-create-link {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.create-tour-link-img {
+  max-width: 5%;
+}
+.dashboard-create-link-div {
+  margin: 1% 0 0 80%;
+  justify-content: space-evenly;
+  background-color: #3775B7;
+  border: none;
+  color: white;
+  max-width: 15%;
+  padding: .2%;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  font-size: 16px;
+  border-radius: 40px;
+}
+
+
+.dashboard-headline {
+
+}

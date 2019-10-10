@@ -39,11 +39,9 @@ function toursReducer(state = init, action) {
     return addedLocState
 
     case "LIVE_STORING":
-    console.log(state.locations)
     let newLocs = state.locations
     let changedLocs = newLocs.map((locObj) => {
       if (locObj.location.address === action.payload.location.address) {
-        console.log(locObj, action.payload)
         let newLocObj = action.payload
         return newLocObj
       }
@@ -52,7 +50,6 @@ function toursReducer(state = init, action) {
       }
     })
     let newLocationState = {...state, locations: changedLocs}
-    console.log(newLocationState)
     return newLocationState
 
     case "TOUR_NOW_LOADED":

@@ -19,7 +19,9 @@ function Login(props) {
 
     return (
       <div className="login-container">
+
         <form className="login-form">
+          <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
           <input
             className="login-input"
             value={username}

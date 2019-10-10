@@ -5,6 +5,8 @@ import './styles/sidebar.css'
 import './styles/create.css'
 import './styles/viewtours.css'
 import './styles/login.css'
+import './styles/topbar.css'
+import './styles/dashboard.css'
 import { connect } from 'react-redux'
 import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'
@@ -60,19 +62,20 @@ class App extends React.Component {
     if (localStorage.getItem('token')) {
       return (
         <div className="app-container">
-        <Sidebar/>
-        <TopBar/>
-        <div className="container">
-          < Route path="/" exact component={Home} />
-          < Route path="/create-tour/" component={CreateTour2} />
-          < Route path="/profile/" component={Dashboard} />
-          < Route path="/analytics/" component={Home} />
-          < Route path="/tours/:id" component={ViewSelectedTour} />
-          < Route path="/view-tours/"
-            render={(props) => <ViewTour {...props} coords={this.state.coords} />}
-            />
-
-        </div>
+          <TopBar/>
+          <div className="sidebar-and-app-layout">
+            <Sidebar/>
+            <div className="container">
+              <Route path="/" exact component={Home} />
+              <Route path="/create-tour/" component={CreateTour2} />
+              <Route path="/profile/" component={Dashboard} />
+              <Route path="/analytics/" component={Home} />
+              <Route path="/tours/:id" component={ViewSelectedTour} />
+              <Route path="/view-tours/"
+                render={(props) => <ViewTour {...props} coords={this.state.coords} />}
+              />
+          </div>
+          </div>
         </div>
       )
     }
