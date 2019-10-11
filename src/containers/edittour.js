@@ -2,7 +2,7 @@ import React from 'react'
 import {connect } from 'react-redux'
 import { getEditTour }  from '../actions/tours'
 import LocationEditor from '../components/LocationEditor'
-
+import Loader from '../components/loader'
 class EditTourContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -30,14 +30,28 @@ class EditTourContainer extends React.Component {
     }
   }
 
+  get tourInfo() {
+    if (this.state.tourLoaded) {
+      return (
+        <>
+          <div className="edit-tour-info">
+            <p className="edit-tour-headline">Name: {this.props.tours.editTour.name}</p>
+            <p className="edit-tour-headline">Location: {this.props.tours.editTour.location}</p>
+            <p className="edit-tour-headline">Distance: {this.props.tours.editTour.distance}</p>
+            <p className="edit-tour-headline">Duration: {this.props.tours.editTour.duration}</p>
+          </div>
+          {this.locations}
+        </>
+      )
+    }
+  }
+
 
   render() {
-    console.log(this.props)
+    console.log(this.state.tourLoaded)
     return(
       <>
-      <p>{this.state.tourLoaded ?  this.props.tours.editTour.name  : null}</p>
-      <p></p>
-      {this.locations}
+      {this.state.tourLoaded ? this.tourInfo : <Loader/>}
       </>
     )
   }
