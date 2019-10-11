@@ -16,7 +16,7 @@ function TourInfo(props) {
 
       <td className="dashboard-table-data">{props.tour.distance}</td>
 
-      <td className="dashboard-table-data"><NavLink to={navString}>edit</NavLink></td>
+      <td className="dashboard-table-data"><NavLink to={navString}>Edit</NavLink></td>
     </tr>
   )
 }

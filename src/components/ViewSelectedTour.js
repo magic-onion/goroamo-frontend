@@ -11,10 +11,7 @@ import LocationSelector from './locationSelector'
 import API_KEY from '../environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
-//set the path, set from current location to next location, set directions from
-
-// need a separate method to call directions only one time
-//needs to keep track of them to set different directions
+//next button by image upload in case app is closed
 
 
 class ViewSelectedTour extends React.Component {

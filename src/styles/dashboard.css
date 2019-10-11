@@ -2,10 +2,13 @@
 .dashboard-table {
   border-radius: 5px;
   background: white;
-  width: 95%;
+  width: 92%;
   margin: 2%;
   padding: .5%;
   overflow: auto;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
 }
 
 .dashboard-table-headers {
@@ -16,6 +19,7 @@
 }
 
 .dashboard-table-data {
+  font-family: 'Roboto', sans-serif;
   background-color: white;
   max-width: 80%;
   padding: 20px;
@@ -50,5 +54,13 @@
 
 
 .dashboard-headline {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+}
 
+.table-line {
+  border: solid #c4c4c4 .05em;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
+  margin: 4%  30% 4% 30%;
+  width: 420%;
 }

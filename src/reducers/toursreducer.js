@@ -65,7 +65,7 @@ function toursReducer(state = init, action) {
     case "STORE_TOUR_TO_EDIT":
     let fetchForEdit = {...state, editTour: action.payload}
     return fetchForEdit
-    
+
     default:
     return state
   }

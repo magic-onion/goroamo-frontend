@@ -22,7 +22,14 @@ class CurrentTours extends React.Component {
   get tourInfo() {
     if (this.props.tours.tours) {
 
-      return this.props.tours.tours.map( (el,i) => <TourInfo key={i} tour={el.tour} locations={el.locations}/>)
+      return this.props.tours.tours.map( (el,i) => {
+        return (
+          <>
+          <hr className="table-line"/>
+          <TourInfo key={i} tour={el.tour} locations={el.locations}/>
+          </>
+        )
+      })
     }
     return null
   }
@@ -73,15 +80,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentTours)
-
-
-
-
-
-//
-// <tfoot>
-// <tr>
-// <td>Sum</td>
-// <td>$180</td>
-// </tr>
-// </tfoot>

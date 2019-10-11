@@ -61,16 +61,16 @@ class AddLocationToTour extends React.Component {
     return this.state.locations.map((i,j) => <LocationAdder placeObj={i} key={j} tourId={this.props.tourId}/>)
   }
 
-  get saveButton() {
+  // get saveButton() {
     //shouldn't appear if no locations added
     //if locations added but never saved, regular saveLocButton
     //if locations added and saved once, Patch request button
-    if (this.state.savedTourOnce) {
-      return()
-    }
-  }
+  //   if (this.state.savedTourOnce) {
+  //     return()
+  //   }
+  // }
 
-
+//Need to refine adding multiple locations. What happens on misclicks?
   render() {
     return(
       <div className='tour-editing-container'>
