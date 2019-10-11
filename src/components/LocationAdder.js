@@ -115,7 +115,7 @@ class LocationAdder extends React.Component {
         </div>
           <div className="location-editing-form">
             <div className="location-adder-name-address">
-              <input className="location-adder-name-form" onChange={e=>this.handleChange(e)} id="name" placeholder="Name of Location"></input>
+              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="name" placeholder="Name of Location"></input>
               <span>Address: {this.props.placeObj.formatted_address}</span>
             </div>
             <div className="location-adder-fun-facts">

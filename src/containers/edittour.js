@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect } from 'react-redux'
 import { getEditTour }  from '../actions/tours'
+import LocationEditor from '../components/LocationEditor'
 
 class EditTourContainer extends React.Component {
   constructor(props) {
@@ -21,12 +22,22 @@ class EditTourContainer extends React.Component {
     }
   }
 
+  get locations() {
+    if (this.state.tourLoaded && this.props.tours.editTour.locations.length) {
+      return this.props.tours.editTour.locations.map( (loc, i) =>{
+        return <LocationEditor location={loc} key={i}/>
+      })
+    }
+  }
+
+
   render() {
     console.log(this.props)
     return(
       <>
       <p>{this.state.tourLoaded ?  this.props.tours.editTour.name  : null}</p>
       <p></p>
+      {this.locations}
       </>
     )
   }
