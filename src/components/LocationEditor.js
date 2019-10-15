@@ -1,5 +1,7 @@
 import React from 'react'
 import Script from 'react-load-script'
+import { connect } from 'react-redux'
+import  { storeLiveEditing } from '../actions/tours'
 
 class LocationEditor extends React.Component {
   constructor(props)  {
@@ -26,7 +28,8 @@ class LocationEditor extends React.Component {
   }
 
   handleStoreLocation(e) {
-    console.log("handleStoreLocation")
+    let locObj = this.state
+    this.props.storeLiveEditing(locObj)
   }
 
   handleChange(e) {
@@ -101,4 +104,16 @@ class LocationEditor extends React.Component {
   }
 }
 
-export default LocationEditor
+const mapStateToProps = state => {
+  return {
+    tours: state.tours
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    storeLiveEditing: obj => dispatch(storeLiveEditing(obj))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationEditor)
