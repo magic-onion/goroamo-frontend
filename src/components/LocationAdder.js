@@ -103,6 +103,7 @@ class LocationAdder extends React.Component {
 
 
   render() {
+    console.log(this.props)
     return (
       <>
       <Script
@@ -127,6 +128,7 @@ class LocationAdder extends React.Component {
             <div className="location-adder-description">
             <textarea onChange={e=>this.handleChange(e)} rows="7" cols="40" placeholder="description" id="description"></textarea>
             </div>
+            <span onClick={(key)=>this.props.handleRemove(this.props.index, this.state.address)}>x</span>
           </div>
       </div>
       </>

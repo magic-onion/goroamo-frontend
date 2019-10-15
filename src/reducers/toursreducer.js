@@ -82,6 +82,13 @@ function toursReducer(state = init, action) {
     let noFocusedEditTourState = {...state, editTour: {id: null, locations: []}}
     return noFocusedEditTourState
 
+    case "REMOVE_SINGLE_LOCATION":
+    let removedLocs = state.locations
+    removedLocs.splice(action.payload, 1)
+    let removedLocationState = {...state, locations: removedLocs}
+    return removedLocationState
+
+
     case "LOG_OUT":
     return init
 

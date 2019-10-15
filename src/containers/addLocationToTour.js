@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { makeMap, createNewTour } from '../actions/tours'
+import { makeMap, createNewTour, removeLocationFromStore } from '../actions/tours'
 // import Marker from '../components/Marker'
 import LocationAdder from '../components/LocationAdder'
 import SaveTourButton from '../components/saveTourButton'
@@ -18,6 +18,7 @@ class AddLocationToTour extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.increment = this.increment.bind(this)
     this.handlePlaceSelect = this.handlePlaceSelect.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
 
   }
 
@@ -56,9 +57,23 @@ class AddLocationToTour extends React.Component {
     this.setState({addressObj: newPlace, query: newPlace.formatted_addreess})
 
   }
+  handleRemove(key, address) {
+    let newLocs = this.state.locations
+    this.props.removeLocationFromStore(key)
+    newLocs.splice(key, 1)
+    console.log(newLocs)
+    this.setState({locations: newLocs})
+  }
 
   get locations() {
-    return this.state.locations.map((i,j) => <LocationAdder placeObj={i} key={j} tourId={this.props.tourId}/>)
+    return this.state.locations.map((locObj,j) => {
+      console.log(j)
+      return (
+        <>
+          <LocationAdder placeObj={locObj} key={j} index={j} tourId={this.props.tourId} handleRemove={this.handleRemove}/>
+        </>
+      )
+    })
   }
 
   get saveButton() {
@@ -76,6 +91,7 @@ class AddLocationToTour extends React.Component {
 
 //Need to refine adding multiple locations. What happens on misclicks?
   render() {
+    console.log(this.state.locations)
     return(
       <div className='tour-editing-container'>
         <div className="location-searcher">
@@ -102,7 +118,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     makeMap: () => dispatch(makeMap()),
-    createNewTour: (obj) => dispatch(createNewTour(obj))
+    createNewTour: (obj) => dispatch(createNewTour(obj)),
+    removeLocationFromStore: (key) => dispatch(removeLocationFromStore(key))
   }
 }
 

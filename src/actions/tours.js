@@ -134,3 +134,5 @@ export const editTourPatchReq = (tourObj, param) => {
       .then(console.log)
   }
 }
+
+export const removeLocationFromStore = key =>({type: "REMOVE_SINGLE_LOCATION", payload: key})
