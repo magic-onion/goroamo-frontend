@@ -40,7 +40,7 @@ class CreateTour2 extends React.Component {
   get createTourWidget() {
     return (
       <>
-      <h2>Create a New Tour</h2>
+      <h2 className="create-tour-headline">Create a New Tour</h2>
       <div className="create-tour-form">
         <input className="create-tour-input" onChange={e=>this.handleTourChange(e)} id="name" placeholder="Name of the Tour" value={this.state.name}></input>
         <input className="create-tour-input" onChange={e=>this.handleTourChange(e)} id="location" placeholder="Location of the Tour"value={this.state.location}></input>

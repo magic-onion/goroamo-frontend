@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.create-tour-headline {
+  font-family: 'Roboto', sans-serif;
+}
+
 .create-tour-form {
   display: flex;
   border: solid red 1px;

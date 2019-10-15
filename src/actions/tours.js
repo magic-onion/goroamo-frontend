@@ -112,3 +112,18 @@ export const getEditTour = (param) => {
 }
 
 export const storeEditTour = (tourObj) => ({type: 'STORE_TOUR_TO_EDIT', payload:  tourObj})
+
+export const editTourPatchReq = (tourObj, param) => {
+  return dispatch => {
+    console.log('edit tour patch request')
+    let config = {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization':  `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(tourObj)
+    fetch(`http://localhost:3000/ap/v1/tours/${param}`)
+    }
+  }
+}
