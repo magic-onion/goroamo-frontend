@@ -9,10 +9,12 @@ class ListView extends React.Component {
     super(props)
     this.state = {
       tourSelected: false,
-      focusedTour: {}
+      focusedTour: {},
+      searchTerm: ""
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleLink = this.handleLink.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   handleClick(e) {
@@ -24,15 +26,29 @@ class ListView extends React.Component {
   }
 
   get tours() {
-    if (this.props.tours) {
+    if (this.props.tours && !this.state.searchTerm.length) {
       return this.props.tours.map((el, i) => {
         let linkString = `/tours/${el.tour.id}`
       return(
         <div className="list-view-tour-container" key={i}>
-            <SelectedTour tour={el.tour} locations={el.locations}/>
-            <Link className="list-view-link" onClick={ ()=> this.handleLink(el.tour.id)}to={{pathname: linkString}}>View</Link>
-          </div>
+          <SelectedTour tour={el.tour} locations={el.locations}/>
+          <Link className="list-view-link" onClick={ ()=> this.handleLink(el.tour.id)}to={{pathname: linkString}}>View</Link>
+        </div>
         )
+      })
+    }
+
+    if (this.props.tours && this.state.searchTerm.length) {
+      return this.props.tours.map( (el, i) => {
+        let linkString = `/tours/${el.tour.id}`
+        if (el.tour.location.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+          return (
+            <div className="list-view-tour-container" key={i}>
+              <SelectedTour tour={el.tour} locations={el.locations}/>
+              <Link className="list-view-link" onClick={ ()=> this.handleLink(el.tour.id)}to={{pathname: linkString}}>View</Link>
+            </div>
+          )
+        }
       })
     }
     return null
@@ -42,11 +58,21 @@ class ListView extends React.Component {
     this.props.getSingleTour(param)
   }
 
+  handleSearch(e) {
+    this.setState({searchTerm: e.target.value})
+  }
+
   render() {
     return(
+      <>
+      <div className="search-tours-container">
+        <span>Search by Location: </span>
+        <input className="search-tours-filter" onChange={e=>this.handleSearch(e)} type="text"/>
+      </div>
       <div className="list-container">
         {!this.state.tourSelected ? this.tours : <SelectedTour tour={this.state.focusedTour.tour} locations={this.state.focusedTour.locations}/> }
       </div>
+      </>
     )
   }
 }

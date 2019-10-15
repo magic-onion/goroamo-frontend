@@ -4,6 +4,21 @@
   width: 80px;
 }
 
+.search-tours-container {
+  font-family: 'Roboto', sans-serif;
+  margin: 1%;
+  padding: 1%;
+  width: 60%;
+}
+
+.search-tours-filter {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+  width: 60%;
+  margin-left: 5%;
+  text-align: center;
+}
+
 .list-view-item {
   font-family: 'Roboto', sans-serif;
   display: flex;
@@ -70,9 +85,10 @@
   justify-content: space-evenly;
   margin: 1%;
   width: 70%;
-  height: 10%;
+  height: 5%;
   max-height: 20%;
   max-width: 70%;
+  padding: 0;
 }
 
 .active-1 {
