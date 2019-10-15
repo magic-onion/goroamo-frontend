@@ -7,6 +7,7 @@
   width: 100%;
 }
 
+
 .create-tour-headline {
   font-family: 'Roboto', sans-serif;
 }
@@ -167,4 +168,24 @@
   height: 40%;
   background: #ffb73d;
   border-radius: 8%;
+}
+
+
+.single-location-removal {
+  z-index: 0;
+  background: red;
+  border: solid red 1px;
+  padding: 1.5%;
+  border-radius: 50%;
+  width: 2%;
+  align-items: center;
+}
+.single-location-removal:hover {
+  z-index: 0;
+  background: blue;
+  border: solid red 1px;
+  padding: 1.5%;
+  border-radius: 50%;
+  width: 2%;
+  align-items: center;
 }

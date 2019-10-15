@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {makeMap, createNewTour } from '../actions/tours'
 import AddLocationToTour from './addLocationToTour'
+
+//WHEN DO YOU DRAW MARKERS
 class CreateTour2 extends React.Component {
   constructor(props) {
     super(props)
