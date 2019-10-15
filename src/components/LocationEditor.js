@@ -87,9 +87,9 @@ class LocationEditor extends React.Component {
             </div>
             <div className="location-adder-fun-facts">
               <span>Fun Facts:</span>
-              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact1" value={this.state.funfact1}></input>
-              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact2" value={this.state.funfact2}></input>
-              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funFact3" value={this.state.funfact3}></input>
+              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funfact1" value={this.state.funfact1}></input>
+              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funfact2" value={this.state.funfact2}></input>
+              <input className="location-adder-form" onChange={e=>this.handleChange(e)} id="funfact3" value={this.state.funfact3}></input>
             </div>
             <div className="location-adder-description">
             <textarea onChange={e=>this.handleChange(e)} rows="7" cols="40" placeholder="description" id="description" value={this.state.description}></textarea>
