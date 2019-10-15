@@ -1,6 +1,7 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
 import CurrentTours from '../components/CurrentTours'
+import ProfileViewer from './ProfileViewer'
 // import ProfileWidget from '../components/ProfileWidget'
 
 import { connect } from 'react-redux'
@@ -19,7 +20,7 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    thing: state.tours
+    tours: state.tours
   }
 }
 

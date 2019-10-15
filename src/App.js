@@ -8,6 +8,7 @@ import './styles/login.css'
 import './styles/topbar.css'
 import './styles/dashboard.css'
 import './styles/edit.css'
+import './styles/profile.css'
 import { connect } from 'react-redux'
 import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'
@@ -15,6 +16,7 @@ import { Route } from "react-router-dom";
 import Login from './login'
 import TopBar from './containers/TopBar'
 import CreateTour2 from './containers/CreateTour2'
+import ProfileViewer from './containers/ProfileViewer'
 import Dashboard from './containers/Dashboard'
 import Home from './containers/Home'
 import Sidebar from './containers/Sidebar'
@@ -70,7 +72,7 @@ class App extends React.Component {
             <div className="container">
               <Route path="/" exact component={Home} />
               <Route path="/create-tour/" component={CreateTour2} />
-              <Route path="/profile/" component={Dashboard} />
+              <Route path="/profile/" component={ProfileViewer} />
               <Route path="/analytics/" component={Home} />
               <Route path="/tours/:id" component={ViewSelectedTour} />
               <Route path="/edit/:id" component={EditTourContainer}/>

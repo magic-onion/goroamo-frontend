@@ -12,11 +12,13 @@ class CreateTour2 extends React.Component {
       name: "",
       location: "",
       distance: "",
-      duration: ""
+      duration: "",
+      markers: []
     }
 
     this.handleTourChange = this.handleTourChange.bind(this)
     this.handleSavetour = this.handleSaveTour.bind(this)
+    this.makeMarkers = this.makeMarkers.bind(this)
   }
 
 
@@ -60,6 +62,22 @@ class CreateTour2 extends React.Component {
         <h1>{this.state.name}</h1>
       </>
     )
+  }
+
+  makeMarkers() {
+    //Maybe but probably not the right way to go
+    for (let el of this.state.markers) {
+      el.setMap(null)
+    }
+    let marksArray = []
+    this.props.tours.locations.map((loc) => {
+      let marker = new window.google.maps.Marker({
+        position: {lat: loc.location.latitude, lng: loc.location.longitude},
+        map: this.props.tours.testMap
+      })
+      marksArray.push(marker)
+    })
+    this.setState({markers: marksArray})
   }
 
   get markers() {
