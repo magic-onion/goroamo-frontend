@@ -128,7 +128,7 @@ export const editTourPatchReq = (tourObj, param) => {
     let fetchString = `http://localhost:3000/api/v1/tours/${param}`
     console.log(fetchString, config, 'editTourPatch')
     fetch(fetchString, config)
-      .then(r=>r.json)
-      .then(p=>console.log)
+      .then(r=>r.json())
+      .then(console.log)
   }
 }
