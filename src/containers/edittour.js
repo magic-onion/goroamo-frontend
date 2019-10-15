@@ -2,7 +2,11 @@ import React from 'react'
 import {connect } from 'react-redux'
 import { getEditTour }  from '../actions/tours'
 import LocationEditor from '../components/LocationEditor'
+import SaveEditedTourButton from '../components/SaveEditedTourButton'
 import Loader from '../components/loader'
+
+
+
 class EditTourContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -48,10 +52,11 @@ class EditTourContainer extends React.Component {
 
 
   render() {
-    console.log(this.state.tourLoaded)
+    console.log(this.props.tours.editTour)
     return(
       <>
       {this.state.tourLoaded ? this.tourInfo : <Loader/>}
+      <SaveEditedTourButton tourObj={this.props.tours.editTour} param={this.props.tours.editTour.id}/>
       </>
     )
   }
