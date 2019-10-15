@@ -59,7 +59,7 @@
 }
 
 .table-line {
-  border: solid #c4c4c4 .05em;
+  border: solid #c4c4c4 .1em;
   box-shadow: 0 0 2px rgba(0, 0, 0);
   margin: 4%  30% 4% 30%;
   width: 420%;

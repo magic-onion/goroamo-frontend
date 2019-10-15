@@ -7,6 +7,7 @@ function TourInfo(props) {
   let navString = `/edit/${props.tour.id}`
 
   return (
+    <>
     <tr>
       <td className="dashboard-table-data">{props.tour ? props.tour.name : null}</td>
       <td className="dashboard-table-data">{date.getUTCDate()}/{date.getMonth()}/{date.getFullYear()}</td>
@@ -18,6 +19,7 @@ function TourInfo(props) {
 
       <td className="dashboard-table-data"><NavLink to={navString}>Edit</NavLink></td>
     </tr>
+    </>
   )
 }
 export default TourInfo

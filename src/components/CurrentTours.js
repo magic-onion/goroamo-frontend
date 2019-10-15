@@ -25,7 +25,7 @@ class CurrentTours extends React.Component {
       return this.props.tours.tours.map( (el,i) => {
         return (
           <>
-          <hr className="table-line"/>
+          <hr key ={i+1} className="table-line"/>
           <TourInfo key={i} tour={el.tour} locations={el.locations}/>
           </>
         )
