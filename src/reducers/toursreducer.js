@@ -78,6 +78,10 @@ function toursReducer(state = init, action) {
       let editActionState = {...state, editTour: newlyEditedTour}
       return editActionState
 
+    case "CLEAR_EDITING_ABILITY":
+    let noFocusedEditTourState = {...state, editTour: {id: null, locations: []}}
+    return noFocusedEditTourState
+
     default:
     return state
   }

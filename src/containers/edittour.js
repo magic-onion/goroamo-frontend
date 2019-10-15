@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect } from 'react-redux'
-import { getEditTour }  from '../actions/tours'
+import { getEditTour, clearEditingState }  from '../actions/tours'
 import LocationEditor from '../components/LocationEditor'
 import SaveEditedTourButton from '../components/SaveEditedTourButton'
 import Loader from '../components/loader'
@@ -24,6 +24,11 @@ class EditTourContainer extends React.Component {
     if (prevProps.tours.editTour.id !== this.props.tours.editTour.id) {
       this.setState({tourLoaded: true})
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearEditingState()
+    console.log("UNMOUNTED")
   }
 
   get locations() {
@@ -52,7 +57,7 @@ class EditTourContainer extends React.Component {
 
 
   render() {
-    console.log(this.props.tours.editTour)
+    console.log(this.props)
     return(
       <>
       {this.state.tourLoaded ? this.tourInfo : <Loader/>}
@@ -71,7 +76,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getEditTour: (param) => dispatch(getEditTour(param))
+    getEditTour: (param) => dispatch(getEditTour(param)),
+    clearEditingState: () => dispatch(clearEditingState())
   }
 }
 

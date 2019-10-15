@@ -115,6 +115,8 @@ export const storeEditTour = (tourObj) => ({type: 'STORE_TOUR_TO_EDIT', payload:
 
 export const storeLiveEditing = (tourObj) =>  ({type: 'LIVE_STORING_EDITS', payload: tourObj})
 
+export const clearEditingState = () => ({type: "CLEAR_EDITING_ABILITY"})
+
 export const editTourPatchReq = (tourObj, param) => {
   return dispatch => {
     let config = {
