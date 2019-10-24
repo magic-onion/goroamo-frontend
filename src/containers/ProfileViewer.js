@@ -5,6 +5,20 @@ import ProfileWidget from '../components/ProfileWidget'
 import ProfileEditor from '../components/ProfileEditor'
 
 class ProfileViewer extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      editing: false
+    }
+
+    this.toggleEditing = this.toggleEditing.bind(this)
+  }
+
+  toggleEditing(e) {
+    let editState = !this.state.editing
+    this.setState({editing: editState})
+  }
 
   get profileInfo() {
     if (this.props.user.user.id === undefined) {
@@ -12,9 +26,8 @@ class ProfileViewer extends React.Component {
     }
     else return (
       <div className="profile-viewer">
-        <button>edit my profile</button>
-        <ProfileWidget/>
-        <ProfileEditor user={this.props.user.user}/>
+        <button onClick={e=>this.toggleEditing(e)}>{this.state.editing ? "go back" : "edit my profile"}</button>
+        {this.state.editing ? <ProfileEditor user={this.props.user.user}/> : <ProfileWidget/>}
       </div>
     )
   }
