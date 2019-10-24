@@ -1,15 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Loader from '../components/loader'
+import ProfileWidget from '../components/ProfileWidget'
 
 class ProfileViewer extends React.Component {
 
 
   render() {
-    console.log(this.props.user.user)
+    console.log(this.props.user)
     return (
       <div className="profile-viewer">
-        <p>hi {this.props.user.user ? this.props.user.user.username : null}</p>
+        <button>edit my profile</button>
+        <ProfileWidget/>
       </div>
 
     )
@@ -18,7 +20,7 @@ class ProfileViewer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.user
+    user: state.user
   }
 }
 

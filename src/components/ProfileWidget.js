@@ -1,13 +1,22 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 function ProfileWidget(props) {
+  console.log(props.user)
   return (
     <div>
-      <p className="avatar">NAME, IMG ABOVE</p>
-      <p>Hometown</p>
+    <img src={props.user.avatar}/>
+    <p>First Name: {props.user.first_name}</p>
+    <p>Last Name: {props.user.last_name}</p>
 
     </div>
   )
 }
 
-export default ProfileWidget
+const mapStateToProps = state => {
+  return {
+    user: state.user.user
+  }
+}
+
+export default connect(mapStateToProps, null)(ProfileWidget)
