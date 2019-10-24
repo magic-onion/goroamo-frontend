@@ -1,54 +1,85 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { createNewUser, userLogin } from './actions/user'
 import NewUser from './components/NewUser'
 
-function Login(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+class Login extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: "",
+      password: "",
+      newUser: false
+    }
 
-  function login(e) {
-    e.preventDefault()
-    props.userLogin(username, password)
+
+    this.handleChange = this.handleChange.bind(this)
+    this.loginUser = this.loginUser.bind(this)
+    this.renderUserCreator = this.renderUserCreator.bind(this)
+    this.cheating = this.cheating.bind(this)
   }
 
-  function userCreate(e) {
-    e.preventDefault()
-    console.log(username, password)
-    props.createNewUser(username, password)
+  cheating(e) {
+    this.props.createNewUser(this.state.username, this.state.password)
   }
 
+  handleChange(e) {
+    this.setState({[e.target.id]: e.target.value})
+  }
+
+  loginUser(e) {
+    e.preventDefault()
+    this.props.userLogin(this.state.username, this.state.password)
+  }
+
+  renderUserCreator(e) {
+    this.setState({newUser: true})
+  }
+
+
+
+  get loginForm() {
     return (
-      <>
       <div className="login-container">
 
-        <form className="login-form">
-          <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
-          <input
-            className="login-input"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            placeholder="username"
-            type="text"
-            name="username"
-             />
-          <input
-            className="login-input"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="Password"
-            type="password"
-            name="password"
-            />
-          <button className="login-button" onClick={e => login(e)}> Login </button>
-          <button className="create-user-button" onClick={e=> userCreate(e)}> Create New Account </button>
+      <form className="login-form">
+      <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
+      <input
+      className="login-input"
+      value={this.state.username}
+      onChange={e => this.handleChange(e)}
+      placeholder="username"
+      type="text"
+      id="username"
+      />
+      <input
+      className="login-input"
+      value={this.state.password}
+      onChange={e => this.handleChange(e)}
+      placeholder="Password"
+      type="password"
+      id="password"
+      />
+      <button className="login-button" onClick={e => this.loginUser(e)}> Login </button>
+      <button onClick={e=>this.cheating(e)}>cheating</button>
+      <button className="create-user-button" onClick={e=> this.renderUserCreator(e)}> Create New Account </button>
 
-        </form>
+      </form>
       </div>
-      <NewUser/>
+    )
+  }
+
+
+  render() {
+    return(
+      <>
+      {this.state.newUser ? <NewUser/> : this.loginForm}
       </>
-  )
+    )
+  }
+
 }
+
 const mapStateToProps = state => {
   return {
     user: state.user
