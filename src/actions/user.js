@@ -42,6 +42,22 @@ export const createNewUser = (username, password) => {
   }
 }
 
+export const newUser = (newUserObj) => {
+  return (dispatch) => {
+    let config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(newUserObj)
+    }
+    fetch('http://localhost:3000/api/v1/users', config)
+    .then(r=>r=>r.json())
+    .then(console.log)
+  }
+}
+
 export const userLogin = (username, password) => {
   return(dispatch) => {
     fetch('http://localhost:3000/api/v1/login', {

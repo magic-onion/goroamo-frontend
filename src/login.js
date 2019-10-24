@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { createNewUser, userLogin } from './actions/user'
+import NewUser from './components/NewUser'
 
 function Login(props) {
   const [username, setUsername] = useState("");
@@ -18,6 +19,7 @@ function Login(props) {
   }
 
     return (
+      <>
       <div className="login-container">
 
         <form className="login-form">
@@ -43,6 +45,8 @@ function Login(props) {
 
         </form>
       </div>
+      <NewUser/>
+      </>
   )
 }
 const mapStateToProps = state => {
