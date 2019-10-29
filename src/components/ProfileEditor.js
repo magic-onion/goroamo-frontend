@@ -1,6 +1,7 @@
 import React from 'react'
 import Script from 'react-load-script'
 import { connect } from 'react-redux'
+import { updateProfile } from '../actions/user'
 
 class ProfileEditor extends React.Component {
   constructor(props) {
@@ -34,10 +35,16 @@ class ProfileEditor extends React.Component {
         password: this.state.password
       }
     }
+    this.props.updateProfile(userObj, this.props.user.id)
   }
 
   get editForm() {
     return (
+      <>
+      <Script
+        url="https://widget.cloudinary.com/v2.0/global/all.js"
+        onLoad={this.handleCloud}
+      />
       <div className="profile-editor">
         <span>first name:</span>
         <input type="text" id="first_name" onChange={e=>this.handleChange(e)} value={this.state.first_name}/>
@@ -57,13 +64,14 @@ class ProfileEditor extends React.Component {
         <span>confirm password:</span>
         <input type="text" id="passwordVerify" onChange={e=>this.handleChange(e)} value={this.state.passwordVerify}/>
 
-        <button>Save changes</button>
+        <button onClick={e=>this.editUser(e)}>Save changes</button>
       </div>
+      </>
     )
   }
 
   render() {
-    console.log(!!this.props.user.id)
+    console.log(this.props)
     return (
     <>
     {!!this.props.user.id ? this.editForm : null}
@@ -72,13 +80,19 @@ class ProfileEditor extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     user: state.user.user
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    tours: state.tours
+  }
+}
 
-export default ProfileEditor
+const mapDispatchToProps = dispatch => {
+  return {
+    updateProfile: (obj, number) => dispatch(updateProfile(obj, number))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileEditor)
 
 
 //first last username email avatar location email password passwordVerify

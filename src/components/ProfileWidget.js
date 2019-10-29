@@ -7,7 +7,10 @@ function ProfileWidget(props) {
     <div>
     <img src={props.user.avatar}/>
     <p>First Name: {props.user.first_name}</p>
+    <hr/>
     <p>Last Name: {props.user.last_name}</p>
+    <p>E-mail: {props.user.email}</p>
+    <p>Location: {props.user.location}</p>
 
     </div>
   )
