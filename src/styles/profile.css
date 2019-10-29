@@ -1,5 +1,34 @@
 .profile-viewer {
-  border: solid red 1px;
+  font-family: 'Roboto', sans-serif;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
   width: 80%;
-  margin: auto;
+  margin: 2%;
+  padding: 2%;
+}
+
+.profile-viewer-line {
+  width: 90%;
+}
+
+.profile-editor {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  align-items: center;
+  /* font-family: 'Roboto', sans-serif;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180); */
+}
+
+.profile-editor-input {
+  width: 40%;
+  margin: 1.5%;
+  text-align: center;
+}
+
+.profile-editor-button {
+  margin: 1.5%;
 }

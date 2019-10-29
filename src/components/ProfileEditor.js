@@ -13,12 +13,37 @@ class ProfileEditor extends React.Component {
       email: props.user.email,
       avatar: props.user.avatar,
       password: "",
-      passwordVerify: ""
+      passwordVerify: "",
+      uploaded: false,
+      image: "",
+      widget: null
 
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleCloud = this.handleCloud.bind(this)
+    this.openWidget = this.openWidget.bind(this)
   }
+
+  handleCloud() {
+    let myWidget = window.cloudinary.createUploadWidget({
+      cloudName: 'goroamo',
+      uploadPreset: 'preset_test'}, (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log('Done! Here is the image info: ', result.info);
+          //transform image here
+          let urlThumbnail = `https://res.cloudinary.com/goroamo/image/upload/w_90,h_90,c_fill,g_face,r_max/${result.info.public_id}.jpeg`
+          this.setState({...this.state, uploaded: true, avatar: urlThumbnail, image: result.info.url})
+        }
+      })
+    this.setState({widget: myWidget})
+  }
+
+  openWidget() {
+    this.state.widget.open()
+  }
+
+
 
   handleChange(e) {
     this.setState({[e.target.id]: e.target.value})
@@ -38,6 +63,19 @@ class ProfileEditor extends React.Component {
     this.props.updateProfile(userObj, this.props.user.id)
   }
 
+  get avatarButton() {
+    if (this.state.uploaded) {
+      return (
+        <div>
+          <img src={this.state.avatar}/>
+          <button className="profile-editor-button" onClick={this.openWidget} id="upload_widget">Edit Profile Picture</button>
+        </div>
+      )
+
+    }
+    return <button className="profile-editor-button" onClick={this.openWidget} id="upload_widget">Edit Profile Picture</button>
+  }
+
   get editForm() {
     return (
       <>
@@ -47,24 +85,25 @@ class ProfileEditor extends React.Component {
       />
       <div className="profile-editor">
         <span>first name:</span>
-        <input type="text" id="first_name" onChange={e=>this.handleChange(e)} value={this.state.first_name}/>
+        {this.avatarButton}
+        <input className="profile-editor-input" type="text" id="first_name" onChange={e=>this.handleChange(e)} value={this.state.first_name}/>
 
         <span>last name:</span>
-        <input type="text" id="last_name" onChange={e=>this.handleChange(e)} value={this.state.last_name}/>
+        <input className="profile-editor-input" type="text" id="last_name" onChange={e=>this.handleChange(e)} value={this.state.last_name}/>
 
         <span>email:</span>
-        <input type="text" id="email" onChange={e=>this.handleChange(e)} value={this.state.email}/>
+        <input className="profile-editor-input" type="text" id="email" onChange={e=>this.handleChange(e)} value={this.state.email}/>
 
         <span>location:</span>
-        <input type="text" id="location" onChange={e=>this.handleChange(e)} value={this.state.location}/>
+        <input className="profile-editor-input" type="text" id="location" onChange={e=>this.handleChange(e)} value={this.state.location}/>
         <p>New Password</p>
         <span>password</span>
-        <input type="text" id="password" onChange={e=>this.handleChange(e)} value={this.state.password}/>
+        <input className="profile-editor-input" type="text" id="password" onChange={e=>this.handleChange(e)} value={this.state.password}/>
 
         <span>confirm password:</span>
-        <input type="text" id="passwordVerify" onChange={e=>this.handleChange(e)} value={this.state.passwordVerify}/>
+        <input className="profile-editor-input" type="text" id="passwordVerify" onChange={e=>this.handleChange(e)} value={this.state.passwordVerify}/>
 
-        <button onClick={e=>this.editUser(e)}>Save changes</button>
+        <button className="profile-editor-button" onClick={e=>this.editUser(e)}>Save changes</button>
       </div>
       </>
     )

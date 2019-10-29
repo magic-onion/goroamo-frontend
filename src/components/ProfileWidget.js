@@ -5,12 +5,17 @@ function ProfileWidget(props) {
   console.log(props.user)
   return (
     <div>
-    <img src={props.user.avatar}/>
-    <p>First Name: {props.user.first_name}</p>
-    <hr/>
-    <p>Last Name: {props.user.last_name}</p>
-    <p>E-mail: {props.user.email}</p>
-    <p>Location: {props.user.location}</p>
+      <img src={props.user.avatar}/>
+      <p>First Name: {props.user.first_name}</p>
+      <hr className="profile-viewer-line"/>
+
+      <p>Last Name: {props.user.last_name}</p>
+      <hr className="profile-viewer-line"/>
+
+      <p>E-mail: {props.user.email}</p>
+      <hr className="profile-viewer-line"/>
+
+      <p>Location: {props.user.location}</p>
 
     </div>
   )
