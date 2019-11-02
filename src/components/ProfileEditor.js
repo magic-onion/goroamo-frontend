@@ -16,7 +16,9 @@ class ProfileEditor extends React.Component {
       passwordVerify: "",
       uploaded: false,
       image: "",
-      widget: null
+      widget: null,
+      error: "",
+
 
     }
 
@@ -42,8 +44,6 @@ class ProfileEditor extends React.Component {
   openWidget() {
     this.state.widget.open()
   }
-
-
 
   handleChange(e) {
     this.setState({[e.target.id]: e.target.value})
@@ -98,10 +98,10 @@ class ProfileEditor extends React.Component {
         <input className="profile-editor-input" type="text" id="location" onChange={e=>this.handleChange(e)} value={this.state.location}/>
         <p>New Password</p>
         <span>password</span>
-        <input className="profile-editor-input" type="text" id="password" onChange={e=>this.handleChange(e)} value={this.state.password}/>
+        <input className="profile-editor-input" type="password" id="password" onChange={e=>this.handleChange(e)} value={this.state.password}/>
 
         <span>confirm password:</span>
-        <input className="profile-editor-input" type="text" id="passwordVerify" onChange={e=>this.handleChange(e)} value={this.state.passwordVerify}/>
+        <input className="profile-editor-input" type="password" id="passwordVerify" onChange={e=>this.handleChange(e)} value={this.state.passwordVerify}/>
 
         <button className="profile-editor-button" onClick={e=>this.editUser(e)}>Save changes</button>
       </div>

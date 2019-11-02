@@ -91,7 +91,7 @@ class AddLocationToTour extends React.Component {
 
 //Need to refine adding multiple locations. What happens on misclicks?
   render() {
-    console.log(this.state.locations)
+    console.log(this.props)
     return(
       <div className='tour-editing-container'>
         <div className="location-searcher">
