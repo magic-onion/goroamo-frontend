@@ -68,13 +68,16 @@ function toursReducer(state = init, action) {
     return fetchForEdit
 
     case "LIVE_STORING_EDITS":
-      let editLocs = state.editTour.locations
-      let editedLocations = editLocs.map((loc) => {
-        if (loc.address = action.payload.address) {
+      let editedLocations = state.editTour.locations.map((loc) => {
+        console.log(action.payload, loc, action.payload.address )
+        if (loc.address === action.payload.address) {
           return action.payload
         }
+        else {
+          return loc
+        }
       })
-      let newlyEditedTour = state.editTour
+      let newlyEditedTour = {...state.editTour}
       newlyEditedTour.locations = editedLocations
       let editActionState = {...state, editTour: newlyEditedTour}
       return editActionState

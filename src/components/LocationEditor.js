@@ -8,15 +8,18 @@ class LocationEditor extends React.Component {
     super(props)
 
     this.state = {
-      name: '',
-      funfact1: '',
-      funfact2: '',
-      funfact3: '',
-      description: '',
+      name: this.props.location.name,
+      address: this.props.location.address,
+      latitude: this.props.location.latitude,
+      longitude: this.props.location.longitude,
+      funfact1: this.props.location.funfact1,
+      funfact2: this.props.location.funfact2,
+      funfact3: this.props.location.funfact3,
+      description: this.props.location.description,
       uploaded: false,
-      id: null,
-      image: "",
-      thumbnail: "",
+      id: this.props.location.id,
+      image: this.props.location.image,
+      thumbnail: this.props.location.image,
       widget: {},
       locObj: {}
     }
@@ -27,6 +30,24 @@ class LocationEditor extends React.Component {
     this.openWidget = this.openWidget.bind(this)
 
   }
+
+  // 
+  // componentDidMount() {
+  //   this.setState({
+  //     name: this.props.location.name,
+  //     address: this.props.location.address,
+  //     latitude: this.props.location.latitude,
+  //     longitude: this.props.location.longitude,
+  //     funfact1: this.props.location.funfact1,
+  //     funfact2: this.props.location.funfact2,
+  //     funfact3: this.props.location.funfact3,
+  //     description: this.props.location.description,
+  //     id: this.props.location.id,
+  //     image: this.props.location.image,
+  //     thumbnail: this.props.location.image
+  //
+  //   })
+  // }
 
   handleStoreLocation(e) {
     let locObj = this.state
@@ -54,24 +75,6 @@ class LocationEditor extends React.Component {
       })
     this.setState({widget: myWidget})
   }
-
-  componentDidMount() {
-    this.setState({
-        name: this.props.location.name,
-        address: this.props.location.address,
-        latitude: this.props.location.latitude,
-        longitude: this.props.location.longitude,
-        funfact1: this.props.location.funfact1,
-        funfact2: this.props.location.funfact2,
-        funfact3: this.props.location.funfact3,
-        description: this.props.location.description,
-        id: this.props.location.id,
-        image: this.props.location.image,
-        thumbnail: this.props.location.image
-
-    })
-  }
-
 
   render() {
     console.log(this.props, this.state)
