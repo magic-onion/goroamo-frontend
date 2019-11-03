@@ -110,7 +110,6 @@ class ProfileEditor extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
     <>
     {!!this.props.user.id ? this.editForm : null}

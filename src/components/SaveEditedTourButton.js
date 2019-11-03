@@ -10,13 +10,11 @@ class SaveEditedTourButton extends React.Component {
   }
 
   handlePatchReq() {
-    console.log(this.props.tours.editTour)
     this.props.editTourPatchReq(this.props.tours.editTour, this.props.tours.editTour.id)
   }
 
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <button onClick={e=>this.handlePatchReq(e)}>Save Tour Again</button>

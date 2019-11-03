@@ -88,7 +88,6 @@ class ViewSelectedTour extends React.Component {
   }
 
   newLocations() {
-    console.log("in new locations", this.state)
     if (this.state.tourLoaded && this.state.mapMounted) {
         let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
         let waypoints = []
@@ -109,7 +108,7 @@ class ViewSelectedTour extends React.Component {
           waypoints: waypoints,
           travelMode: 'WALKING'
         }
-        console.log(request, startLat,  endLat, locationsArray)
+        // console.log(request, startLat,  endLat, locationsArray)
         let directionsDisplay = this.directionsDisplay
         this.directionsService.route(request, function(response, status) {
               if (status === 'OK') {
@@ -199,7 +198,7 @@ class ViewSelectedTour extends React.Component {
   }
 
   skipLocation(e) {
-    console.log(this.state, e.target, this.props)
+    console.log('next button hit')
   }
 
   get controls() {
@@ -280,7 +279,6 @@ class ViewSelectedTour extends React.Component {
 
 
   render() {
-    console.log(this.props)
     return (
       <>
       <Script

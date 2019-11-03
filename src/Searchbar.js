@@ -54,8 +54,6 @@ class Search extends Component {
     // Extract City From Address Object
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
-    console.log(addressObject.geometry.location.lat())
-    console.log(this.props.addresses)
     // Check if address is valid
     if (address) {
       // Set State

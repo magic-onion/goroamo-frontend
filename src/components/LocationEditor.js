@@ -31,7 +31,7 @@ class LocationEditor extends React.Component {
 
   }
 
-  // 
+  //
   // componentDidMount() {
   //   this.setState({
   //     name: this.props.location.name,
@@ -59,7 +59,7 @@ class LocationEditor extends React.Component {
   }
 
   openWidget() {
-    console.log('open widget')
+    this.state.widget.open()
   }
 
   handleCloud() {
@@ -77,7 +77,6 @@ class LocationEditor extends React.Component {
   }
 
   render() {
-    console.log(this.props, this.state)
     return (
       <>
       <Script

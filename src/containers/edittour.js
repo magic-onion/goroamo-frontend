@@ -28,7 +28,6 @@ class EditTourContainer extends React.Component {
 
   componentWillUnmount() {
     this.props.clearEditingState()
-    console.log("UNMOUNTED")
   }
 
   get locations() {

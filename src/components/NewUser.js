@@ -53,7 +53,6 @@ class NewUser extends React.Component {
 //validation
 
   render() {
-    console.log(this.props)
     return(
       <div className="new-user">
         <input type="text" id="firstName" placeholder="first name" onChange={e=>this.handleChange(e)}/>

@@ -61,13 +61,11 @@ class AddLocationToTour extends React.Component {
     let newLocs = this.state.locations
     this.props.removeLocationFromStore(key)
     newLocs.splice(key, 1)
-    console.log(newLocs)
     this.setState({locations: newLocs})
   }
 
   get locations() {
     return this.state.locations.map((locObj,j) => {
-      console.log(j)
       return (
         <>
           <LocationAdder placeObj={locObj} key={j} index={j} tourId={this.props.tourId} handleRemove={this.handleRemove}/>
@@ -91,7 +89,6 @@ class AddLocationToTour extends React.Component {
 
 //Need to refine adding multiple locations. What happens on misclicks?
   render() {
-    console.log(this.props)
     return(
       <div className='tour-editing-container'>
         <div className="location-searcher">

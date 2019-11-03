@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 function ProfileWidget(props) {
-  console.log(props.user)
   return (
     <div>
       <img src={props.user.avatar}/>
