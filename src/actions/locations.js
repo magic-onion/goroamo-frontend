@@ -1,5 +1,6 @@
 export const savingLocation = (locObj) => {
   return(dispatch) => {
+    console.log("savingLocation")
     dispatch(savingLocationToState(locObj))
   }
 }
@@ -15,6 +16,7 @@ export const saveInitialLoc = (locObj) => {
 export const storeInitialLocation = (obj) => ({type: "INITIAL_ADD", payload: obj})
 
 export const saveAllLocs = (obj) => {
+  console.log(obj)
   return(dispatch) => {
     for (let el of obj.locations) {
       console.log(el)
@@ -32,6 +34,14 @@ export const saveAllLocs = (obj) => {
     }
   }
 }
+
+export const clearLocationsFromState = () => {
+  return (dispatch) => {
+    dispatch(clearingLocs())
+  }
+}
+
+export const clearingLocs = () => ({type: "CLEAR_STORED_LOCATIONS"})
 
 
 

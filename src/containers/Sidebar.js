@@ -19,10 +19,6 @@ function Sidebar() {
         <NavLink exact to="/profile/" className="nav">Profile</NavLink>
       </div>
 
-      <div className="nav-item">
-        <img className="nav-img" src={require(`../assets/analytics-icon.png`)} alt="hi"></img>
-        <NavLink exact to="/analytics/" className="nav">Analytics</NavLink>
-      </div>
 
       <div className="nav-item">
         <img className="nav-img" src={require(`../assets/walking-icon.png`)} alt="hi"></img>
@@ -34,3 +30,15 @@ function Sidebar() {
 }
 
 export default Sidebar
+
+
+
+
+
+
+
+
+// <div className="nav-item">
+// <img className="nav-img" src={require(`../assets/analytics-icon.png`)} alt="hi"></img>
+// <NavLink exact to="/analytics/" className="nav">Analytics</NavLink>
+// </div>

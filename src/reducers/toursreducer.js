@@ -42,6 +42,7 @@ function toursReducer(state = init, action) {
     case "LIVE_STORING":
     let newLocs = state.locations
     let changedLocs = newLocs.map((locObj) => {
+      console.log(locObj.location.address, action.payload.location.address, 'hello')
       if (locObj.location.address === action.payload.location.address) {
         let newLocObj = action.payload
         return newLocObj
@@ -87,6 +88,11 @@ function toursReducer(state = init, action) {
     removedLocs.splice(action.payload, 1)
     let removedLocationState = {...state, locations: removedLocs}
     return removedLocationState
+
+    case "CLEAR_STORED_LOCATIONS":
+      let clearedLocs = []
+      let clearedLocState = {...state, locations: clearedLocs}
+      return clearedLocState
 
 
     case "LOG_OUT":

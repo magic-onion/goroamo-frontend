@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {makeMap, createNewTour } from '../actions/tours'
+import { clearLocationsFromState }  from '../actions/locations'
 import AddLocationToTour from './addLocationToTour'
 
 //WHEN DO YOU DRAW MARKERS
@@ -21,6 +22,10 @@ class CreateTour2 extends React.Component {
     this.makeMarkers = this.makeMarkers.bind(this)
   }
 
+
+  componentDidMount() {
+    clearLocationsFromState()
+  }
 
   handleTourChange(e) {
     this.setState({[e.target.id]: e.target.value})
@@ -111,7 +116,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     makeMap: () => dispatch(makeMap()),
-    createNewTour: (obj) => dispatch(createNewTour(obj))
+    createNewTour: (obj) => dispatch(createNewTour(obj)),
+    clearLocationsFromState: () => dispatch(clearLocationsFromState())
   }
 }
 

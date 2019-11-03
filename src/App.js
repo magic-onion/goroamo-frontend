@@ -24,6 +24,8 @@ import Sidebar from './containers/Sidebar'
 import ViewTour from './containers/ViewTour'
 import ViewSelectedTour from './components/ViewSelectedTour'
 import EditTourContainer from './containers/edittour'
+import NotFound from './components/NotFound'
+import TouristSidebar from './containers/TouristSidebar'
 import API_KEY from './environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
@@ -64,7 +66,7 @@ class App extends React.Component {
   }
 
   get loggedIn() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') && this.props.user.user.status === "guide") {
       return (
         <div className="app-container">
           <TopBar/>
@@ -77,6 +79,24 @@ class App extends React.Component {
               <Route path="/analytics/" component={Home} />
               <Route path="/tours/:id" component={ViewSelectedTour} />
               <Route path="/edit/:id" component={EditTourContainer}/>
+              <Route path="/view-tours/"
+                render={(props) => <ViewTour {...props} coords={this.state.coords} />}
+              />
+          </div>
+          </div>
+        </div>
+      )
+    }
+    if (localStorage.getItem('token') && this.props.user.user.status === "tourist") {
+      return (
+        <div className="app-container">
+          <TopBar/>
+          <div className="sidebar-and-app-layout">
+            <TouristSidebar/>
+            <div className="container">
+              <Route path="/" exact component={Home} />
+              <Route path="/profile/" component={ProfileViewer} />
+              <Route path="/tours/:id" component={ViewSelectedTour} />
               <Route path="/view-tours/"
                 render={(props) => <ViewTour {...props} coords={this.state.coords} />}
               />

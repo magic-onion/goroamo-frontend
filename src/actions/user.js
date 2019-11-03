@@ -32,6 +32,7 @@ export const userLogin = (username, password) => {
     .then(r=>r.json())
     .then(p => {
       localStorage.setItem('token', `${p.jwt}`)
+      console.log(p)
       dispatch(storeUser(p))
     })
   }
