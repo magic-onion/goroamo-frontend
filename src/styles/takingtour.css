@@ -1,0 +1,57 @@
+
+.viewing-tour-container {
+  border: solid grey 1px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 100%;
+  padding: 1%;
+  align-items: center;
+}
+
+.starting-tour-button {
+  background: red;
+}
+
+.tour-location-detail {
+  overflow: scroll;
+  font-family: 'Roboto', sans-serif;
+  margin: auto;
+  width: 70%;
+  height: 80%;
+  font-size: 4em;
+  overflow: auto;
+  position: fixed;
+  background: #1db9cf;
+  opacity: 93%;
+  color: #6300f2;
+}
+
+.back-fact-button {
+  float: left;
+  margin: .5%;
+}
+
+.next-fact-button {
+  float: right;
+  margin: .5%;
+}
+
+.fun-fact {
+  padding: 5%;
+}
+
+.tour-location-image {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.viewing-tour-next-location-button {
+  background: green;
+  height: 5%;
+  width: 20%;
+  border-radius: 2%;
+  box-shadow: green 2px 4px;
+  margin-top: 30%;
+  bottom: 0;
+}

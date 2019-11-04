@@ -146,8 +146,10 @@ class ViewSelectedTour extends React.Component {
       waypoints: [],
       travelMode: 'WALKING'
     }
+    console.log(start, end, markers, request)
     let directionsDisplay = this.directionsDisplay
     this.directionsService.route(request, function(response, status) {
+      console.log(response, status)
           if (status === 'OK') {
             directionsDisplay.setDirections(response)
           }
@@ -157,8 +159,8 @@ class ViewSelectedTour extends React.Component {
         position: {lat: marker[0], lng: marker[1]},
         map: this.tourMap
         })
-      return newMarker
     }
+    console.log("ABOUT TO CHANGE STATE")
     this.setState({displayMode: "started", markers: markers})
   }
 
@@ -199,7 +201,10 @@ class ViewSelectedTour extends React.Component {
   }
 
   skipLocation(e) {
-    console.log('next button hit')
+    //change the view mode to location
+    //advance the counter
+    //
+    this.setState({displayMode: 'location', currentImage: false})
   }
 
   get controls() {
@@ -207,7 +212,7 @@ class ViewSelectedTour extends React.Component {
       return (
         <>
         <p> This tour begins at: {this.state.tourLoaded ? this.props.tours.focusedTour.locations[0].name : null}</p>
-        <button onClick={(e)=>this.startTour(e)}>Click Here for Directions to The Start of the Tour</button>
+        <button className="starting-tour-button" onClick={(e)=>this.startTour(e)}>Click Here for Directions to The Start of the Tour</button>
         </>
       )
     }
@@ -215,9 +220,11 @@ class ViewSelectedTour extends React.Component {
       // let thumbnail = this.state.images[this.state.locationCounter]
       return (
         <div>
-        <p>Once you've arrived at {this.props.tours.focusedTour.locations[this.state.locationCounter].name}, take an picture of it!</p>
-          <button onClick={e=>this.uploadImage(e)}>upload image here </button>
-          <button  onClick={e=>this.skipLocation(e)}>next</button>
+        {this.state.currentImage ? <p>Here's the photo you took!</p> :  <p>Once you've arrived at {this.props.tours.focusedTour.locations[this.state.locationCounter].name}, take an picture of it!</p>}
+        {this.state.currentImage ? <img src={this.state.currentImage} alt={this.state.currentImage}/> : null }
+        {this.state.currentImage ? null : <button onClick={e=>this.uploadImage(e)}>upload image here </button>}
+
+          <button  onClick={e=>this.skipLocation(e)}>View Tour Details</button>
         </div>
       )
     }
@@ -225,7 +232,7 @@ class ViewSelectedTour extends React.Component {
       return (
         <>
         <ViewSelectedLocation location={this.props.tours.focusedTour.locations[this.state.locationCounter]} image={this.state.currentImage}/>
-        <button onClick={e=>this.nextLocation(e)}>next</button>
+        <button className="viewing-tour-next-location-button" onClick={e=>this.nextLocation(e)}>Next Location!</button>
         </>
       )
     }
@@ -274,7 +281,7 @@ class ViewSelectedTour extends React.Component {
           //transform image here
           let imageArray = this.state.images
           imageArray.push(result.info.url)
-          this.setState({...this.state, currentImage: result.info.url, image: result.info.url, displayMode: 'location'})
+          this.setState({...this.state, currentImage: result.info.url, image: result.info.url})
         }
       })
     this.setState({widget: myWidget})
@@ -282,6 +289,7 @@ class ViewSelectedTour extends React.Component {
 
 
   render() {
+    console.log(this.state.displayMode)
     return (
       <>
       <Script
@@ -292,9 +300,11 @@ class ViewSelectedTour extends React.Component {
         url="https://widget.cloudinary.com/v2.0/global/all.js"
         onLoad={this.handleCloud}
       />
-
+      <div className="tour-title">
+        <h3>{this.props.tours.focusedTour.name}</h3>
+      </div>
       <div className="viewing-tour-container">
-        <div style={{width: 400, height: 400, margin: 50}} id="map-3">
+        <div style={{width: "90%", height: 700, margin: "3%"}} id="map-3">
         </div>
         {this.state.window ? this.focusedLocation : null}
         {this.controls}

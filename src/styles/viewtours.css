@@ -70,6 +70,8 @@
   border: solid grey 1px;
   display: flex;
   flex-direction: column;
+  width: 90%;
+  align-items: center;
 }
 
 .tour-location-detail {

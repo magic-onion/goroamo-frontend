@@ -68,10 +68,12 @@ export const getProfile = () => {
 export const storeUser = (userObj) => ({type: "STORE_USER", payload: userObj})
 
 export const sendUserLocation = () => {
+  console.log("GETTING USER LOCATION")
   return (dispatch) => {
     let coords = []
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
+        console.log(position.coords.latitude)
         coords.push(position.coords.latitude);
         coords.push(position.coords.longitude);
       });
