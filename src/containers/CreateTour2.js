@@ -81,21 +81,21 @@ class CreateTour2 extends React.Component {
         map: this.props.tours.testMap
       })
       marksArray.push(marker)
+      return null
     })
     this.setState({markers: marksArray})
   }
 
-  get markers() {
-    return this.props.tours.locations.map ((loc) => {
-      let marker = new window.google.maps.Marker({
-        position: {lat: loc.location.latitude, lng: loc.location.longitude},
-        map: this.props.tours.testMap
-      })
-      return null
-    })
-  }
+  // get markers() {
+  //   return this.props.tours.locations.map ((loc) => {
+  //     let marker = new window.google.maps.Marker({
+  //       position: {lat: loc.location.latitude, lng: loc.location.longitude},
+  //       map: this.props.tours.testMap
+  //     })
+  //     return marker
+  //   })
+  // }
   render() {
-    console.log(this.props)
     return(
       <>
       {!this.state.tourCreated ? this.createTourWidget : this.currentTour}

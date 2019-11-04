@@ -67,7 +67,7 @@ class ProfileEditor extends React.Component {
     if (this.state.uploaded) {
       return (
         <div>
-          <img src={this.state.avatar}/>
+          <img src={this.state.avatar} alt="profile"/>
           <button className="profile-editor-button" onClick={this.openWidget} id="upload_widget">Edit Profile Picture</button>
         </div>
       )

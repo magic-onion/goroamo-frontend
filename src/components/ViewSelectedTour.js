@@ -6,7 +6,7 @@ import { getSingleTour, tourIsLoaded } from '../actions/tours'
 import { sendUserLocation } from '../actions/user'
 import Script from 'react-load-script'
 import ViewSelectedLocation from './ViewSelectedLocation'
-import Loader from './loader'
+// import Loader from './loader'
 import LocationSelector from './locationSelector'
 import API_KEY from '../environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
@@ -157,6 +157,7 @@ class ViewSelectedTour extends React.Component {
         position: {lat: marker[0], lng: marker[1]},
         map: this.tourMap
         })
+      return newMarker
     }
     this.setState({displayMode: "started", markers: markers})
   }
@@ -211,7 +212,7 @@ class ViewSelectedTour extends React.Component {
       )
     }
     if (this.state.displayMode === 'started') {
-      let thumbnail = this.state.images[this.state.locationCounter]
+      // let thumbnail = this.state.images[this.state.locationCounter]
       return (
         <div>
         <p>Once you've arrived at {this.props.tours.focusedTour.locations[this.state.locationCounter].name}, take an picture of it!</p>
@@ -238,6 +239,7 @@ class ViewSelectedTour extends React.Component {
       )
 
     }
+    return null
   }
 
   get simpleGallery() {
@@ -246,6 +248,7 @@ class ViewSelectedTour extends React.Component {
         return <img alt={i} src={img}/>
       })
     }
+    return null
   }
 
   uploadImage() {

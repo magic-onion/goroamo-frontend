@@ -36,6 +36,7 @@ class EditTourContainer extends React.Component {
         return <LocationEditor location={loc} key={i}/>
       })
     }
+    return null
   }
 
   get tourInfo() {
@@ -52,6 +53,7 @@ class EditTourContainer extends React.Component {
         </>
       )
     }
+    return null
   }
 
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 function ProfileWidget(props) {
   return (
     <div>
-      <img src={props.user.avatar}/>
+      <img src={props.user.avatar} alt="profile"/>
       <p>First Name: {props.user.first_name}</p>
       <hr className="profile-viewer-line"/>
 

@@ -93,7 +93,6 @@ export const getAllTours = () => {
       }
     }
     fetch(`http://localhost:3000/api/v1/tours`, config).then(r=>r.json()).then(p => {
-      console.log(p)
       dispatch(storeTours(p))
     })
   }
@@ -137,7 +136,6 @@ export const updateProfile = (userObj, param) => {
 
 export const createNewUser = (username, password) => {
   return(dispatch) => {
-    console.log(username, password)
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
       headers: {
