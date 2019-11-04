@@ -34,7 +34,14 @@ class ViewSelectedLocation extends React.Component {
       return <p className="fun-fact">{this.props.location.funfact3}</p>
     }
     if (this.state.counter === 4) {
-      return <p className="fun-fact">{this.props.location.description}</p>
+      return (
+        <>
+          <p className="fun-fact">{this.props.location.description}</p>
+          <p className="fun-fact">Click Below for the Next Stop on Your Tour</p>
+        </>
+      )
+
+
     }
     return null
   }

@@ -219,12 +219,12 @@ class ViewSelectedTour extends React.Component {
     if (this.state.displayMode === 'started') {
       // let thumbnail = this.state.images[this.state.locationCounter]
       return (
-        <div>
+        <div className="started-mode-controls-container">
         {this.state.currentImage ? <p>Here's the photo you took!</p> :  <p>Once you've arrived at {this.props.tours.focusedTour.locations[this.state.locationCounter].name}, take an picture of it!</p>}
         {this.state.currentImage ? <img src={this.state.currentImage} alt={this.state.currentImage}/> : null }
-        {this.state.currentImage ? null : <button onClick={e=>this.uploadImage(e)}>upload image here </button>}
+        {this.state.currentImage ? null : <button className="view-tour-upload-image-button" onClick={e=>this.uploadImage(e)}>upload image here </button>}
 
-          <button  onClick={e=>this.skipLocation(e)}>View Tour Details</button>
+          <button className="view-tour-details-button" onClick={e=>this.skipLocation(e)}>View Tour Details</button>
         </div>
       )
     }

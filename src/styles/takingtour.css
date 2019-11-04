@@ -1,6 +1,5 @@
 
 .viewing-tour-container {
-  border: solid grey 1px;
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -10,7 +9,10 @@
 }
 
 .starting-tour-button {
-  background: red;
+  width: 35%;
+  height: 3%;
+  border-radius: 2%;
+  background: #ffbf2f;
 }
 
 .tour-location-detail {
@@ -54,4 +56,23 @@
   box-shadow: green 2px 4px;
   margin-top: 30%;
   bottom: 0;
+}
+
+.started-mode-controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.view-tour-upload-image-button {
+  background-color: #ffbf2f;
+  border-radius: 8%;
+  width: 30%;
+  margin: 2%;
+}
+
+.view-tour-details-button {
+  background: grey;
+  background-color: #ffbf2f;
+  border-radius: 8%;
 }
