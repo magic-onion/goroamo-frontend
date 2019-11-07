@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  background: #f0f0f0;
 }
 
 #root {
@@ -28,7 +29,7 @@ table {
   height: 100vh;
   background: white;
   background: #f0f0f0;
-  border: solid green 2px;
+  /* border: solid green 2px; */
   overflow: auto;
 }
 
@@ -58,4 +59,14 @@ table {
 
 .no-display {
   display: none;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 600px){
+  body {
+    background-color: red;
+  }
+
+  .container {
+    background-color: red;
+  }
 }

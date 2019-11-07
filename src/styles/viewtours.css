@@ -66,19 +66,7 @@
   height: 30%;
 }
 
-.viewing-tour-container {
-  border: solid grey 1px;
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  align-items: center;
-}
 
-.tour-location-detail {
-  font-family: 'Roboto', sans-serif;
-  margin: auto;
-
-}
 
 
 /* USER VIEW */

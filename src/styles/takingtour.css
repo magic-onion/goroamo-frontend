@@ -19,7 +19,7 @@
   overflow: scroll;
   font-family: 'Roboto', sans-serif;
   margin: auto;
-  width: 70%;
+  width: 60%;
   height: 80%;
   font-size: 4em;
   overflow: auto;
@@ -30,14 +30,38 @@
 }
 
 .back-fact-button {
+  color: #ffbf2f;
+  font-family: 'Roboto', sans-serif;
+  font-size: .5em;
   float: left;
-  margin: .5%;
+  margin: 1%;
 }
 
 .next-fact-button {
+  color: #ffbf2f;
+  font-family: 'Roboto', sans-serif;
+  font-size: .5em;
   float: right;
-  margin: .5%;
+  margin: 1%;
 }
+
+.back-fact-button:hover {
+  color: grey;
+  font-family: 'Roboto', sans-serif;
+  font-size: .5em;
+  float: left;
+  margin: 1%;
+}
+
+.next-fact-button:hover {
+  color: grey;
+  font-family: 'Roboto', sans-serif;
+  font-size: .5em;
+  float: right;
+  margin: 1%;
+}
+
+
 
 .fun-fact {
   padding: 5%;
@@ -75,4 +99,8 @@
   background: grey;
   background-color: #ffbf2f;
   border-radius: 8%;
+}
+
+.view-tour-current-image {
+  margin: 1%;
 }
