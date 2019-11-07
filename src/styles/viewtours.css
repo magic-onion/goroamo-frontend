@@ -106,3 +106,116 @@
   margin: 1.5%;
   height: 40%;
 }
+
+
+@media only screen and (min-width: 200px) and (max-width: 600px) {
+
+  .drag-drop {
+    height: 80px;
+    width: 80px;
+  }
+
+  .search-tours-container {
+    font-family: 'Roboto', sans-serif;
+    margin: 1%;
+    padding: 1%;
+    width: 60%;
+  }
+
+  .search-tours-filter {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    width: 60%;
+    margin-left: 5%;
+    text-align: center;
+  }
+
+  .list-view-item {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 0% .5% 0% .5%;
+    padding: .5%;
+    font-size: 1em;
+  }
+
+  .list-view-single-tour {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .list-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    overflow: auto;
+    border: 3px solid rgba(80, 116, 180, .8);
+    border-radius: .4%;
+    box-shadow: 0 0 10px rgba(80, 116, 180);
+    width: 80%;
+    height: 80%;
+  }
+
+
+  .list-view-tour-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: solid #cdcdcd 3px;
+    box-shadow: 0 0 1vh #a3a3a3;
+    /* border-radius: 3%; */
+    padding: .2%;
+    margin: 1% 0 0 1%;
+    width: 95%;
+  }
+
+  .list-view-link {
+    padding: 2.5% 1.2% 1.2% 1.2%;
+    height: 30%;
+  }
+
+
+
+
+  /* USER VIEW */
+  .list-and-map-view-selector {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1%;
+    width: 70%;
+    height: 5%;
+    max-height: 20%;
+    max-width: 70%;
+    padding: 0;
+  }
+
+  .active-1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #3775B7;
+    padding: 2% 8% 2% 8%;
+    border-radius: 1%;
+    margin: 1.5%;
+    height: 40%;
+  }
+
+  .inactive-1 {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    color: white;
+    background-color: grey;
+    padding: 2% 8% 2% 8%;
+    border-radius: 1%;
+    margin: 1.5%;
+    height: 40%;
+  }
+
+}
