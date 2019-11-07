@@ -12,7 +12,7 @@ import API_KEY from '../environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
 //next button by image upload in case app is closed
-
+//sd
 
 class ViewSelectedTour extends React.Component {
   constructor(props) {
@@ -210,10 +210,10 @@ class ViewSelectedTour extends React.Component {
   get controls() {
     if (this.state.displayMode === 'viewing') {
       return (
-        <>
+        <div className="viewing-controls-container">
         <p> This tour begins at: {this.state.tourLoaded ? this.props.tours.focusedTour.locations[0].name : null}</p>
         <button className="starting-tour-button" onClick={(e)=>this.startTour(e)}>Click Here for Directions to The Start of the Tour</button>
-        </>
+        </div>
       )
     }
     if (this.state.displayMode === 'started') {
@@ -232,7 +232,9 @@ class ViewSelectedTour extends React.Component {
       return (
         <>
         <ViewSelectedLocation location={this.props.tours.focusedTour.locations[this.state.locationCounter]} image={this.state.currentImage}/>
-        <button className="viewing-tour-next-location-button" onClick={e=>this.nextLocation(e)}>Next Location!</button>
+        <div className="location-controls-container">
+          <button className="viewing-tour-next-location-button" onClick={e=>this.nextLocation(e)}>Next Location!</button>
+        </div>
         </>
       )
     }
@@ -301,7 +303,7 @@ class ViewSelectedTour extends React.Component {
         onLoad={this.handleCloud}
       />
       <div className="tour-title">
-        <h3>{this.props.tours.focusedTour.name}</h3>
+        <h3 className="tour-title-h3">{this.props.tours.focusedTour.name}</h3>
       </div>
       <div className="viewing-tour-container">
         <div style={{width: "90%", height: 700, margin: "3%"}} id="map-3">

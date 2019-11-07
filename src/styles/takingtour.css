@@ -16,6 +16,7 @@
 }
 
 .tour-location-detail {
+  z-index: 99;
   overflow: scroll;
   font-family: 'Roboto', sans-serif;
   margin: auto;
@@ -88,6 +89,17 @@
   align-items: center;
 }
 
+.viewing-controls-container {
+  displayu: flex;
+}
+
+.location-controls-container {
+
+
+}
+.controls-tour-begins:p {
+}
+
 .view-tour-upload-image-button {
   background-color: #ffbf2f;
   border-radius: 8%;
@@ -113,27 +125,33 @@
     height: 85%;
     padding: 1%;
     align-items: center;
+
   }
 
   .starting-tour-button {
-    width: 35%;
-    height: 3%;
+    width: 65%;
+    height: 40%;
     border-radius: 2%;
     background: #ffbf2f;
+  }
+
+  .tour-title-h3 {
+    margin: 10% 0 0 0;
   }
 
   .tour-location-detail {
     overflow: scroll;
     font-family: 'Roboto', sans-serif;
-    margin: auto;
-    width: 60%;
+
+    width: 95%;
     height: 80%;
-    font-size: 4em;
+    font-size: 2.2em;
     overflow: auto;
     position: fixed;
     background: #1db9cf;
     opacity: 93%;
     color: #6300f2;
+    margin-bottom: auto;
   }
 
   .back-fact-button {
@@ -181,18 +199,28 @@
 
   .viewing-tour-next-location-button {
     background: green;
-    height: 5%;
-    width: 20%;
-    border-radius: 2%;
+    height: 50%;
+    width: 100%;
+    border-radius: 5%;
     box-shadow: green 2px 4px;
-    margin-top: 30%;
-    bottom: 0;
   }
 
   .started-mode-controls-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .viewing-controls-container {
+    display: flex;
+  }
+
+  .location-controls-container {
+    position: absolute;
+    bottom: 0;
+  }
+  .controls-tour-begins:p {
+    margin: 5% 12% 3% 12%;
   }
 
   .view-tour-upload-image-button {
