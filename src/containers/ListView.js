@@ -67,7 +67,7 @@ class ListView extends React.Component {
     return(
       <>
       <div className="search-tours-container">
-        <span>Search by Location: </span>
+        <span className="search-tours-filter-title">Search by Location: </span>
         <input className="search-tours-filter" onChange={e=>this.handleSearch(e)} type="text"/>
       </div>
       <div className="list-container">
