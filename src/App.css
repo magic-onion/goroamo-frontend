@@ -63,10 +63,13 @@ table {
 
 @media only screen and (min-width: 200px) and (max-width: 600px){
   body {
-    background-color: red;
+    text-align: center;
+    background: #f0f0f0;
+    max-width: 375px;
+
   }
 
   .container {
-    background-color: red;
+    background: #f0f0f0;
   }
 }
