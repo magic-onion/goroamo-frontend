@@ -178,3 +178,21 @@ export const createNewUser = (username, password) => {
     })
   }
 }
+
+export const getToursByUser = (id) => {
+  return dispatch => {
+    let config = {
+      method: 'get',
+      headers: {
+        'content-type': 'application/json',
+        'accept':  'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+    fetch(`http://localhost:3000/api/v1/users/${id}/my-tours`,  config)
+      .then(r=>r.json())
+      .then(p => {
+        dispatch(storeTours(p))
+      })
+  }
+}

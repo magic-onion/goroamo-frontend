@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getAllTours } from '../actions/tours'
+import {  getToursByUser } from '../actions/user'
 import TourInfo from './TourInfo'
 
 class CurrentTours extends React.Component {
@@ -15,7 +16,8 @@ class CurrentTours extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllTours()
+    // this.props.getAllTours()
+    this.props.getToursByUser(this.props.user.user.id)
     this.setState({toursLoaded: true})
   }
 
@@ -75,7 +77,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllTours: () => dispatch(getAllTours())
+    getAllTours: () => dispatch(getAllTours()),
+    getToursByUser: id => dispatch(getToursByUser(id))
   }
 }
 
