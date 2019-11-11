@@ -29,7 +29,6 @@ table {
   height: 100vh;
   background: white;
   background: #f0f0f0;
-  /* border: solid green 2px; */
   overflow: auto;
 }
 
@@ -61,7 +60,7 @@ table {
   display: none;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 600px){
+@media only screen and (min-width: 200px) and (max-width: 399){
   body {
     text-align: center;
     background: #f0f0f0;
@@ -71,5 +70,6 @@ table {
 
   .container {
     background: #f0f0f0;
+    width: 100%;
   }
 }

@@ -1,6 +1,9 @@
-/* #map-3 {
-  height: 400;
-  width: 400;
-  margin: auto;
-  overflow: auto;
-} */
+.map-container {
+  margin: 0;
+}
+
+.map-view-info-window {
+  border: solid red 1px;
+  width: 100%;
+  display: flex;
+}

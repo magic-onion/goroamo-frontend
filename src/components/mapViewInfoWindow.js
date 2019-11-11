@@ -8,7 +8,7 @@ class MapViewInfoWindow extends React.Component {
   render() {
     let linkString = `/tours/${this.props.tour.tour.id}`
     return (
-      <div>
+      <div className="map-view-info-window">
         <p>Name: {this.props.tour.tour.name}</p>
         <p>Locations: {this.props.tour.locations.length}</p>
         <Link to={{pathname: linkString}}>View</Link>

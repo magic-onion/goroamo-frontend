@@ -109,7 +109,7 @@
 }
 
 
-@media only screen and (min-width: 200px) and (max-width: 600px) {
+@media only screen and (min-width: 200px) and (max-width: 399px) {
 
   .search-tours-filter-title {
     font-family: 'Roboto', sans-serif;
@@ -212,9 +212,9 @@
 
   .inactive-1 {
     font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
     display: flex;
     align-items: center;
-    font-size: 1.2em;
     color: white;
     background-color: grey;
     padding: 2% 8% 2% 8%;

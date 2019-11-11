@@ -118,7 +118,7 @@
   margin: 1%;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 600px)  {
+@media only screen and (min-width: 200px) and (max-width: 399px)  {
   .viewing-tour-container {
     display: flex;
     flex-direction: column;

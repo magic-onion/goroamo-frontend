@@ -54,7 +54,7 @@ class ToursContainer extends React.Component {
   render() {
     return (
       <>
-        <div style={{width: 400, height: 400, margin: 50}} id="map-container">
+        <div style={{width: 350, height: 400, margin: 2}} id="map-container">
         </div>
         {this.markers}
         {this.infoWindow}
