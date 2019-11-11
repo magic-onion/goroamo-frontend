@@ -49,13 +49,12 @@
     background-color: #3775B7;
     margin: 0;
     text-align: left;
-    width: 60%;
+    width: 40%;
     height: 100vh;
   }
 
   .mobile-sidebar {
     z-index: 99;
-    width:  80%;
     position: fixed;
   }
 

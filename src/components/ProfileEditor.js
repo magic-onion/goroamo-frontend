@@ -84,23 +84,23 @@ class ProfileEditor extends React.Component {
         onLoad={this.handleCloud}
       />
       <div className="profile-editor">
-        <span>first name:</span>
+        <span>First Name:</span>
         {this.avatarButton}
         <input className="profile-editor-input" type="text" id="first_name" onChange={e=>this.handleChange(e)} value={this.state.first_name}/>
 
-        <span>last name:</span>
+        <span>Last Name:</span>
         <input className="profile-editor-input" type="text" id="last_name" onChange={e=>this.handleChange(e)} value={this.state.last_name}/>
 
-        <span>email:</span>
+        <span>eE-mail:</span>
         <input className="profile-editor-input" type="text" id="email" onChange={e=>this.handleChange(e)} value={this.state.email}/>
 
-        <span>location:</span>
+        <span>Location:</span>
         <input className="profile-editor-input" type="text" id="location" onChange={e=>this.handleChange(e)} value={this.state.location}/>
-        <p>New Password</p>
-        <span>password</span>
+        <p>New Password:</p>
+        <span>Password</span>
         <input className="profile-editor-input" type="password" id="password" onChange={e=>this.handleChange(e)} value={this.state.password}/>
 
-        <span>confirm password:</span>
+        <span>Confirm Password:</span>
         <input className="profile-editor-input" type="password" id="passwordVerify" onChange={e=>this.handleChange(e)} value={this.state.passwordVerify}/>
 
         <button className="profile-editor-button" onClick={e=>this.editUser(e)}>Save changes</button>
