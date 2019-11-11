@@ -52,18 +52,19 @@
 .list-view-tour-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   border: solid #cdcdcd 3px;
   box-shadow: 0 0 1vh #a3a3a3;
   /* border-radius: 3%; */
   padding: .2%;
-  margin: 1% 0 0 1%;
+  margin: 1% 0 0 0;
   width: 95%;
 }
 
 .list-view-link {
   padding: 2.5% 1.2% 1.2% 1.2%;
   height: 30%;
+  margin-right: 3%;
 }
 
 

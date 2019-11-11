@@ -96,7 +96,7 @@ class App extends React.Component {
           <div className="sidebar-and-app-layout">
             <TouristSidebar/>
             <div className="container">
-              <Route path="/" exact component={Home} />
+              <Route path="/" exact component={ProfileViewer} />
               <Route path="/profile/" component={ProfileViewer} />
               <Route path="/tours/:id" component={ViewSelectedTour} />
               <Route path="/view-tours/"
