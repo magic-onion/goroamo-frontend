@@ -33,7 +33,7 @@
   margin: 1.5%;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 600px) {
+@media only screen and (min-width: 200px) and (max-width: 399) {
   .profile-viewer {
     font-family: 'Roboto', sans-serif;
     border: 3px solid rgba(80, 116, 180, .8);
@@ -69,4 +69,8 @@
   .profile-editor-button {
     margin: 1.5%;
   }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+
 }
