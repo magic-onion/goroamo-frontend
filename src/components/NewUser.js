@@ -60,17 +60,20 @@ class NewUser extends React.Component {
 
           <input className="new-user-input" type="text" id="firstName" placeholder="First Name" onChange={e=>this.handleChange(e)}/>
           <input className="new-user-input" type="text" id="lastName" placeholder="Last Name" onChange={e=>this.handleChange(e)}/>
-        
+
 
           <input className="new-user-input" type="text" id="username" placeholder="Username" onChange={e=>this.handleChange(e)}/>
           <input className="new-user-input" type="text" id="email" placeholder="E-mail" onChange={e=>this.handleChange(e)}/>
-        
+
           <input className="new-user-input" type="text" id="location" placeholder="Location" onChange={e=>this.handleChange(e)}/>
 
           <input className="new-user-input" type="password" id="password" placeholder="Password" onChange={e=>this.handleChange(e)}/>
           <input className="new-user-input" type="password" id="passwordVerify" placeholder="Confirm Password" onChange={e=>this.handleChange(e)}/>
-        
+
+          <button onClick={this.props.renderLogin}>Login</button>
+
           <button onClick={this.handleSubmit}>Get Started</button>
+
           {this.state.error ? <p>{this.state.errorMsg}</p> :  false}
         </form>
     )

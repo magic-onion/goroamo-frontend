@@ -36,13 +36,17 @@ class Login extends React.Component {
     this.setState({newUser: true})
   }
 
+  renderLogin() {
+    this.setState({newUser: false})
+  }
+
 
 
   get loginForm() {
     return (
       <div className="login-container">
         <form className="login-form">
-        
+
           <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
           <input
             className="login-input"
@@ -73,7 +77,7 @@ class Login extends React.Component {
   render() {
     return(
       <div className="app-container">
-      {this.state.newUser ? <NewUser/> : this.loginForm}
+      {this.state.newUser ? <NewUser renderLogin={this.renderLogin}/> : this.loginForm}
       </div>
     )
   }
