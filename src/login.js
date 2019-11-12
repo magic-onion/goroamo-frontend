@@ -41,7 +41,6 @@ class Login extends React.Component {
   }
 
 
-
   get loginForm() {
     return (
       <div className="login-container">
