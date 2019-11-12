@@ -39,8 +39,8 @@
     border: 3px solid rgba(80, 116, 180, .8);
     border-radius: 2%;
     box-shadow: 0 0 10px rgba(80, 116, 180);
-    width: 80% !important;
-    height: 80%;
+    width: 80%;
+    height: 50%;
     margin: auto;
     padding: 2%;
   }
@@ -72,15 +72,15 @@
 }
 
 
-@media only screen and (min-width: 200px) and (max-width: 399) {
+@media only screen and (min-width: 200px) and (max-width: 399px) {
   .profile-viewer {
     font-family: 'Roboto', sans-serif;
     border: 3px solid rgba(80, 116, 180, .8);
     border-radius: .4%;
     box-shadow: 0 0 10px rgba(80, 116, 180);
     width: 80%;
-    height: 80%;
-    margin: auto;
+    height: 65%;
+    margin: 10% auto auto auto;
     padding: 2%;
   }
 

@@ -42,15 +42,15 @@ class Login extends React.Component {
     return (
       <div className="login-container">
 
-      <form className="login-form">
-      <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
-      <input
-      className="login-input"
-      value={this.state.username}
-      onChange={e => this.handleChange(e)}
-      placeholder="Username"
-      type="text"
-      id="username"
+        <form className="login-form">
+        <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
+        <input
+          className="login-input"
+          value={this.state.username}
+          onChange={e => this.handleChange(e)}
+          placeholder="Username"
+          type="text"
+          id="username"
       />
       <input
       className="login-input"

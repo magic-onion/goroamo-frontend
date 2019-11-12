@@ -55,13 +55,13 @@ class NewUser extends React.Component {
   render() {
     return(
       <div className="new-user">
-        <input type="text" id="firstName" placeholder="first name" onChange={e=>this.handleChange(e)}/>
-        <input type="text" id="lastName" placeholder="last name" onChange={e=>this.handleChange(e)}/>
-        <input type="text" id="username" placeholder="username" onChange={e=>this.handleChange(e)}/>
-        <input type="text" id="email" placeholder="email" onChange={e=>this.handleChange(e)}/>
-        <input type="text" id="location" placeholder="location" onChange={e=>this.handleChange(e)}/>
-        <input type="text" id="password" placeholder="password" onChange={e=>this.handleChange(e)}/>
-        <input type="text" id="passwordVerify" placeholder="confirm password" onChange={e=>this.handleChange(e)}/>
+        <input className="new-user-input" type="text" id="firstName" placeholder="first name" onChange={e=>this.handleChange(e)}/>
+        <inpu className="new-user-input"t type="text" id="lastName" placeholder="last name" onChange={e=>this.handleChange(e)}/>
+        <input className="new-user-input" type="text" id="username" placeholder="username" onChange={e=>this.handleChange(e)}/>
+        <input className="new-user-input" type="text" id="email" placeholder="email" onChange={e=>this.handleChange(e)}/>
+        <input className="new-user-input" type="text" id="location" placeholder="location" onChange={e=>this.handleChange(e)}/>
+        <input className="new-user-input" type="text" id="password" placeholder="password" onChange={e=>this.handleChange(e)}/>
+        <input className="new-user-input" type="text" id="passwordVerify" placeholder="confirm password" onChange={e=>this.handleChange(e)}/>
         <button onClick={this.handleSubmit}>Get Started</button>
         {this.state.error ? <p>{this.state.errorMsg}</p> :  false}
       </div>
