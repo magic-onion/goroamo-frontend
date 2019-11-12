@@ -34,7 +34,6 @@ class TopBar extends React.Component {
         </div>
           <img className="logo-img" src={require('../assets/logo-side.png')} alt="GoRoamo-logo"></img>
         <div className="top-bar-controls">
-          <Link to="/profile/" className="top-bar-profile">My Profile</Link>
           <LogOutButton/>
         </div>
       </div>
@@ -48,3 +47,9 @@ class TopBar extends React.Component {
 }
 
 export default TopBar
+
+
+
+
+
+// <Link to="/profile/" className="top-bar-profile">My Profile</Link>

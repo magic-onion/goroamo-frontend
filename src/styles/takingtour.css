@@ -16,7 +16,7 @@
 }
 
 .tour-location-detail {
-  z-index: 99;
+  z-index: 90;
   overflow: scroll;
   font-family: 'Roboto', sans-serif;
   margin: auto;
@@ -145,7 +145,7 @@
     font-family: 'Roboto', sans-serif;
     border: solid #cdcdcd 3px;
     box-shadow: 0 0 1vh #a3a3a3;
-
+    z-index: 90;
     width: 95%;
     height: 80%;
     font-size: 2.2em;
