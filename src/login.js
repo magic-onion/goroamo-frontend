@@ -41,30 +41,30 @@ class Login extends React.Component {
   get loginForm() {
     return (
       <div className="login-container">
-
         <form className="login-form">
-        <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
-        <input
-          className="login-input"
-          value={this.state.username}
-          onChange={e => this.handleChange(e)}
-          placeholder="Username"
-          type="text"
-          id="username"
-      />
-      <input
-      className="login-input"
-      value={this.state.password}
-      onChange={e => this.handleChange(e)}
-      placeholder="Password"
-      type="password"
-      id="password"
-      />
-      <button className="login-button" onClick={e => this.loginUser(e)}> Login </button>
-      <button onClick={e=>this.cheating(e)}>cheating</button>
-      <button className="create-user-button" onClick={e=> this.renderUserCreator(e)}> Create New Account </button>
+        
+          <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
+          <input
+            className="login-input"
+            value={this.state.username}
+            onChange={e => this.handleChange(e)}
+            placeholder="Username"
+            type="text"
+            id="username"
+          />
+          <input
+            className="login-input"
+            value={this.state.password}
+            onChange={e => this.handleChange(e)}
+            placeholder="Password"
+            type="password"
+            id="password"
+          />
+          <button className="login-button" onClick={e => this.loginUser(e)}> Login </button>
+          <button onClick={e=>this.cheating(e)}>cheating</button>
+          <button className="create-user-button" onClick={e=> this.renderUserCreator(e)}> Create New Account </button>
 
-      </form>
+        </form>
       </div>
     )
   }
@@ -72,9 +72,9 @@ class Login extends React.Component {
 
   render() {
     return(
-      <>
+      <div className="app-container">
       {this.state.newUser ? <NewUser/> : this.loginForm}
-      </>
+      </div>
     )
   }
 

@@ -32,12 +32,6 @@ table {
   overflow: auto;
 }
 
-.home-container {
-  background-color: #d6d6d6;
-  display: flex;
-  border: solid red 3px;
-}
-
 #map {
   height: 200%;
   max-width: 80%;

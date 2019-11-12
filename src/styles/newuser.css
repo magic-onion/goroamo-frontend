@@ -1,12 +1,20 @@
 .new-user {
-  border: solid red 1px;
-  margin: auto;
   display: flex;
+  width: 60vw;
+  height: 90%;
+  margin: 10% auto auto auto;
+  padding: 2%;
   flex-direction: column;
-  width: 90%;
-  padding: 3%;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #3775B7;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
 }
 
 .new-user-input {
-  margin: 5%;
+  margin: 3%;
+  width: 80%;
+  text-align: center;
 }
