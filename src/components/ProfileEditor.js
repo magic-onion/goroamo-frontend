@@ -91,7 +91,7 @@ class ProfileEditor extends React.Component {
         <span>Last Name:</span>
         <input className="profile-editor-input" type="text" id="last_name" onChange={e=>this.handleChange(e)} value={this.state.last_name}/>
 
-        <span>eE-mail:</span>
+        <span>E-mail:</span>
         <input className="profile-editor-input" type="text" id="email" onChange={e=>this.handleChange(e)} value={this.state.email}/>
 
         <span>Location:</span>

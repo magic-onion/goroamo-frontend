@@ -21,13 +21,16 @@
   font-family: 'Roboto', sans-serif;
   margin: auto;
   width: 60%;
-  height: 80%;
+  height: 75%;
   font-size: 4em;
   overflow: auto;
   position: fixed;
-  background: #1db9cf;
+  background: #2d2959;
   opacity: 93%;
-  color: #6300f2;
+  color: #c6c5c5;
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
 }
 
 .back-fact-button {
@@ -74,11 +77,11 @@
 }
 
 .viewing-tour-next-location-button {
-  background: green;
-  height: 5%;
-  width: 20%;
+  background: #3775B7;
+  color: white;
+  height: 50%;
+  width: 100%;
   border-radius: 2%;
-  box-shadow: green 2px 4px;
   margin-top: 30%;
   bottom: 0;
 }
@@ -147,13 +150,13 @@
     box-shadow: 0 0 1vh #a3a3a3;
     z-index: 90;
     width: 95%;
-    height: 80%;
+    height: 70%;
     font-size: 2.2em;
     overflow: auto;
     position: fixed;
-    background: #1db9cf;
+    background: #2d2959;
     opacity: 93%;
-    color: #6300f2;
+    color: #c6c5c5;
     margin-bottom: auto;
   }
 
