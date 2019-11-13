@@ -17,8 +17,8 @@ import { connect } from 'react-redux'
 import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'
 // import Dashboard from './containers/Dashboard'
-// import NotFound from './components/NotFound'
-import { Route } from "react-router-dom";
+import NotFound from './components/NotFound'
+import { Route, Switch } from "react-router-dom";
 import Login from './login'
 import TopBar from './containers/TopBar'
 import CreateTour2 from './containers/CreateTour2'
@@ -76,6 +76,7 @@ class App extends React.Component {
           <div className="sidebar-and-app-layout">
             <Sidebar/>
             <div className="container">
+            <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/create-tour/" component={CreateTour2} />
               <Route path="/profile/" component={ProfileViewer} />
@@ -85,6 +86,8 @@ class App extends React.Component {
               <Route path="/view-tours/"
                 render={(props) => <ViewTour {...props} coords={this.state.coords} />}
               />
+              <Route component={NotFound} />
+            </Switch>
           </div>
           </div>
         </div>
@@ -97,12 +100,15 @@ class App extends React.Component {
           <div className="sidebar-and-app-layout">
             <TouristSidebar/>
             <div className="container">
+            <Switch>
               <Route path="/" exact component={ProfileViewer} />
               <Route path="/profile/" component={ProfileViewer} />
               <Route path="/tours/:id" component={ViewSelectedTour} />
               <Route path="/view-tours/"
                 render={(props) => <ViewTour {...props} coords={this.state.coords} />}
               />
+              <Route component={NotFound} />
+            </Switch>
           </div>
           </div>
         </div>
@@ -111,7 +117,10 @@ class App extends React.Component {
     else {
       return (
         <>
+        <Switch>
           <Login/>
+          <Route component={NotFound} />
+          </Switch>
         </>
       )
     }
