@@ -2,7 +2,6 @@ import React from 'react'
 import Script from 'react-load-script'
 import { connect } from 'react-redux'
 import { savingLocation, saveInitialLoc } from '../actions/locations'
-// import Cloudinary from './cloudinary'
 
 
 class LocationAdder extends React.Component {

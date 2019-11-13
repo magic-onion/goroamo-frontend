@@ -16,7 +16,6 @@ class TopBar extends React.Component {
   }
 
   toggleMenu() {
-    console.log(this.state.sidebar)
     let toggler = !this.state.sidebar
     this.setState({sidebar: toggler})
   }

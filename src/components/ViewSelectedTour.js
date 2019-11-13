@@ -1,6 +1,5 @@
 import React from 'react'
 // import Marker from '../components/Marker'
-// import LocationViewSelectedTour from './LocationViewSelectedTour'
 import { connect } from 'react-redux'
 import { getSingleTour, tourIsLoaded } from '../actions/tours'
 import { sendUserLocation } from '../actions/user'

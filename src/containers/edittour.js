@@ -58,7 +58,6 @@ class EditTourContainer extends React.Component {
 
 
   render() {
-    console.log(this.props)
     return(
       <>
       {this.state.tourLoaded ? this.tourInfo : <Loader/>}
