@@ -70,10 +70,11 @@ class NewUser extends React.Component {
           <input className="new-user-input" type="password" id="password" placeholder="Password" onChange={e=>this.handleChange(e)}/>
           <input className="new-user-input" type="password" id="passwordVerify" placeholder="Confirm Password" onChange={e=>this.handleChange(e)}/>
 
-          <button onClick={this.props.renderLogin}>Login</button>
+          <div className="new-user-button-container">
+            <button onClick={this.props.renderLogin}>Back to Login</button>
 
-          <button onClick={this.handleSubmit}>Get Started</button>
-
+            <button onClick={this.handleSubmit}>Create New Account</button>
+          </div>
           {this.state.error ? <p>{this.state.errorMsg}</p> :  false}
         </form>
     )

@@ -2,7 +2,7 @@
   display: flex;
   width: 60vw;
   height: 90%;
-  margin: 10% auto auto auto;
+  margin: auto;
   padding: 2%;
   flex-direction: column;
   align-items: center;
@@ -28,11 +28,46 @@
   font-size: 1.4em;
 }
 
-.first-last-name-container {
-  display: flex;
-  width: 75%;
+.new-user-button-container {
+    display: flex;
+    padding: 5%;
+    width: 75%;
+    justify-content: space-evenly;
 }
 @media only screen and (min-width: 200px) and (max-width: 399px) {
+  .new-user {
+    display: flex;
+    width: 98%;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #3775B7;
+  }
+
+  .new-user-input {
+    margin: 5.5%;
+    width: 62%;
+    text-align: center;
+  }
+
+  .new-user-logo  {
+    width: 60%;
+  }
+
+  .new-user-welcome {
+    color: white;
+    font-size: 1.4em;
+  }
+
+  .new-user-button-container {
+    display: flex;
+    padding: 5%;
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 600px) {
   .new-user {
     display: flex;
     width: 100vw;
