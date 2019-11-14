@@ -29,9 +29,9 @@ class Login extends React.Component {
   }
 
   loginUser(e) {
-    if (this.state.username.length === 0 || this.state.username.length === 0) {
+    if (this.state.username.length === 0 || this.state.password.length === 0) {
       e.preventDefault()
-      this.setState({error: "you must enter a valid username and password"})
+      this.setState({error: "you must enter a valid username and password", username: "", password: ""})
     }
     else {
       e.preventDefault()

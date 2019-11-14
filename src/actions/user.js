@@ -29,14 +29,24 @@ export const userLogin = (username, password) => {
         }
       })
     })
-    .then(r=>r.json())
-    .then(p => {
-      localStorage.setItem('token', `${p.jwt}`)
-      console.log(p)
-      dispatch(storeUser(p))
+    .then(r=>{
+      if (r.status !== 401) {
+        return r.json()
+      }
     })
+    .then(p => {
+      if (p !== undefined) {
+        localStorage.setItem('token', `${p.jwt}`)
+        console.log(p)
+        dispatch(storeUser(p))
+      }
+      console.log(p)
+    })
+    .catch(err=>console.log(err))
   }
 }
+
+export const loginError = (error) =>({type: "LOGIN_ERROR" })
 
 export const logOutUser = () => {
   return (dispatch) => {
