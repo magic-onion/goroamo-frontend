@@ -9,7 +9,8 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
-      newUser: false
+      newUser: false,
+      error: ""
     }
 
 
@@ -28,8 +29,14 @@ class Login extends React.Component {
   }
 
   loginUser(e) {
-    e.preventDefault()
-    this.props.userLogin(this.state.username, this.state.password)
+    if (this.state.username.length === 0 || this.state.username.length === 0) {
+      e.preventDefault()
+      this.setState({error: "you must enter a valid username and password"})
+    }
+    else {
+      e.preventDefault()
+      this.props.userLogin(this.state.username, this.state.password)
+    }
   }
 
   renderUserCreator(e) {
@@ -40,6 +47,16 @@ class Login extends React.Component {
     this.setState({newUser: false})
   }
 
+  get errorMessage() {
+    if (this.state.error.length > 0 ) {
+      return (
+        <div className="login-error">
+          <p>{this.state.error}</p>
+        </div>
+      )
+    }
+  }
+
 
   get loginForm() {
     return (
@@ -47,6 +64,7 @@ class Login extends React.Component {
         <form className="login-form">
 
           <img className="login-logo" src={require('./assets/logo-side.png')} alt="GoRoamo-logo"></img>
+          {this.errorMessage}
           <input
             className="login-input"
             value={this.state.username}
