@@ -3,6 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getSingleTour, tourIsLoaded } from '../actions/tours'
 import { sendUserLocation } from '../actions/user'
+import { Redirect } from 'react-router-dom'
+import NotFound from './NotFound'
 import Script from 'react-load-script'
 import ViewSelectedLocation from './ViewSelectedLocation'
 // import Loader from './loader'
@@ -52,11 +54,12 @@ class ViewSelectedTour extends React.Component {
     this.props.sendUserLocation()
     if (this.props.tours.focusedTour.id) {
       this.setState({tourLoaded:true})
+      console.log("AY WE LOADED")
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.tours.focusedTour.id !== this.props.tours.focusedTour.id) {
+    if (this.props.tours.focusedTour && prevProps.tours.focusedTour.id !== this.props.tours.focusedTour.id) {
       this.setState({tourLoaded: true, maxLocs: this.props.tours.focusedTour.locations.length - 1})
       this.props.tourIsLoaded()
     }
@@ -200,9 +203,6 @@ class ViewSelectedTour extends React.Component {
   }
 
   skipLocation(e) {
-    //change the view mode to location
-    //advance the counter
-    //
     this.setState({displayMode: 'location', currentImage: false})
   }
 
@@ -288,35 +288,43 @@ class ViewSelectedTour extends React.Component {
     this.setState({widget: myWidget})
   }
 
+  get validate() {
+    if (this.props.tours.focusedTour.id) {
+      return (
+        <>
+        <Script
+        url= { url }
+        onLoad={this.scriptLoader}
+        />
+        <Script
+          url="https://widget.cloudinary.com/v2.0/global/all.js"
+          onLoad={this.handleCloud}
+        />
+        <div className="tour-title">
+          <h3 className="tour-title-h3">{this.props.tours.focusedTour.name}</h3>
+        </div>
+        <div className="viewing-tour-container">
+          <div style={{width: "90%", height: 700, margin: "3%"}} id="map-3">
+          </div>
+          {this.state.window ? this.focusedLocation : null}
+          {this.controls}
+        </div>
+        </>
+      )
+    }
+    else return <Redirect to="/view-tours/"/>
+   }
+
 
   render() {
-    console.log(this.state.displayMode)
     return (
       <>
-      <Script
-      url= { url }
-      onLoad={this.scriptLoader}
-      />
-      <Script
-        url="https://widget.cloudinary.com/v2.0/global/all.js"
-        onLoad={this.handleCloud}
-      />
-      <div className="tour-title">
-        <h3 className="tour-title-h3">{this.props.tours.focusedTour.name}</h3>
-      </div>
-      <div className="viewing-tour-container">
-        <div style={{width: "90%", height: 700, margin: "3%"}} id="map-3">
-        </div>
-        {this.state.window ? this.focusedLocation : null}
-        {this.controls}
-      </div>
+      {this.state.tourLoaded ? this.validate : <NotFound/>}
       </>
     )
   }
 }
 
-// {this.state.tourLoaded ? this.newLocations : <Loader/>}
-// {this.state.mount ? this.locations : null}
 const mapStateToProps = state => {
   return {
     user: state.user,

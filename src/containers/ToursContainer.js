@@ -1,5 +1,9 @@
 import React from 'react'
+import { Script } from 'react-load-script'
 import MapViewInfoWindow from '../components/mapViewInfoWindow'
+import Loader from '../components/loader'
+import API_KEY from '../environment'
+const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
 class ToursContainer extends React.Component {
   constructor(props) {
@@ -51,9 +55,14 @@ class ToursContainer extends React.Component {
     return null
   }
 
+  get Loader() {
+    return null
+  }
+
   render() {
     return (
       <>
+
         <div style={{width: 350, height: 400, margin: 2}} id="map-container">
         </div>
         {this.markers}
