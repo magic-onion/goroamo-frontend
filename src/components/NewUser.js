@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { newUser } from '../actions/user'
+import { Redirect } from 'react-router-dom'
 
 class NewUser extends React.Component {
   constructor(props) {
@@ -28,7 +29,8 @@ class NewUser extends React.Component {
     })
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault()
     if (this.state.password === this.state.passwordVerify) {
       this.setState({error: false, errorMsg: ""})
       let userObj = {
@@ -51,12 +53,19 @@ class NewUser extends React.Component {
 
   }
 //validation
+  get redirect() {
+    if (this.props.user.loggedIn) {
+      return <Redirect to="/profile/"/>
+    }
+    return null
+  }
 
   render() {
     return(
+      <>
         <form className="new-user">
-        <img className="new-user-logo" src={require('../assets/logo-side.png')} alt="GoRoamo-logo"></img>
-        <p className="new-user-welcome">Welcome! Please provide some information to begin</p>
+          <img className="new-user-logo" src={require('../assets/logo-side.png')} alt="GoRoamo-logo"></img>
+          <p className="new-user-welcome">Welcome! Please provide some information to begin</p>
 
           <input className="new-user-input" type="text" id="firstName" placeholder="First Name" onChange={e=>this.handleChange(e)}/>
           <input className="new-user-input" type="text" id="lastName" placeholder="Last Name" onChange={e=>this.handleChange(e)}/>
@@ -73,10 +82,12 @@ class NewUser extends React.Component {
           <div className="new-user-button-container">
             <button onClick={this.props.renderLogin}>Back to Login</button>
 
-            <button onClick={this.handleSubmit}>Create New Account</button>
+            <button onClick={e=>this.handleSubmit(e)}>Create New Account</button>
           </div>
           {this.state.error ? <p>{this.state.errorMsg}</p> :  false}
         </form>
+        {this.redirect}
+      </>
     )
   }
 }

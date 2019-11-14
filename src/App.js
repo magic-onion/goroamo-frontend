@@ -86,6 +86,8 @@ class App extends React.Component {
               <Route path="/analytics/" component={Home} />
               <Route path="/tours/:id" component={ViewSelectedTour} />
               <Route path="/edit/:id" component={EditTourContainer}/>
+              <Route path="/about/" component={About}/>
+              
               <Route path="/view-tours/"
                 render={(props) => <ViewTour {...props} coords={this.state.coords} />}
               />

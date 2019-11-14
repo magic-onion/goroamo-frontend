@@ -82,7 +82,6 @@ class Login extends React.Component {
             id="password"
           />
           <button className="login-button" onClick={e => this.loginUser(e)}> Login </button>
-          <button onClick={e=>this.cheating(e)}>cheating</button>
           <button className="create-user-button" onClick={e=> this.renderUserCreator(e)}> Create New Account </button>
 
         </form>
@@ -116,3 +115,8 @@ const mapDispatchToProps = dispatch => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+
+
+
+// <button onClick={e=>this.cheating(e)}>cheating</button>

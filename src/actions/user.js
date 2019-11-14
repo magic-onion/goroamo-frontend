@@ -9,8 +9,12 @@ export const newUser = (newUserObj) => {
       body: JSON.stringify(newUserObj)
     }
     fetch('http://localhost:3000/api/v1/users', config)
-    .then(r=>r=>r.json())
-    .then(console.log)
+    .then(r=>r.json())
+    .then(p=>{
+    console.log(p)
+    localStorage.setItem('token', `${p.jwt}`)
+    dispatch(storeUser(p))
+    })
   }
 }
 
@@ -30,7 +34,7 @@ export const userLogin = (username, password) => {
       })
     })
     .then(r=>{
-      if (r.status !== 401) {
+      if (r.status.toString()[0] !== "4") {
         return r.json()
       }
     })
