@@ -1,0 +1,8 @@
+.about-container {
+  border: 3px solid rgba(80, 116, 180, .8);
+  border-radius: .4%;
+  box-shadow: 0 0 10px rgba(80, 116, 180);
+  margin: 15% auto auto auto;
+  padding: 5%;
+  width: 60vw;
+}

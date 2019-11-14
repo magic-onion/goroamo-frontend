@@ -14,11 +14,13 @@ import './styles/maps.css'
 import './styles/takingtour.css'
 import './styles/newuser.css'
 import './styles/notfound.css'
+import './styles/about.css'
 import { connect } from 'react-redux'
 import { getProfile, sendUserLocation } from './actions/user'
 // import { makeMap } from './actions/tours'
 // import Dashboard from './containers/Dashboard'
 import NotFound from './components/NotFound'
+import About from './components/About'
 import { Route, Switch } from "react-router-dom";
 import Login from './login'
 import TopBar from './containers/TopBar'
@@ -104,6 +106,7 @@ class App extends React.Component {
             <Switch>
               <Route path="/" exact component={ProfileViewer} />
               <Route path="/profile/" component={ProfileViewer} />
+              <Route path="/about/" component={About}/>
               <Route path="/tours/:id" component={ViewSelectedTour} />
               <Route path="/view-tours/"
                 render={(props) => <ViewTour {...props} coords={this.state.coords} />}
