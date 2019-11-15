@@ -45,25 +45,11 @@ class App extends React.Component {
       userId: 0
     }
     this.handleScriptLoad = this.handleScriptLoad.bind(this)
-    this.getCoords = this.getCoords.bind(this)
   }
 
   handleScriptLoad() {
     this.props.sendUserLocation()
-    // this.props.makeMap()
   }
-
-  getCoords() {
-    if (navigator.geolocation) {
-      let coords = []
-      navigator.geolocation.getCurrentPosition(function(position) {
-        coords.push(position.coords.latitude);
-        coords.push(position.coords.longitude);
-      });
-      this.setState({coords: coords})
-    }
-  }
-
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
@@ -87,7 +73,7 @@ class App extends React.Component {
               <Route path="/tours/:id" component={ViewSelectedTour} />
               <Route path="/edit/:id" component={EditTourContainer}/>
               <Route path="/about/" component={About}/>
-              
+
               <Route path="/view-tours/"
                 render={(props) => <ViewTour {...props} coords={this.state.coords} />}
               />
