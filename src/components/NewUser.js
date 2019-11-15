@@ -31,7 +31,7 @@ class NewUser extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    if (this.state.password === this.state.passwordVerify) {
+    if (this.state.password === this.state.passwordVerify && this.state.password.length !==  0 && this.state.username.length !== 0) {
       this.setState({error: false, errorMsg: ""})
       let userObj = {
         user: {
@@ -49,10 +49,10 @@ class NewUser extends React.Component {
 
     }
 
-    else this.setState({error: true, errorMsg: "Passwords must match"})
+    else this.setState({error: true, errorMsg: "Could not create account. Please be sure to enter a valid Username and Password"})
 
   }
-//validation
+
   get redirect() {
     if (this.props.user.loggedIn) {
       return <Redirect to="/profile/"/>
@@ -84,7 +84,7 @@ class NewUser extends React.Component {
 
             <button onClick={e=>this.handleSubmit(e)}>Create New Account</button>
           </div>
-          {this.state.error ? <p>{this.state.errorMsg}</p> :  false}
+          {this.state.error ? <p className="new-user-error">{this.state.errorMsg}</p> :  false}
         </form>
         {this.redirect}
       </>

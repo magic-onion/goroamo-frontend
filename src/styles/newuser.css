@@ -34,6 +34,11 @@
     width: 75%;
     justify-content: space-evenly;
 }
+
+.new-user-error {
+  color: white;
+  font-size: .9em;
+}
 @media only screen and (min-width: 200px) and (max-width: 399px) {
   .new-user {
     display: flex;
