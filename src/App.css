@@ -54,28 +54,6 @@ table {
   display: none;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 399px){
-  html {
-    width: 100vw;
-  }
-  body {
-    text-align: center;
-    background: #f0f0f0;
+@media only screen and (min-width: 200px) and (max-width: 399){
 
-  }
-
-  .container {
-    background: #f0f0f0;
-    width: 100vw;
-  }
-
-  #root {
-    display: inline-block;
-    width: 100vw;
-
-  }
-
-  .app-container {
-    max-width: 400px;
-  }
 }
