@@ -36,7 +36,9 @@ class ViewSelectedTour extends React.Component {
       locationCounter: 0,
       imageLoaded: false,
       widget: {},
-      displayMode: "viewing"
+      displayMode: "viewing",
+      error: false,
+      errorMsg: ""
     }
 
     this.clicking = this.clicking.bind(this)
@@ -47,21 +49,19 @@ class ViewSelectedTour extends React.Component {
     this.uploadImage = this.uploadImage.bind(this)
     this.handleCloud = this.handleCloud.bind(this)
     this.skipLocation = this.skipLocation.bind(this)
+    this.validateTour = this.validateTour.bind(this)
   }
 
   componentDidMount() {
     this.props.getSingleTour(this.props.match.params.id)
     this.props.sendUserLocation()
-    if (this.props.tours.focusedTour.id) {
-      this.setState({tourLoaded:true})
-      console.log("AY WE LOADED")
-    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.tours.focusedTour && prevProps.tours.focusedTour.id !== this.props.tours.focusedTour.id) {
       this.setState({tourLoaded: true, maxLocs: this.props.tours.focusedTour.locations.length - 1})
       this.props.tourIsLoaded()
+      this.validateTour()
     }
     if (prevProps.tours.tourLoaded !== this.props.tours.tourLoaded) {
       this.newLocations()
@@ -70,6 +70,15 @@ class ViewSelectedTour extends React.Component {
       this.newLocations()
     }
   }
+
+  validateTour() {
+    console.log(this.props.tours.focusedTour)
+    if (!this.props.tours.focusedTour.locations.length) {
+      this.setState({error: true, errorMsg: "This tour has no locations!"})
+    }
+  }
+
+
 
   scriptLoader() {
     let initLat = 43.651070
@@ -289,7 +298,7 @@ class ViewSelectedTour extends React.Component {
   }
 
   get validate() {
-    if (this.props.tours.focusedTour.id) {
+    if (!this.state.error) {
       return (
         <>
         <Script
@@ -312,7 +321,12 @@ class ViewSelectedTour extends React.Component {
         </>
       )
     }
-    else return <Redirect to="/view-tours/"/>
+    else return (
+      <div>
+        <h2>Something Went Wrong</h2>
+        <p>{this.state.errorMsg}</p>
+      </div>
+    )
    }
 
 

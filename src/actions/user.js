@@ -92,6 +92,9 @@ export const sendUserLocation = () => {
         coords.push(position.coords.longitude);
       });
     }
+    if (!navigator.geolocation) {
+      coords = [43.651070, -79.347015]
+    }
     dispatch(storeLocationCoords(coords))
   }
 }
