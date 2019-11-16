@@ -32,8 +32,6 @@ class ProfileEditor extends React.Component {
       cloudName: 'goroamo',
       uploadPreset: 'preset_test'}, (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log('Done! Here is the image info: ', result.info);
-          //transform image here
           let urlThumbnail = `https://res.cloudinary.com/goroamo/image/upload/w_90,h_90,c_fill,g_face,r_max/${result.info.public_id}.jpeg`
           this.setState({...this.state, uploaded: true, avatar: urlThumbnail, image: result.info.url})
         }
