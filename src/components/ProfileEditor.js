@@ -84,8 +84,9 @@ class ProfileEditor extends React.Component {
         onLoad={this.handleCloud}
       />
       <div className="profile-editor">
+      <img src={this.props.user.avatar} alt="profile"/>
+      {this.avatarButton}
         <span>First Name:</span>
-        {this.avatarButton}
         <input className="profile-editor-input" type="text" id="first_name" onChange={e=>this.handleChange(e)} value={this.state.first_name}/>
 
         <span>Last Name:</span>
@@ -120,7 +121,8 @@ class ProfileEditor extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tours: state.tours
+    tours: state.tours,
+    user: state.user.user
   }
 }
 

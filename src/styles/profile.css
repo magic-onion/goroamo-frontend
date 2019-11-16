@@ -8,6 +8,10 @@
   padding: 2%;
 }
 
+.profile-details {
+  margin: 10% 0 auto 0;
+}
+
 .profile-viewer-line {
   width: 90%;
 }
@@ -40,7 +44,7 @@
     border-radius: 2%;
     box-shadow: 0 0 10px rgba(80, 116, 180);
     width: 80%;
-    height: 50%;
+    height: 70%;
     margin: auto;
     padding: 2%;
   }
@@ -79,7 +83,7 @@
     border-radius: .4%;
     box-shadow: 0 0 10px rgba(80, 116, 180);
     width: 80%;
-    height: 65%;
+    height: 75%;
     margin: 10% auto auto auto;
     padding: 2%;
   }
@@ -91,6 +95,7 @@
   .profile-editor {
     display: flex;
     flex-direction: column;
+    height: 30%;
     padding: 2%;
     align-items: center;
     /* font-family: 'Roboto', sans-serif;
