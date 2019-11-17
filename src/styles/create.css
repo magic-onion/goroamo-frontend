@@ -67,8 +67,11 @@
   justify-content: space-evenly;
   border: 1px solid white;
   margin: .5%;
-  width: 80%;
+  width: 85%;
   padding:  .3%;
+}
+.location-searcher:span {
+  margin-right: .5%;
 }
 
 .search-bar {
@@ -144,16 +147,18 @@
 }
 
 .location-adder-thumbnail {
-  width: 100%;
-  height: 100%;
+  width: 98%;
+  height: 98%;
+  margin: 10% 2% 4% 2%;
 }
 
 .location-adder-button {
   width: 10%;
+  margin: 0 0 0 .5%;
 }
 
 .location-adder-button:hover {
-  background: red;
+  background: #5fa655;
   border-radius: 10%;
   width: 10%;
 }
