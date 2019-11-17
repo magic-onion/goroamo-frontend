@@ -80,9 +80,9 @@ class NewUser extends React.Component {
           <input className="new-user-input" type="password" id="passwordVerify" placeholder="Confirm Password" onChange={e=>this.handleChange(e)}/>
 
           <div className="new-user-button-container">
-            <button onClick={this.props.renderLogin}>Back to Login</button>
+            <button className="back-to-login" onClick={this.props.renderLogin}>Back to Login</button>
 
-            <button onClick={e=>this.handleSubmit(e)}>Create New Account</button>
+            <button className="create-account-button" onClick={e=>this.handleSubmit(e)}>Create New Account</button>
           </div>
           {this.state.error ? <p className="new-user-error">{this.state.errorMsg}</p> :  false}
         </form>
