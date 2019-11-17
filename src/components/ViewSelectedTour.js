@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getSingleTour, tourIsLoaded } from '../actions/tours'
 import { sendUserLocation } from '../actions/user'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import NotFound from './NotFound'
 import Script from 'react-load-script'
 import ViewSelectedLocation from './ViewSelectedLocation'
@@ -251,7 +251,10 @@ class ViewSelectedTour extends React.Component {
         <>
         <p>Thanks for taking this tour!</p>
         <p>View the photos of your tour below</p>
+        <div className="gallery-container">
           {this.simpleGallery}
+        </div>
+        <Link to="/view-tours/">Back to Tours</Link>
         </>
       )
 
@@ -262,7 +265,7 @@ class ViewSelectedTour extends React.Component {
   get simpleGallery() {
     if (this.state.images.length) {
       return this.state.images.map((img, i) => {
-        return <img alt={i} src={img}/>
+        return <img className="simple-gallery-img" alt={i} src={img}/>
       })
     }
     return null
