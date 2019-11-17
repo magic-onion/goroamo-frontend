@@ -3,6 +3,10 @@
   border-radius: .4%;
   box-shadow: 0 0 10px rgba(80, 116, 180);
   margin: 15% auto auto auto;
-  padding: 5%;
+  padding: 4%;
   width: 60vw;
+}
+
+.about-container:h2 {
+  margin: 5% 0 0 5%;
 }

@@ -15,6 +15,11 @@ function TouristSidebar() {
         <NavLink exact to="/view-tours/" className="nav">View Tours</NavLink>
       </div>
 
+      <div className="nav-item">
+        <img className="nav-img" src={require(`../assets/analytics-icon.png`)} alt="about"></img>
+        <NavLink exact to="/about/" className="nav">About</NavLink>
+      </div>
+
     </div>
     </div>
   )
