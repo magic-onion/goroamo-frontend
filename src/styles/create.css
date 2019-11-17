@@ -172,20 +172,30 @@
 
 
 .single-location-removal {
-  z-index: 0;
-  background: red;
-  border: solid red 1px;
-  padding: 1.5%;
+  z-index: 2;
+  display: inline-block;
+  position: relative;
+  font-size: 1.2em;
+  padding-right: .5%;
+  text-align: top;
   border-radius: 50%;
-  width: 2%;
+  max-height: 2%;
+  max-width: 2%;
   align-items: center;
+  cursor: default;
+
 }
 .single-location-removal:hover {
-  z-index: 0;
-  background: blue;
-  border: solid red 1px;
-  padding: 1.5%;
+  z-index: 2;
+  display: inline-block;
+  position: relative;
+  font-size: 1.2em;
+  padding-right: .5%;
+  text-align: top;
   border-radius: 50%;
-  width: 2%;
+  max-height: 2%;
+  max-width: 2%;
   align-items: center;
+  color: #ff5e5e;
+  cursor: default;
 }

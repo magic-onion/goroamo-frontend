@@ -126,7 +126,7 @@ class LocationAdder extends React.Component {
             <div className="location-adder-description">
             <textarea onChange={e=>this.handleChange(e)} rows="7" cols="40" placeholder="description" id="description"></textarea>
             </div>
-            <span className="single-location-removal" onClick={(key)=>this.props.handleRemove(this.props.index, this.state.address)}>x</span>
+            <div className="single-location-removal" onClick={(key)=>this.props.handleRemove(this.props.index, this.state.address)}><span className="removal-icon">x</span></div>
           </div>
       </div>
       </>
