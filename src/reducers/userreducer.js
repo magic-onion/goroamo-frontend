@@ -9,7 +9,7 @@ function userReducer(state = init, action) {
   switch (action.type) {
 
     case "STORE_USER":
-    let currentUserState = {user: action.payload.user, loggedIn: true}
+    let currentUserState = {...state, user: action.payload.user, loggedIn: true}
     return currentUserState
 
     case "STORE_LOCATION":

@@ -55,6 +55,7 @@ class App extends React.Component {
     if (localStorage.getItem('token')) {
       this.props.getProfile()
     }
+    this.props.sendUserLocation()
   }
 
   get loggedIn() {

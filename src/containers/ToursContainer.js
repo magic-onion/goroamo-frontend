@@ -1,7 +1,9 @@
 import React from 'react'
-import { Script } from 'react-load-script'
+import Script from 'react-load-script'
 import MapViewInfoWindow from '../components/mapViewInfoWindow'
 import Loader from '../components/loader'
+import { connect } from 'react-redux'
+import { sendUserLocation } from '../actions/user'
 import API_KEY from '../environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
 
@@ -18,9 +20,9 @@ class ToursContainer extends React.Component {
   }
 
   handleScriptLoad() {
-    if (!!this.props.coords.length) {
+
       this.map = new window.google.maps.Map(document.getElementById("map-container"), {
-        center: {lat: this.props.coords[0], lng: this.props.coords[1]},
+        center: {lat: this.props.user.coords[0], lng: this.props.user.coords[1]},
         zoom: 13,
       })
 
@@ -34,8 +36,6 @@ class ToursContainer extends React.Component {
         }
       }
 
-
-    }
   }
 
   clicking(e, obj) {
@@ -43,7 +43,7 @@ class ToursContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.handleScriptLoad()
+    this.props.sendUserLocation()
   }
 
   get infoWindow() {
@@ -60,24 +60,36 @@ class ToursContainer extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <>
-
+      <Script
+      url= { url }
+      onLoad={this.handleScriptLoad}
+      />
         <div style={{width: 350, height: 400, margin: 2}} id="map-container">
         </div>
-        {this.markers}
-        {this.infoWindow}
       </>
     )
   }
-
 }
 
-export default ToursContainer
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    sendUserLocation: () => dispatch(sendUserLocation())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToursContainer)
+
+// {this.markers}
+// {this.infoWindow}
 
 
-// <Script
-// url= { url }
-// onLoad={this.handleScriptLoad}
-// />
 // <div id="map">
