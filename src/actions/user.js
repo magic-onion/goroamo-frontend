@@ -8,7 +8,7 @@ export const newUser = (newUserObj) => {
       },
       body: JSON.stringify(newUserObj)
     }
-    fetch('http://localhost:3000/api/v1/users', config)
+    fetch('http://goroamo-backend.herokuapp.com/api/v1/users', config)
     .then(r=>r.json())
     .then(p=>{
     console.log(p)
@@ -78,6 +78,7 @@ export const getProfile = () => {
     })
   }
 }
+
 
 export const storeUser = (userObj) => ({type: "STORE_USER", payload: userObj})
 

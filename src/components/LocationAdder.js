@@ -84,7 +84,7 @@ class LocationAdder extends React.Component {
         funfact3: this.state.funFact3,
         description: this.state.description,
         image: this.state.image,
-        thumbnmail: this.state.thumbnail,
+        thumbnail: this.state.thumbnail,
         user_id: this.props.user.id
       }
     }
