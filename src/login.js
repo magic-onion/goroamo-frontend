@@ -116,7 +116,4 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
-
-
-
 // <button onClick={e=>this.cheating(e)}>cheating</button>

@@ -191,7 +191,7 @@
     justify-content: space-evenly;
     font-size: .7em;
     margin: 1%;
-    width: 90%;
+    min-width: 90%;
     height: 5%;
     max-height: 20%;
     max-width: 70%;
@@ -199,6 +199,7 @@
   }
 
   .active-1 {
+    min-width: 50%;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
     display: flex;
@@ -212,6 +213,7 @@
   }
 
   .inactive-1 {
+    min-width: 50%;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
     display: flex;
