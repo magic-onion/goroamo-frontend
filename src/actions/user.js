@@ -20,7 +20,7 @@ export const newUser = (newUserObj) => {
 
 export const userLogin = (username, password) => {
   return(dispatch) => {
-    fetch('http://localhost:3000/api/v1/login', {
+    fetch('http://goroamo-backend.herokuapp.com/api/v1/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export const getProfile = () => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }
-    fetch('http://localhost:3000/api/v1/profile', config)
+    fetch('http://goroamo-backend.herokuapp.com/api/v1/profile', config)
     .then(r=>r.json())
     .then(p => {
       dispatch(storeUser(p))
@@ -114,7 +114,7 @@ export const getAllTours = () => {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
     }
-    fetch(`http://localhost:3000/api/v1/tours`, config).then(r=>r.json()).then(p => {
+    fetch(`http://goroamo-backend.herokuapp.com/api/v1/tours`, config).then(r=>r.json()).then(p => {
       dispatch(storeTours(p))
     })
   }
@@ -135,7 +135,7 @@ export const updateProfile = (userObj, param) => {
       },
       body: JSON.stringify(userObj)
     }
-    fetch(`http://localhost:3000/api/v1/users/${param}`, config)
+    fetch(`http://goroamo-backend.herokuapp.com/api/v1/users/${param}`, config)
     .then(r=>r.json())
     .then(console.log)
   }
@@ -158,7 +158,7 @@ export const updateProfile = (userObj, param) => {
 
 export const createNewUser = (username, password) => {
   return(dispatch) => {
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch('http://goroamo-backend.herokuapp.com/api/v1/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -180,7 +180,7 @@ export const createNewUser = (username, password) => {
       localStorage.setItem('token', `${p.jwt}`)
     })
     .then(u => {
-      fetch('http://localhost:3000/api/v1/login', {
+      fetch('http://goroamo-backend.herokuapp.com/api/v1/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ export const getToursByUser = (id) => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }
-    fetch(`http://localhost:3000/api/v1/users/${id}/my-tours`,  config)
+    fetch(`http://goroamo-backend.herokuapp.com/api/v1/users/${id}/my-tours`,  config)
       .then(r=>r.json())
       .then(p => {
         dispatch(storeTours(p))

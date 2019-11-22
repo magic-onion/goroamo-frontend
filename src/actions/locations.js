@@ -25,7 +25,7 @@ export const saveAllLocs = (obj) => {
         },
         body: JSON.stringify(el)
       }
-      fetch('http://localhost:3000/api/v1/locations', config)
+      fetch('http://goroamo-backend.herokuapp.com/api/v1/locations', config)
       .then(r=>r.json())
       .then(console.log)
     }

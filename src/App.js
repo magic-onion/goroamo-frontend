@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Script from 'react-load-script'
 import './App.css';
@@ -17,7 +18,6 @@ import './styles/notfound.css'
 import './styles/about.css'
 import { connect } from 'react-redux'
 import { getProfile, sendUserLocation } from './actions/user'
-require('dotenv').config()
 // import { makeMap } from './actions/tours'
 // import Dashboard from './containers/Dashboard'
 import NotFound from './components/NotFound'
@@ -35,6 +35,8 @@ import EditTourContainer from './containers/edittour'
 import TouristSidebar from './containers/TouristSidebar'
 import API_KEY from './environment'
 const url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
+
+require('dotenv').config()
 
 class App extends React.Component {
 
@@ -120,6 +122,7 @@ class App extends React.Component {
     }
   }
   render() {
+    console.log(process.env)
     return (
       <>
       <Script

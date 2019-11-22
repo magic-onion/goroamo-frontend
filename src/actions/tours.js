@@ -9,7 +9,7 @@ export const getAllTours = () => {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
     }
-    fetch(`http://localhost:3000/api/v1/tours`, config)
+    fetch(`http://goroamo-backend.herokuapp.com/api/v1/tours`, config)
       .then(r=>r.json())
       .then(p => {
       dispatch(storeTours(p))
@@ -34,7 +34,7 @@ export const saveMap = (testMap) => ({type: "SAVE_MAP", payload: testMap})
 
 export const addSingleLocation = (obj) => {
   return (dispatch) => {
-    fetch('http://localhost:3000/api/v1/tours', {
+    fetch('http://goroamo-backend.herokuapp.com/api/v1/tours', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const addSingleLocation = (obj) => {
 
 export const createNewTour = (tourObj) => {
   return (dispatch) => {
-    fetch('http://localhost:3000/api/v1/tours', {
+    fetch('http://goroamo-backend.herokuapp.com/api/v1/tours', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -76,12 +76,12 @@ export const getSingleTour = (param) => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }
-    let fetchString = `http://localhost:3000/api/v1/tours/${param}`
+    let fetchString = `http://goroamo-backend.herokuapp.com/api/v1/tours/${param}`
     fetch(fetchString, config)
       .then(r=>r.json())
       .then(p => {
         if (p.status !== 500) {
-          
+
         }
         dispatch(storeFocusedTour(p.tour))
       })
@@ -111,7 +111,7 @@ export const getEditTour = (param) => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }
-    let fetchString = `http://localhost:3000/api/v1/tours/${param}`
+    let fetchString = `http://goroamo-backend.herokuapp.com/api/v1/tours/${param}`
     fetch(fetchString, config)
       .then(r=>r.json())
       .then(p => dispatch(storeEditTour(p.tour)))
@@ -134,7 +134,7 @@ export const editTourPatchReq = (tourObj, param) => {
       },
       body: JSON.stringify(tourObj)
     }
-    let fetchString = `http://localhost:3000/api/v1/tours/${param}`
+    let fetchString = `http://goroamo-backend.herokuapp.com/api/v1/tours/${param}`
     fetch(fetchString, config)
       .then(r=>r.json())
       .then(console.log)
