@@ -17,6 +17,7 @@ import './styles/notfound.css'
 import './styles/about.css'
 import { connect } from 'react-redux'
 import { getProfile, sendUserLocation } from './actions/user'
+require('dotenv').config()
 // import { makeMap } from './actions/tours'
 // import Dashboard from './containers/Dashboard'
 import NotFound from './components/NotFound'
