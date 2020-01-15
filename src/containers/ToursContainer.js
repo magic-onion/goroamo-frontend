@@ -39,6 +39,7 @@ class ToursContainer extends React.Component {
   }
 
   clicking(e, obj) {
+    console.log("clicking")
     this.setState({focused: true, tourObj: obj})
   }
 
@@ -69,6 +70,7 @@ class ToursContainer extends React.Component {
       />
         <div style={{width: 350, height: 400, margin: 2}} id="map-container">
         </div>
+      {this.infoWindow}
       </>
     )
   }
