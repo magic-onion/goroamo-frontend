@@ -13,6 +13,7 @@
 
 .logo-img {
   width: 12%;
+  max-width: 200px;
   max-height: 35px;
   margin: .5% 0 .5% .8%;
 }
@@ -69,6 +70,7 @@
 
   .logo-img {
     width: 50%;
+    max-width: 200px;
     max-height: 35px;
     margin: .5% 0 .5% .8%;
   }
@@ -118,6 +120,7 @@
 
   .logo-img {
     width: 40%;
+    max-width: 200px;
     max-height: 35px;
     margin: .5% 0 .5% .8%;
   }
