@@ -4,6 +4,7 @@
   }
 }
 .top-bar {
+  max-width: 100%;
   display: flex;
   background-color: #3775B7;
   /* height: 100%; */
@@ -12,7 +13,7 @@
 
 .logo-img {
   width: 12%;
-  max-height: 50px;
+  max-height: 35px;
   margin: .5% 0 .5% .8%;
 }
 
@@ -68,7 +69,7 @@
 
   .logo-img {
     width: 50%;
-    max-height: 50px;
+    max-height: 35px;
     margin: .5% 0 .5% .8%;
   }
 
@@ -117,7 +118,7 @@
 
   .logo-img {
     width: 40%;
-    max-height: 50px;
+    max-height: 35px;
     margin: .5% 0 .5% .8%;
   }
 
