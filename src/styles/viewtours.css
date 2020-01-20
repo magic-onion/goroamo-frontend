@@ -50,6 +50,7 @@
 
 
 .list-view-tour-container {
+  overflow-x: hidden;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -296,6 +297,7 @@
 
 
   .list-view-tour-container {
+    overflow-x: hidden;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
