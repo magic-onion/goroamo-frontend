@@ -147,6 +147,7 @@
   .list-view-single-tour {
     display: flex;
     width: 100%;
+    min-height: 20%;
     flex-direction: row;
     justify-content: space-around;
   }
