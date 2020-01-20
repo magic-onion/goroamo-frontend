@@ -121,6 +121,7 @@
 
 
 
+
 @media only screen and (min-device-width: 200px) and (max-device-width: 399px) {
 
   .search-tours-filter-title {
@@ -184,7 +185,7 @@
     border: solid #cdcdcd 3px;
     box-shadow: 0 0 1vh #a3a3a3;
     /* border-radius: 3%; */
-    min-height: 20%;
+    min-height: 17%;
     padding: .2%;
     margin: 1% 0 0 1%;
     width: 95%;
@@ -240,6 +241,15 @@
     margin: 1.5%;
     height: 40%;
   }
+  .inactive-1:span {
+    display:table;
+    margin:0 auto;
+  }
+  .active-1:span {
+    display:table;
+    margin:0 auto;
+  }
+
 
 }
 
