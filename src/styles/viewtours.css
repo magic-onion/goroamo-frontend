@@ -96,10 +96,6 @@
   height: 40%;
 }
 
-.active-1:span {
-  display:table;
-  margin:0 auto;
-}
 
 .inactive-1 {
   font-family: 'Roboto', sans-serif;
@@ -114,11 +110,6 @@
   margin: 1.5%;
   height: 40%;
 }
-.inactive-1:span {
-  display:table;
-  margin:0 auto;
-}
-
 
 
 
@@ -243,14 +234,6 @@
     border-radius: 1%;
     margin: 1.5%;
     height: 40%;
-  }
-  .inactive-1:span {
-    display:table;
-    margin:0 auto;
-  }
-  .active-1:span {
-    display:table;
-    margin:0 auto;
   }
 
 
