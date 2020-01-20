@@ -147,6 +147,7 @@
   .list-view-single-tour {
     display: flex;
     width: 100%;
+    background-color: red;
     min-height: 20%;
     flex-direction: row;
     justify-content: space-around;
@@ -206,8 +207,9 @@
     display: flex;
     align-items: center;
     color: white;
+    text-align: center;
     background-color: #3775B7;
-    padding: 2% 8% 2% 8%;
+    padding: 2% 4% 2% 4%;
     border-radius: 1%;
     margin: 1.5%;
     height: 40%;
@@ -217,11 +219,12 @@
     min-width: 50%;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
+    text-align: center;
     display: flex;
     align-items: center;
     color: white;
     background-color: grey;
-    padding: 2% 8% 2% 8%;
+    padding: 2% 4% 2% 4%;
     border-radius: 1%;
     margin: 1.5%;
     height: 40%;
@@ -324,7 +327,7 @@
     align-items: center;
     color: white;
     background-color: #3775B7;
-    padding: 2% 8% 2% 8%;
+    padding: 2% 4% 2% 4%;
     border-radius: 1%;
     margin: 1.5%;
     height: 40%;
@@ -337,7 +340,7 @@
     align-items: center;
     color: white;
     background-color: grey;
-    padding: 2% 8% 2% 8%;
+    padding: 2% 4% 2% 4%;
     border-radius: 1%;
     margin: 1.5%;
     height: 40%;
