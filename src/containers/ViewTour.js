@@ -15,7 +15,7 @@ class ViewTour extends React.Component {
  }
 
  componentDidMount() {
-   if (!this.props.tours.loaded) {
+   if (!this.props.tours.touristLoaded) {
      this.props.getAllTours()
    }
    if (this.props.coords.length) {
@@ -49,7 +49,7 @@ class ViewTour extends React.Component {
         <span onClick={e=>this.handleSelect(e)} className={this.state.mapViewSelected ? "active-1" : "inactive-1"} id="map-view" >Map View</span>
         <span onClick={e=>this.handleSelect(e)} className={this.state.mapViewSelected ? "inactive-1" : "active-1"} id="list-view">List View</span>
       </div>
-      {this.state.mapViewSelected ? <ToursContainer {...this.props} coords={this.props.coords.length ? this.props.coords : this.state.coords} tours={this.props.tours.tours} /> : <ListView tours={this.props.tours.tours}/> }
+      {this.state.mapViewSelected ? <ToursContainer {...this.props} coords={this.props.coords.length ? this.props.coords : this.state.coords} tours={this.props.tours.touristTours} /> : <ListView tours={this.props.tours.touristTours}/> }
      </>
    )
  }

@@ -9,7 +9,9 @@ const init = {
   locations: [],
   focusedTour: {id: null},
   currentLocation: {},
-  editTour: {id: null}
+  editTour: {id: null},
+  touristTours: [],
+  touristLoaded: false
 }
 
 
@@ -21,7 +23,7 @@ function toursReducer(state = init, action) {
     return newState
 
     case "GET_TOURS":
-    let toursFetched = {...state, loaded: true, tours: action.payload}
+    let toursFetched = {...state, touristLoaded: true, touristTours: action.payload}
     return toursFetched
 
     case "SAVE_MAP":
