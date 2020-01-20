@@ -29,7 +29,7 @@ function toursReducer(state = init, action) {
 
     case "STORE_USER_TOURS":
     let storeUserToursState = {...state, userToursLoaded: true, userTours: action.payload}
-
+    return storeUserToursState
     case "SAVE_MAP":
     let newMap = {...state, testMap: action.payload}
     return newMap
