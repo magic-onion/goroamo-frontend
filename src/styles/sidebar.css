@@ -56,7 +56,7 @@
   .mobile-sidebar {
     z-index: 99;
     position: fixed;
-    max-width: 15%;
+    /* max-width: 15%; */
   }
 
 
