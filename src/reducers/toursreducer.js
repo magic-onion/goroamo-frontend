@@ -2,7 +2,8 @@
 
 const init = {
   tourLoaded: false,
-  tours: [],
+  userTours: [],
+  userToursLoaded: false,
   testMap: {},
   createdTour: {},
   mode: "",
@@ -25,6 +26,9 @@ function toursReducer(state = init, action) {
     case "GET_TOURS":
     let toursFetched = {...state, touristLoaded: true, touristTours: action.payload}
     return toursFetched
+
+    case "STORE_USER_TOURS":
+    let storeUserToursState = {...state, userToursLoaded: true, userTours: action.payload}
 
     case "SAVE_MAP":
     let newMap = {...state, testMap: action.payload}

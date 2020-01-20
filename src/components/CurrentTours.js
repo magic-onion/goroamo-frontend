@@ -22,9 +22,9 @@ class CurrentTours extends React.Component {
   }
 
   get tourInfo() {
-    if (this.props.tours.tours) {
+    if (this.props.tours.userTours) {
 
-      return this.props.tours.tours.map( (el,i) => {
+      return this.props.tours.userTours.map( (el,i) => {
         return (
           <>
           <hr key ={i+1} className="table-line"/>

@@ -212,7 +212,9 @@ export const getToursByUser = (id) => {
     fetch(`http://goroamo-backend.herokuapp.com/api/v1/users/${id}/my-tours`,  config)
       .then(r=>r.json())
       .then(p => {
-        dispatch(storeTours(p))
+        dispatch(storeUserTours(p))
       })
   }
 }
+
+export const storeUserTours = (toursArray) => ({type: "STORE_USER_TOURS", payload: toursArray})
