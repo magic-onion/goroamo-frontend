@@ -92,10 +92,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(CurrentTours)
 
 
 
-
-
-
-
 // <div  className="dashboard-create-link-div">
 // <img className="create-tour-link-img" src={require(`../assets/plus-icon.png`)} alt="hi"></img>
 // <Link className="dashboard-create-link" to="/create-tour/">Create New Tour</Link>

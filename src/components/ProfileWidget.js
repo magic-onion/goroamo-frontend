@@ -14,7 +14,7 @@ function ProfileWidget(props) {
       <p>E-mail: {props.user.email}</p>
       <hr className="profile-viewer-line"/>
 
-      <p>Location: {props.user.location}</p>
+      <p>Hometown: {props.user.location}</p>
 
     </div>
   )
