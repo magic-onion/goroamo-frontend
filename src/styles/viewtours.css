@@ -160,6 +160,7 @@
     padding: .2%;
     margin: 1% 0 0 1%;
     width: 95%;
+    max-width: 100%;
   }
 
   .list-view-single-tour {
