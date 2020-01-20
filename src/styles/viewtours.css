@@ -157,6 +157,20 @@
     font-size: 1em;
   }
 
+  .list-view-tour-container {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: solid #cdcdcd 3px;
+    box-shadow: 0 0 1vh #a3a3a3;
+    /* border-radius: 3%; */
+    min-height: 17%;
+    padding: .2%;
+    margin: 1% 0 0 1%;
+    width: 95%;
+  }
+
   .list-view-single-tour {
     display: flex;
     width: 100%;
@@ -178,18 +192,7 @@
   }
 
 
-  .list-view-tour-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    border: solid #cdcdcd 3px;
-    box-shadow: 0 0 1vh #a3a3a3;
-    /* border-radius: 3%; */
-    min-height: 17%;
-    padding: .2%;
-    margin: 1% 0 0 1%;
-    width: 95%;
-  }
+
 
   .list-view-link {
     padding: 2.5% 1.2% 1.2% 1.2%;
