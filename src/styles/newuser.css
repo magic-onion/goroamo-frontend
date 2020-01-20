@@ -51,7 +51,7 @@
   color: white;
   font-size: .9em;
 }
-@media only screen and (min-width: 200px) and (max-width: 399px) {
+@media only screen and (min-device-width: 200px) and (max-device-width: 399px) {
   .new-user {
     display: flex;
     width: 98%;
@@ -84,7 +84,7 @@
   }
 }
 
-@media only screen and (min-width: 400px) and (max-width: 600px) {
+@media only screen and (min-device-width: 400px) and (max-device-width: 600px) {
   .new-user {
     display: flex;
     width: 95%;
