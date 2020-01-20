@@ -85,7 +85,8 @@
 .active-1 {
   font-family: 'Roboto', sans-serif;
   font-size: 1.2em;
-  display: flex;
+  display: inline-block;
+  text-align: center;
   align-items: center;
   color: white;
   background-color: #3775B7;
@@ -97,8 +98,9 @@
 
 .inactive-1 {
   font-family: 'Roboto', sans-serif;
-  display: flex;
+  display: inline-block;
   align-items: center;
+  text-align: center;
   font-size: 1.2em;
   color: white;
   background-color: grey;
@@ -125,6 +127,7 @@
     margin: 1%;
     padding: 1%;
     width: 90%;
+    min-height: 20%;
   }
 
   .search-tours-filter {
@@ -147,8 +150,6 @@
   .list-view-single-tour {
     display: flex;
     width: 100%;
-    background-color: red;
-    min-height: 20%;
     flex-direction: row;
     justify-content: space-around;
   }
