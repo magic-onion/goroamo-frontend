@@ -175,6 +175,7 @@
   .view-tour-details-button {
     background: grey;
     background-color: #ffbf2f;
+    min-height: 30px;
     border-radius: 8%;
     min-height: 35%;
   }
