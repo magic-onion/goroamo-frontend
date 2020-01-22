@@ -151,7 +151,8 @@
     min-height: 35%;
     height: 40%;
     border-radius: 2%;
-    background: #ffbf2f;
+    backgroung: red;
+    /* background: #ffbf2f; */
   }
 
   .viewing-tour-next-location-button {
