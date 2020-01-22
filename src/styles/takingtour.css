@@ -148,6 +148,7 @@
 
   .starting-tour-button {
     width: 65%;
+    min-height: 25%;
     height: 40%;
     border-radius: 2%;
     background: #ffbf2f;
