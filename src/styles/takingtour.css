@@ -166,7 +166,7 @@
 
   .view-tour-upload-image-button {
     background-color: #ffbf2f;
-    border-radius: 8%;
+    border-radius: 4%;
     min-height: 30px;
     width: 40%;
     margin: 2%;
@@ -177,7 +177,7 @@
     background-color: #ffbf2f;
     min-height: 30px;
     height: 30%;
-    border-radius: 8%;
+    border-radius: 4%;
   }
 
 
