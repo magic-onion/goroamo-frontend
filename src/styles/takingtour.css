@@ -148,7 +148,7 @@
 
   .starting-tour-button {
     width: 65%;
-    min-height: 50px;
+    min-height: 45px;
     height: 55%;
     border-radius: 2%;
     background: #ffbf2f;
@@ -157,7 +157,7 @@
   .viewing-tour-next-location-button {
     background: green;
     height: 50%;
-    min-height: 45%;
+    min-height: 25px;
     width: 100%;
     border-radius: 5%;
     margin-top: 20%;
@@ -167,8 +167,8 @@
   .view-tour-upload-image-button {
     background-color: #ffbf2f;
     border-radius: 8%;
-    min-height: 35%;
-    width: 30%;
+    min-height: 30px;
+    width: 60%;
     margin: 2%;
   }
 
