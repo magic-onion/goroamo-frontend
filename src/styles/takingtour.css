@@ -148,11 +148,9 @@
 
   .starting-tour-button {
     width: 65%;
-    min-height: 35%;
-    height: 40%;
+    min-height: 55%;
     border-radius: 2%;
-    backgroung: red;
-    /* background: #ffbf2f; */
+    background: #ffbf2f;
   }
 
   .viewing-tour-next-location-button {
@@ -161,6 +159,7 @@
     min-height: 45%;
     width: 100%;
     border-radius: 5%;
+    margin-top: 20%;
     box-shadow: green 2px 4px;
   }
 
