@@ -294,7 +294,7 @@ class ViewSelectedTour extends React.Component {
           //transform image here
           let string = result.info.url
           let urlArray = string.split("/")
-          urlArray.splice(urlArray.length-2, 1, "w_300,h_300,c_crop")
+          urlArray.splice(urlArray.length-2, 1, "w_300,h_300,c_scale")
           let imageUrl = urlArray.join("/")
 
           let imageArray = this.state.images
