@@ -292,9 +292,13 @@ class ViewSelectedTour extends React.Component {
         if (!error && result && result.event === "success") {
           console.log('Done! Here is the image info: ', result.info);
           //transform image here
+          let urlArray = result.info.split("/")
+          urlArray.splice(urlArray.length-1, 0, "w_300,h_300,c_crop")
+          let imageUrl = urlArray.join("/")
+
           let imageArray = this.state.images
-          imageArray.push(result.info.url)
-          this.setState({...this.state, currentImage: result.info.url, image: result.info.url})
+          imageArray.push(imageUrl)
+          this.setState({...this.state, currentImage: imageUrl, image: imageUrl})
         }
       })
     this.setState({widget: myWidget})
