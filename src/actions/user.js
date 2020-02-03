@@ -86,17 +86,18 @@ export const sendUserLocation = () => {
   console.log("GETTING USER LOCATION")
   return (dispatch) => {
     let coords = []
+    function savePos(lat, lng, array) {
+      array.push(lat)
+      array.push(lng)
+      return array
+    }
     if (navigator.geolocation) {
 
       navigator.geolocation.getCurrentPosition(function(position) {
-        console.log(position.coords.latitude)
-        console.log(position)
-        coords.push(position.coords.latitude);
-        coords.push(position.coords.longitude);
+        savePos(position.coords.latitude, position.coords.longitude, coords)
       });
     }
-    console.log(coords, !navigator.geolocation)
-    if (!coords.length) {
+    else {
       coords = [43.651070, -79.347015]
     }
     console.log(coords)
