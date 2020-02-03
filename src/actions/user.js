@@ -94,7 +94,10 @@ export const sendUserLocation = () => {
     if (navigator.geolocation) {
 
       navigator.geolocation.getCurrentPosition(function(position) {
-        savePos(position.coords.latitude, position.coords.longitude, coords)
+        const lat = position.coords.latitude
+        const lng = position.coords.longitude
+
+        savePos(lat, lng, coords)
       });
     }
     else {
