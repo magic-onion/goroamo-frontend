@@ -83,27 +83,26 @@ export const getProfile = () => {
 export const storeUser = (userObj) => ({type: "STORE_USER", payload: userObj})
 
 export const sendUserLocation = () => {
-  console.log("GETTING USER LOCATION")
+  // console.log("GETTING USER LOCATION")
   return (dispatch) => {
-    let coords = []
-    function savePos(lat, lng, array) {
-      array.push(lat)
-      array.push(lng)
-      return array
-    }
-    if ("geolocation" in navigator) {
-
-      navigator.geolocation.getCurrentPosition(function(position) {
-        const lat = position.coords.latitude
-        const lng = position.coords.longitude
-        console.log(lat, lng)
-        savePos(lat, lng, coords)
-      });
-    }
-    else {
-      coords = [43.651070, -79.347015]
-    }
-    console.log(coords)
+    let coords = [43.6505279, -79.4488498]
+    // function savePos(lat, lng, array) {
+    //   array.push(lat)
+    //   array.push(lng)
+    //   return array
+    // }
+    // if ("geolocation" in navigator) {
+    //
+    //   navigator.geolocation.getCurrentPosition(function(position) {
+    //     const lat = position.coords.latitude
+    //     const lng = position.coords.longitude
+    //     console.log(lat, lng)
+    //     savePos(lat, lng, coords)
+    //   });
+    // }
+    // else {
+    //   coords = [43.651070, -79.347015]
+    // }
     dispatch(storeLocationCoords(coords))
   }
 }
