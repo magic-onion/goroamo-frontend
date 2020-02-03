@@ -91,7 +91,7 @@ export const sendUserLocation = () => {
       array.push(lng)
       return array
     }
-    if (navigator.geolocation) {
+    if ("geolocation" in navigator) {
 
       navigator.geolocation.getCurrentPosition(function(position) {
         const lat = position.coords.latitude
