@@ -92,7 +92,7 @@ export const sendUserLocation = () => {
       return array
     }
     if ("geolocation" in navigator) {
-
+      console.log("WE IN THE GEOLOC IF")
       navigator.geolocation.getCurrentPosition(function(position) {
         const lat = position.coords.latitude
         const lng = position.coords.longitude
