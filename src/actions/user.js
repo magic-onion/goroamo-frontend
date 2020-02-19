@@ -82,30 +82,79 @@ export const getProfile = () => {
 
 export const storeUser = (userObj) => ({type: "STORE_USER", payload: userObj})
 
+
+export const testLocation = () => {
+  return (dispatch) => {
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      let crd = pos.coords;
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }
+}
+
+
+
 export const sendUserLocation = () => {
   console.log("GETTING USER LOCATION")
   return (dispatch) => {
-    let coords = []
-    function savePos(lat, lng, array) {
-      array.push(lat)
-      array.push(lng)
-      return array
+    // let coords = []
+    // function savePos(lat, lng, array) {
+    //   array.push(lat)
+    //   array.push(lng)
+    //   return array
+    // }
+    // if ("geolocation" in navigator) {
+    //   console.log("WE IN THE GEOLOC IF")
+    //   console.log(navigator.geolocation)
+    //   navigator.geolocation.getCurrentPosition(function(position) {
+    //     let lat = position.coords.latitude
+    //     let lng = position.coords.longitude
+    //     console.log(position)
+    //     console.log(lat, lng)
+    //     savePos(lat, lng, coords)
+    //   });
+    // }
+    // else {
+    //   console.log("in the else")
+    //   coords = [43.6505279, -79.4488498]
+    // }
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      let crd = pos.coords;
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
     }
-    if ("geolocation" in navigator) {
-      console.log("WE IN THE GEOLOC IF")
-      console.log(navigator.geolocation)
-      navigator.geolocation.getCurrentPosition(function(position) {
-        let lat = position.coords.latitude
-        let lng = position.coords.longitude
-        console.log(position)
-        console.log(lat, lng)
-        savePos(lat, lng, coords)
-      });
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-    else {
-      console.log("in the else")
-      coords = [43.6505279, -79.4488498]
-    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
     dispatch(storeLocationCoords(coords))
   }
 }
