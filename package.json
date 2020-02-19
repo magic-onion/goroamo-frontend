@@ -1,6 +1,9 @@
 {
   "name": "goroamo-frontend",
   "version": "0.1.0",
+  "engines": {
+    "node": "13.1.0"
+  },
   "private": true,
   "dependencies": {
     "cloudinary-core": "^2.7.4",
