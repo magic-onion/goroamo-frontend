@@ -113,7 +113,7 @@ export const storeUser = (userObj) => ({type: "STORE_USER", payload: userObj})
 export const sendUserLocation = () => {
   console.log("GETTING USER LOCATION")
   return (dispatch) => {
-    // let coords = []
+    let coords = []
     // function savePos(lat, lng, array) {
     //   array.push(lat)
     //   array.push(lng)
