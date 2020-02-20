@@ -113,7 +113,7 @@ export const storeUser = (userObj) => ({type: "STORE_USER", payload: userObj})
 export const sendUserLocation = () => {
   console.log("GETTING USER LOCATION")
   return (dispatch) => {
-    let coords = [43.6505279, -79.4488498]
+    let coords = []
     // function savePos(lat, lng, array) {
     //   array.push(lat)
     //   array.push(lng)
@@ -142,7 +142,9 @@ export const sendUserLocation = () => {
 
     function success(pos) {
       let crd = pos.coords;
-      coords = [crd.latitude, crd.longitude]
+      let lat = crd.latitude
+      let lng = crd.longitude
+      coords = [lat, lng]
       console.log('Your current position is:');
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
@@ -155,7 +157,7 @@ export const sendUserLocation = () => {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-
+    console.log(coords)
     dispatch(storeLocationCoords(coords))
   }
 }
