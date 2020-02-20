@@ -144,7 +144,9 @@ export const sendUserLocation = () => {
       let crd = pos.coords;
       let lat = crd.latitude
       let lng = crd.longitude
+
       coords = [lat, lng]
+      console.log(lat,lng, coords)
       console.log('Your current position is:');
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
