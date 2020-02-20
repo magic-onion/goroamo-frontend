@@ -10,7 +10,7 @@ export const getAllTours = (memberId) => {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
     }
-    fetch(`http://goroamo-backend.herokuapp.com/api/v1/tours`, config).then(r=>r.json()).then(p => {
+    fetch(`https://goroamo-backend.herokuapp.com/api/v1/tours`, config).then(r=>r.json()).then(p => {
       dispatch(storeTours(p))
     })
   }
