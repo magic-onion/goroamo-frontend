@@ -142,7 +142,7 @@ export const sendUserLocation = () => {
 
     function success(pos) {
       let crd = pos.coords;
-
+      coords = [crd.latitude, crd.longitude]
       console.log('Your current position is:');
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
@@ -151,6 +151,7 @@ export const sendUserLocation = () => {
 
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
+      coords = [43.6505279, -79.4488498]
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
