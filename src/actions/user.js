@@ -8,7 +8,7 @@ export const newUser = (newUserObj) => {
       },
       body: JSON.stringify(newUserObj)
     }
-    fetch('http://goroamo-backend.herokuapp.com/api/v1/users', config)
+    fetch('https://goroamo-backend.herokuapp.com/api/v1/users', config)
     .then(r=>r.json())
     .then(p=>{
     console.log(p)
@@ -20,7 +20,7 @@ export const newUser = (newUserObj) => {
 
 export const userLogin = (username, password) => {
   return(dispatch) => {
-    fetch('http://goroamo-backend.herokuapp.com/api/v1/login', {
+    fetch('https://goroamo-backend.herokuapp.com/api/v1/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export const getProfile = () => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }
-    fetch('http://goroamo-backend.herokuapp.com/api/v1/profile', config)
+    fetch('https://goroamo-backend.herokuapp.com/api/v1/profile', config)
     .then(r=>r.json())
     .then(p => {
       dispatch(storeUser(p))
@@ -113,7 +113,7 @@ export const storeUser = (userObj) => ({type: "STORE_USER", payload: userObj})
 export const sendUserLocation = () => {
   console.log("GETTING USER LOCATION")
   return (dispatch) => {
-    let coords = []
+    let coords = [43.6505279, -79.4488498]
     // function savePos(lat, lng, array) {
     //   array.push(lat)
     //   array.push(lng)
@@ -171,7 +171,7 @@ export const getAllTours = () => {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
     }
-    fetch(`http://goroamo-backend.herokuapp.com/api/v1/tours`, config).then(r=>r.json()).then(p => {
+    fetch(`https://goroamo-backend.herokuapp.com/api/v1/tours`, config).then(r=>r.json()).then(p => {
       dispatch(storeTours(p))
     })
   }
@@ -192,7 +192,7 @@ export const updateProfile = (userObj, param) => {
       },
       body: JSON.stringify(userObj)
     }
-    fetch(`http://goroamo-backend.herokuapp.com/api/v1/users/${param}`, config)
+    fetch(`https://goroamo-backend.herokuapp.com/api/v1/users/${param}`, config)
     .then(r=>r.json())
     .then(console.log)
   }
@@ -215,7 +215,7 @@ export const updateProfile = (userObj, param) => {
 
 export const createNewUser = (username, password) => {
   return(dispatch) => {
-    fetch('http://goroamo-backend.herokuapp.com/api/v1/users', {
+    fetch('https://goroamo-backend.herokuapp.com/api/v1/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -237,7 +237,7 @@ export const createNewUser = (username, password) => {
       localStorage.setItem('token', `${p.jwt}`)
     })
     .then(u => {
-      fetch('http://goroamo-backend.herokuapp.com/api/v1/login', {
+      fetch('https://goroamo-backend.herokuapp.com/api/v1/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -266,7 +266,7 @@ export const getToursByUser = (id) => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }
-    fetch(`http://goroamo-backend.herokuapp.com/api/v1/users/${id}/my-tours`,  config)
+    fetch(`https://goroamo-backend.herokuapp.com/api/v1/users/${id}/my-tours`,  config)
       .then(r=>r.json())
       .then(p => {
         dispatch(storeUserTours(p))
