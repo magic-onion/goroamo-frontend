@@ -16,7 +16,7 @@ export const storeInitialLocation = (obj) => ({type: "INITIAL_ADD", payload: obj
 
 export const saveAllLocs = (obj) => {
   return(dispatch) => {
-    console.log(obj, obj.locations)
+    console.log("LOGGING THE OBJECT", obj, obj.locations)
     for (let el of obj.locations) {
       console.log("loc being sent", el)
       let config = {
