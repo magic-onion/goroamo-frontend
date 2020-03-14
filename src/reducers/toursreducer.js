@@ -58,6 +58,7 @@ function toursReducer(state = init, action) {
       }
     })
     let newLocationState = {...state, locations: changedLocs}
+    console.log(newLocationState)
     return newLocationState
 
     case "TOUR_NOW_LOADED":
