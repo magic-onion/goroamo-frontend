@@ -17,6 +17,7 @@ export const storeInitialLocation = (obj) => ({type: "INITIAL_ADD", payload: obj
 export const saveAllLocs = (obj) => {
   return(dispatch) => {
     for (let el of obj.locations) {
+      console.log("loc being sent", loc)
       let config = {
         method: 'POST',
         headers: {
@@ -25,6 +26,7 @@ export const saveAllLocs = (obj) => {
         },
         body: JSON.stringify(el)
       }
+
       fetch('https://goroamo-backend.herokuapp.com/api/v1/locations', config)
       .then(r=>r.json())
       .then(console.log)
