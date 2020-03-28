@@ -352,7 +352,7 @@ class ViewSelectedTour extends React.Component {
 
 
   render() {
-    console.lg(this.state.viewLocs)
+    console.log(this.state.viewLocs)
     return (
       <>
       {this.state.tourLoaded ? this.validate : <NotFound/>}
