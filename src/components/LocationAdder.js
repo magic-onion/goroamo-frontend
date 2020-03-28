@@ -19,7 +19,9 @@ class LocationAdder extends React.Component {
       image: "",
       thumbnail: "",
       widget: {},
-      locObj: {}
+      locObj: {},
+      position:
+
     }
 
     this.saveLocToState = this.saveLocToState.bind(this)
@@ -42,7 +44,7 @@ class LocationAdder extends React.Component {
         description: this.state.description,
         image: this.state.image,
         thumbnail: this.state.thumbnail,
-        user_id: this.props.user.id
+        user_id: this.props.user.id,
       }
     }
     this.props.saveInitialLoc(initializeObj)
@@ -102,6 +104,7 @@ class LocationAdder extends React.Component {
 
 
   render() {
+    console.log(this.state.position, this.props.index)
     return (
       <>
       <Script

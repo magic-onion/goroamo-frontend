@@ -12,7 +12,8 @@ class AddLocationToTour extends React.Component {
       query: "",
       addressObj: {},
       locations: [],
-      tourSavedOnce: false
+      tourSavedOnce: false,
+      counter: 0
     }
 
     this.handleChange = this.handleChange.bind(this)
