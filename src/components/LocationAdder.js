@@ -20,7 +20,7 @@ class LocationAdder extends React.Component {
       thumbnail: "",
       widget: {},
       locObj: {},
-      position:
+      position: null
 
     }
 
