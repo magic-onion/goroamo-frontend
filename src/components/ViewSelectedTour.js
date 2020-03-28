@@ -116,7 +116,7 @@ class ViewSelectedTour extends React.Component {
 
   newLocations() {
     if (this.state.tourLoaded && this.state.mapMounted) {
-        let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
+        let locationsArray = this.state.viewLocs.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
         let waypoints = []
         if (locationsArray.length > 2) {
               waypoints = locationsArray.slice(1,-1).map( (el) => {
@@ -163,7 +163,7 @@ class ViewSelectedTour extends React.Component {
 
   startTour(e) {
     this.state.markers.map((m) => m.setMap(null))
-    let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
+    let locationsArray = this.state.viewLocs.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
     let start = new window.google.maps.LatLng(this.props.user.coords[0], this.props.user.coords[1])
     let end = new window.google.maps.LatLng(locationsArray[0].latitude, locationsArray[0].longitude)
     let markers = [[this.props.user.coords[0], this.props.user.coords[1]], [locationsArray[0].latitude, locationsArray[0].longitude]]
@@ -194,7 +194,7 @@ class ViewSelectedTour extends React.Component {
   nextLocation(e) {
     if (this.state.locationCounter !== this.state.maxLocs) {
       let counter = this.state.locationCounter
-      let locationsArray = this.props.tours.focusedTour.locations.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
+      let locationsArray = this.state.viewLocs.map( (el) => ({...el, latitude: parseFloat(el.latitude), longitude: parseFloat(el.longitude)}))
       let start = new window.google.maps.LatLng(locationsArray[0+counter].latitude, locationsArray[0+counter].longitude)
       let end = new window.google.maps.LatLng(locationsArray[1+counter].latitude, locationsArray[1+this.state.locationCounter].longitude)
       let markers = [[locationsArray[0+this.state.locationCounter].latitude, locationsArray[0+this.state.locationCounter].longitude], [locationsArray[1+this.state.locationCounter].latitude, locationsArray[1+this.state.locationCounter].longitude]]
@@ -235,7 +235,7 @@ class ViewSelectedTour extends React.Component {
     if (this.state.displayMode === 'viewing') {
       return (
         <div className="viewing-controls-container">
-        <p> This tour begins at: {this.state.tourLoaded ? this.props.tours.focusedTour.locations[0].name : null}</p>
+        <p> This tour begins at: {this.state.tourLoaded ? this.state.viewLocs[0].name : null}</p>
         <button className="starting-tour-button" onClick={(e)=>this.startTour(e)}>Click Here for Directions to The Start of the Tour</button>
         </div>
       )
@@ -255,7 +255,7 @@ class ViewSelectedTour extends React.Component {
     if (this.state.displayMode === 'location') {
       return (
         <>
-        <ViewSelectedLocation location={this.props.tours.focusedTour.locations[this.state.locationCounter]} image={this.state.currentImage}/>
+        <ViewSelectedLocation location={this.state.viewLocs[this.state.locationCounter]} image={this.state.currentImage}/>
         <div className="location-controls-container">
           <button className="viewing-tour-next-location-button" onClick={e=>this.nextLocation(e)}>Next Location!</button>
         </div>
