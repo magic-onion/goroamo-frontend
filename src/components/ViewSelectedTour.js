@@ -80,14 +80,17 @@ class ViewSelectedTour extends React.Component {
     if (!this.props.tours.focusedTour.locations.length) {
       this.setState({error: true, errorMsg: "This tour has no locations!"})
     }
+    this.sortLocations()
   }
 
   sortLocations() {
+    console.log("SORTING LOCATIONS")
     let locationsArray = this.props.focusedTour.locations.sort( (a, b) => {
       let posA = parseInt(a.position)
       let posB = parseInt(b.position)
       return a-b
     })
+    console.log(locationsArray)
     this.setState({viewLocs: locationsArray})
   }
 
