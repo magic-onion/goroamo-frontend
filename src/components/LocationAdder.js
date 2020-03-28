@@ -45,6 +45,7 @@ class LocationAdder extends React.Component {
         image: this.state.image,
         thumbnail: this.state.thumbnail,
         user_id: this.props.user.id,
+        position: this.state.position
       }
     }
     this.props.saveInitialLoc(initializeObj)
@@ -87,7 +88,8 @@ class LocationAdder extends React.Component {
         description: this.state.description,
         image: this.state.image,
         thumbnail: this.state.thumbnail,
-        user_id: this.props.user.id
+        user_id: this.props.user.id,
+        position: this.state.position
       }
     }
     this.saveLocToState(saveLoc)
