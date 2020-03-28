@@ -89,7 +89,7 @@ class LocationAdder extends React.Component {
         image: this.state.image,
         thumbnail: this.state.thumbnail,
         user_id: this.props.user.id,
-        position: this.state.position
+        position: this.state.position.toString()
       }
     }
     this.saveLocToState(saveLoc)
