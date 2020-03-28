@@ -38,7 +38,8 @@ class ViewSelectedTour extends React.Component {
       widget: {},
       displayMode: "viewing",
       error: false,
-      errorMsg: ""
+      errorMsg: "",
+      viewLocs: []
     }
 
     this.clicking = this.clicking.bind(this)
@@ -50,7 +51,10 @@ class ViewSelectedTour extends React.Component {
     this.handleCloud = this.handleCloud.bind(this)
     this.skipLocation = this.skipLocation.bind(this)
     this.validateTour = this.validateTour.bind(this)
+    this.sortLocations = this.sortLocations.bind(this)
   }
+
+
 
   componentDidMount() {
     this.props.getSingleTour(this.props.match.params.id)
@@ -76,6 +80,15 @@ class ViewSelectedTour extends React.Component {
     if (!this.props.tours.focusedTour.locations.length) {
       this.setState({error: true, errorMsg: "This tour has no locations!"})
     }
+  }
+
+  sortLocations() {
+    let locationsArray = this.props.focusedTour.locations.sort(a, b) => {
+      let posA = parseInt(a.position)
+      let posB = parseInt(b.position)
+      return a-b
+    }
+    this.setState({viewLocs: locationsArray})
   }
 
 
@@ -339,6 +352,7 @@ class ViewSelectedTour extends React.Component {
 
 
   render() {
+    console.lg(this.state.viewLocs)
     return (
       <>
       {this.state.tourLoaded ? this.validate : <NotFound/>}
