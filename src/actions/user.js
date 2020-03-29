@@ -156,7 +156,7 @@ export const sendUserLocation = () => {
 
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
-      coordsÎΩ [43.6505279, -79.4488498]
+      coords = [43.6505279, -79.4488498]
       dispatch(storeLocationCoords(coords))
 
     }
