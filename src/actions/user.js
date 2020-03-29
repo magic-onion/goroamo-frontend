@@ -156,9 +156,9 @@ export const sendUserLocation = () => {
 
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
-      coords = [43.6505279, -79.4488498]
+      coordsÎΩ [43.6505279, -79.4488498]
       dispatch(storeLocationCoords(coords))
-      
+
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);

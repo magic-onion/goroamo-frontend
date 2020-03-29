@@ -88,6 +88,7 @@ class ViewSelectedTour extends React.Component {
     let locationsArray = this.props.tours.focusedTour.locations.sort( (a, b) => {
       let posA = parseInt(a.position)
       let posB = parseInt(b.position)
+      console.log(posA, posB)
       return a-b
     })
     console.log(locationsArray)
