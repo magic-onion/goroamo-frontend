@@ -16,6 +16,7 @@ class LocationEditor extends React.Component {
       funfact2: this.props.location.funfact2,
       funfact3: this.props.location.funfact3,
       description: this.props.location.description,
+      position: this.props.location.position,
       uploaded: false,
       id: this.props.location.id,
       image: this.props.location.image,
